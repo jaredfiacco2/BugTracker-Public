@@ -1,0 +1,124 @@
+﻿{% extends 'layout.html' %}
+{% block content %}
+
+
+<table>
+   <tr>
+      <td>
+        <a class="btn btn-primary" id="filteredSubmissions" href="javascript:showonlyonev2('filtered-wq', 'filteredSubmissions', 'allSubmissions');" >Workqueue - Actions Required</a>
+      </td>
+      <td>
+        <a class="btn btn-info" id="allSubmissions" href="javascript:showonlyonev2('all-wq', 'allSubmissions', 'filteredSubmissions');" >All Submissions</a>
+      </td>
+   </tr>
+</table>
+
+
+    <div class="tab-pane" id="filtered-wq" role="tabpanel" aria-labelledby="Workqueue - Action Needed">
+            <div class="container">
+                <h2>Action Required</h2>
+                <div class="table-resposive">
+                    <table class="table-resposive table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>Submission ID</th>
+                                <th>Title</th>
+                                <th>Priority</th>
+                                <th>Category</th>
+                                <th>Requestor</th>
+                                <th>Submission Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for bug in filtered_bug_list.all %}
+                            <tr>
+                                <td><a href="{% url 'bug-detail' bug.id %}">{{bug.id}}</a></td>
+                                <td>{{bug.title}}</td>
+                                <td>{{bug.priority}}</td>
+                                <td>{{bug.category}}</td>
+                                <td>{{bug.requestor}}</td>
+                                <td>{{bug.submission_dts}}</td>
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+
+
+    <div class="tab-pane"  role="tabpanel" id="all-wq"  style="display:none" aria-labelledby="Workqueue - All Submissions">
+            <div class="container">
+                <h2>All Data: Data that has been completed, and data that needs to be complete</h2>
+                <div class="table-resposive">
+                    <table class="table-resposive table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>Submission ID</th>
+                                <th>Title</th>
+                                <th>Priority</th>
+                                <th>Category</th>
+                                <th>Requestor</th>
+                                <th>Submission Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for bug in bug_list.all %}
+                            <tr>
+                                <td><a href="{% url 'bug-detail' bug.id %}">{{bug.id}}</a></td>
+                                <td>{{bug.title}}</td>
+                                <td>{{bug.priority}}</td>
+                                <td>{{bug.category}}</td>
+                                <td>{{bug.requestor}}</td>
+                                <td>{{bug.submission_dts}}</td>
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+
+
+{% load static %}
+<script>
+$(document).ready(function() {
+  $("#formButton").click(function() {
+    $("#form1").toggle();
+  });
+});
+</script>
+    <script>
+        function showonlyonev2(thechosenone, buttonid, buttonid2) {
+              var newboxes = document.getElementsByTagName("div");
+              for(var x=0; x<newboxes.length; x++) {
+                    name = newboxes[x].getAttribute("class");
+                    if (name == 'tab-pane') {
+                          if (newboxes[x].id == thechosenone) {
+                                if (newboxes[x].style.display == 'block') {
+                                      newboxes[x].style.display = 'none';
+                                }
+                                else {
+                                      newboxes[x].style.display = 'block';
+                                }
+                          }else {
+                                newboxes[x].style.display = 'none';
+                          }
+                    }
+              }
+            document.getElementById(buttonid).className = "btn btn-primary";
+            document.getElementById(buttonid2).className = "btn btn-info";
+        }
+    </script>
+
+{% endblock %}
+
+{# Good resource for creating tabs: http://www.randomsnippets.com/2008/02/12/how-to-hide-and-show-your-div/ #}
+{# I could probably clean this up a bit by iterating through the types of content I want to see (filtered/all) and by cleaning up the variable names #}
+{# Known Issue: Once you press the button twice the main table disappears. #}

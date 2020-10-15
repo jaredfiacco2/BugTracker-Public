@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Issue Tracker</title>
+    {% load static %}
+    {#<link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />#}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
+    <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
+    <!-- Quickly Style the Website. -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/litera/bootstrap.min.css" integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn" crossorigin="anonymous"><script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <!-- Awesome Fonts & Icons (Linkedin, Tableau, Etc.) -->
+    <script src="https://kit.fontawesome.com/2074df092e.js" crossorigin="anonymous"></script>
+        <!-- Contact Info spinning animation -->
+        <style>
+            .spinner {
+              transition: all 0.75s linear;
+            }
+            .spinner.in {
+              transform: rotate(360deg);
+            }
+            .spinner.out {
+              transform: rotate(0deg);
+            }
+        </style>
+        <!-- Disappear/Appear Animation -->
+        <style>
+            @-webkit-keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+
+                to {
+                    opacity: 1;
+                }
+            }
+            @-webkit-keyframes fadeOut {
+                from {
+                    opacity: 1;
+                }
+
+                to {
+                    opacity: 0;
+                }
+            }
+            .disappear {
+                display: none;
+                -webkit-animation: fadeOut 1s;
+                animation: fadeOut 1s;
+            }
+            .appear {
+                display: block;
+                -webkit-animation: fadeIn 1s;
+                animation: fadeIn 1s;
+            }
+        </style>
+        <!-- Icon Pulse -->
+        <style>
+            .fa-pulse {
+	            display: inline-block;
+	            -moz-animation: pulse 2s infinite linear;
+	            -o-animation: pulse 2s infinite linear;
+	            -webkit-animation: pulse 2s infinite linear;
+	            animation: pulse 2s infinite linear;
+            }
+
+            @-webkit-keyframes pulse {
+	            0% { opacity: 1; }
+	            50% { opacity: .5; }
+	            100% { opacity: 1; }
+            }
+            @-moz-keyframes pulse {
+	            0% { opacity: 1; }
+	            50% { opacity: .5; }
+	            100% { opacity: 1; }
+            }
+            @-o-keyframes pulse {
+	            0% { opacity: 1; }
+	            50% { opacity: .5; }
+	            100% { opacity: 1; }
+            }
+            @-ms-keyframes pulse {
+	            0% { opacity: 1; }
+	            50% { opacity: .5; }
+	            100% { opacity: 1; }
+            }
+            @keyframes pulse {
+	            0% { opacity: 1; }
+	            50% { opacity: .5; }
+	            100% { opacity: 1; }
+            }
+        </style>
+        <!-- Bounce -->
+        <style>
+            .fa-bounce {
+                display: inline-block;
+                position: relative;
+                -moz-animation: bounce 1s infinite linear;
+                -o-animation: bounce 1s infinite linear;
+                -webkit-animation: bounce 1s infinite linear;
+                animation: bounce 1s infinite linear;
+            }
+
+            @-webkit-keyframes bounce {
+                0% { top: 0; }
+                50% { top: -0.2em; }
+                70% { top: -0.3em; }
+                100% { top: 0; }
+            }
+            @-moz-keyframes bounce {
+                0% { top: 0; }
+                50% { top: -0.2em; }
+                70% { top: -0.3em; }
+                100% { top: 0; }
+            }
+            @-o-keyframes bounce {
+                0% { top: 0; }
+                50% { top: -0.2em; }
+                70% { top: -0.3em; }
+                100% { top: 0; }
+            }
+            @-ms-keyframes bounce {
+                0% { top: 0; }
+                50% { top: -0.2em; }
+                70% { top: -0.3em; }
+                100% { top: 0; }
+            }
+            @keyframes bounce {
+                0% { top: 0; }
+                50% { top: -0.2em; }
+                70% { top: -0.3em; }
+                100% { top: 0; }
+            }
+        </style>
+
+</head>
+<body>
+    <div class="bs-component">
+        <nav class="navbar navbar-inverse navbar-fixed-top navbar-expand-lg navbar-dark bg-primary">
+            {% include 'navbar.html' %}
+        </nav>
+    </div>
+    
+    {% if messages %}
+        {% for message in messages %}
+            {# alert #}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %} alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <a  class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <strong>{% if message.tags %}{{ message.tags|capfirst }}:{% endif %}</strong> {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="container main-content">
+        {% block content %}{% endblock %}
+        <hr />
+        <footer>
+            <p style="text-align: center"> Copyright &copy; <script>document.write(new Date().getFullYear())</script> Jared Fiacco All Rights Reserved</p>
+        </footer>
+    </div>
+
+    <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+    <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
+    <script src="{% static 'app/scripts/respond.js' %}"></script>
+    
+    {% if messages %}
+        <script type="text/javascript">
+            $(window).on('load',function(){
+                $('#messagesModal').modal('show');
+            });
+        </script>
+    {% endif %}
+    
+    {% block scripts %}{% endblock %}
+
+</body>
+</html>

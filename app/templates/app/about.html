@@ -1,0 +1,195 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+
+    <div>
+    <!-- Author Contact Info -->
+        {% for contact in contact %}
+
+            <section class="home_banner_area" style="padding:20px;">
+                <div class="banner_inner">
+                    <div class="container">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-lg-6">
+                                <div class="home_right_img">
+                                    <h3>About the Creator</h3>
+                                    <h1 class"text-uppercase">{{ contact.FirstName }} {{ contact.LastName }} </h1>
+                                    <h5 class="text">{{ contact.Current_Title }} at {{ contact.Current_Employeer }}</h5>
+                                    <div class="tab-pane" align="right">
+                                        <i onclick="rotate1(event)" id="linkedin" class="fab fa-linkedin fa-2x" data-toggle="tooltip" data-placement="top" title="Click Me!"></i> 
+                                        <i onclick="rotate2(event)" id="github" class="fab fa-github-square fa-bounce" data-toggle="tooltip" data-placement="top" title="Click Me!"></i>
+                                        <i onclick="rotate3(event)" id="tableau" class="far fa-chart-bar" data-toggle="tooltip" data-placement="top" title="Click Me!"></i>
+                                        <i onclick="rotate4(event)" id="website" class="fas fa-laptop-code" data-toggle="tooltip" data-placement="top" title="Click Me!"></i>
+                                    </div>
+                                    <img class="img-fluid" src="{{ contact.PictureLink }}" >
+                                    <div class="row align-items-center justify-content-between">
+                                        <a class="btn btn-info" href="{{ contact.Resume.url }}" download>Download Resume</a>
+                                        <div class="tab-pane appear" id="linkedin_btn">
+                                            <a class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Click Me!" href="{{contact.Link_Linkedin}}">Go To Linkedin</a>
+                                        </div>
+                                        <div class="tab-pane disappear" id="github_btn">
+                                            <a class="btn btn-primary" href="{{contact.Link_Github}}">Go To Github</a>
+                                        </div>
+                                        <div class="tab-pane disappear" id="tableau_btn">
+                                            <a class="btn btn-primary" href="{{contact.Link_DataViz}}">Go To Tableau Profile</a>
+                                        </div>
+                                        <div class="tab-pane disappear" id="website_btn">
+                                            <a class="btn btn-primary" href="{{contact.Link_Website}}">Go To Website</a>
+                                        </div>
+                                        <a class="btn btn-info" href="mailto:{{ contact.Email }}">Send Email</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="banner_content">
+                                    <div class="tab-pane appear align-items-center justify-content-between" id="linkedin_tab">
+                                        <h7>{{contact.Link_Linkedin_Name}}</h7>
+                                        {% autoescape off %}
+                                        {{contact.Link_Linkedin_Embed}}
+                                        {% endautoescape %}
+                                    </div>
+                                    <div class="tab-pane disappear align-items-center justify-content-between" id="github_tab">
+                                        <h7>{{contact.Link_Github_Name}}</h7>
+                                        {% autoescape off %}
+                                        {{contact.Link_Github_Embed}}
+                                        {% endautoescape %}
+                                    </div>
+                                    <div class="tab-pane disappear align-items-center justify-content-between" id="tableau_tab">
+                                        <h7>{{contact.Link_DataViz_Name}}</h7>
+                                        {% autoescape off %}
+                                        {{contact.Link_DataViz_Embed}}
+                                        {% endautoescape %}
+                                    </div>
+                                    <div class="tab-pane disappear align-items-center justify-content-between" id="website_tab">
+                                        <h7>{{contact.Link_Website_Name}}</h7>
+                                        {% autoescape off %}
+                                        {{contact.Link_Website_Embed}}
+                                        {% endautoescape %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endfor %}
+    </div>
+
+
+<br />
+<br />
+<br />
+
+    <!-- Usecases -->
+    <blockquote class="blockquote text-center">
+        <h2 id="type-blockquotes">A few usecases for this project:</h2>
+    </blockquote>
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner text-center">
+        {% for usecase in usecase %}
+        <div class="carousel-item text-center {{ usecase.Active }}">
+            <blockquote class="blockquote">
+                <h3 id="type-blockquotes">{{ usecase.Title }}</h3>
+                <p class="mb-1">
+                    <strong>Description: </strong>{{ usecase.Description }}
+                </p>
+                <p class="mb-0">
+                    <strong>Modifications:</strong>{{ usecase.Modifications }}
+                </p>
+            </blockquote>
+            <img class="d-block w-100" src="{{ usecase.PictureLink }}" width="800" height="450">
+        </div>
+        {% endfor %}
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+    <script type="text/javascript">
+        function rotate1(e) {
+          // Check is already rotated and return
+          if (document.querySelector("#linkedin").classList.contains("in")) {
+            resetRotation();
+            return;
+          }
+          resetRotation();
+          document.getElementById("linkedin").className = "spinner in fab fa-linkedin fa-2x";
+          document.getElementById("linkedin_btn").className = "appear";
+          document.getElementById("linkedin_tab").className = "appear";
+          e.stopPropagation();
+        }
+
+
+        function rotate2(e) {
+          // Check is already rotated and return
+          if (document.querySelector("#github").classList.contains("in")) {
+            resetRotation();
+            return;
+          }
+          resetRotation();
+          document.getElementById("github").className = "spinner in fab fa-github-square fa-2x";
+          document.getElementById("github_btn").className = "appear";
+          document.getElementById("github_tab").className = "appear";
+          e.stopPropagation();
+        }
+
+        function rotate3(e) {
+          // Check is already rotated and return
+          if (document.querySelector("#tableau").classList.contains("in")) {
+            resetRotation();
+            return;
+          }
+          resetRotation();
+          document.getElementById("tableau").className = "spinner in far fa-chart-bar fa-2x";
+          document.getElementById("tableau_btn").className = "appear";
+          document.getElementById("tableau_tab").className = "appear";
+          e.stopPropagation();
+        }
+
+        function rotate4(e) {
+          // Check is already rotated and return
+          if (document.querySelector("#website").classList.contains("in")) {
+            resetRotation();
+            return;
+          }
+          resetRotation();
+          document.getElementById("website").className = "spinner in fas fa-laptop-code fa-2x";
+          document.getElementById("website_btn").className = "appear";
+          document.getElementById("website_tab").className = "appear";
+          e.stopPropagation();
+        }
+
+        function resetRotation() {
+          document.getElementById("linkedin").className = "spinner out fab  fa-linkedin";
+          document.getElementById("github").className = "spinner out fab fa-github-square";
+          document.getElementById("tableau").className = "spinner out far fa-chart-bar";
+          document.getElementById("website").className = "spinner out fas fa-laptop-code";
+          document.getElementById("linkedin_btn").className = "disappear";
+          document.getElementById("github_btn").className = "disappear";
+          document.getElementById("tableau_btn").className = "disappear";
+          document.getElementById("website_btn").className = "disappear";
+          document.getElementById("linkedin_tab").className = "disappear";
+          document.getElementById("github_tab").className = "disappear";
+          document.getElementById("tableau_tab").className = "disappear";
+          document.getElementById("website_tab").className = "disappear";
+        }
+
+        document.addEventListener('click', resetRotation);
+    </script>
+
+
+{% endblock %}

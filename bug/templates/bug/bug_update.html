@@ -1,0 +1,24 @@
+﻿
+{% extends 'layout.html' %}
+
+{% block content %}
+
+
+        <form class="form-group" action="." method="POST">{% csrf_token %}
+            {{ adminupdateform.as_table }}
+            <br />
+        </form>
+
+    <div class="row justify-content-around" style="text-align: center" >
+        <div class="col-md-4">
+            <input type="submit" class="btn btn-success" value="Save Update" href="{% url 'bug-detail' bug_id %}"/>
+        </div>
+        <div class="col-md-4">
+            <a type="button" class="btn btn-warning btn-large" href="{% url 'bug-detail' bug_id %}"> Go Back Without Saving </a>
+        </div>
+        <div class="col-md-4">
+            <a type="button" class="btn btn-danger btn-large" href="{% url 'bug-delete' bug_id %}"> DELETE SUBMISSION FROM DATASET </a>
+        </div>
+    </div>
+
+ {% endblock %}

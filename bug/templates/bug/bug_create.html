@@ -1,0 +1,15 @@
+﻿{% extends 'layout.html' %}
+
+{% block content %}
+
+
+        <form class="form-group" action="." method="POST">{% csrf_token %}
+            <h3>Report New Bug</h3>
+            <br />
+            {{ bug.as_table }}
+            <br />
+            <input type="submit" class="btn btn-info" value="Save"/>
+        </form>
+
+
+ {% endblock %}

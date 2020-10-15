@@ -1,0 +1,78 @@
+﻿{% extends 'layout.html' %}
+
+{% block content %}
+<br />
+  <div class="container">
+
+    <div class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+            {% if 'bug' in bug.category %}
+            <h4 class="mb-2 text-capitalize"><i class="fas fa-bug"></i> {{ bug.title|linebreaksbr }}</h4>
+            {% else %}
+            <h4 class="mb-2 text-capitalize"><i class="fas fa-file-medical"></i> {{ bug.title|linebreaksbr }}</h4>
+            {% endif %}
+            <div class="comment date">{{ bug.submission_dts }}</div>
+        </div>
+        <div class="d-flex w-100 justify-content-between">
+            <p class="mb-0 p-4">{{ bug.description|linebreaksbr }}</p>
+            {% if 'Critical' in bug.priority %}
+            <span class="badge badge-pill badge-danger ml-auto align-self-start">{{ bug.priority }}</span>
+            {% elif 'Urgent' in bug.priority %}
+            <span class="badge badge-pill badge-warning ml-auto align-self-start">{{ bug.priority }}</span>
+            {% elif 'Medium' in bug.priority %}
+            <span class="badge badge-pill badge-info ml-auto align-self-start">{{ bug.priority }}</span>
+            {% elif 'Low' in bug.priority %}
+            <span class="badge badge-pill badge-primary ml-auto align-self-start">{{ bug.priority }}</span>
+            {% elif 'Very Low' in bug.priority %}
+            <span class="badge badge-pill badge-success ml-auto align-self-start">{{ bug.priority }}</span>
+            {% else %}
+            <span class="badge badge-pill badge-success ml-auto align-self-start">{{ bug.priority }}</span>
+            {% endif %}
+        </div>
+        <div class="d-flex w-100 justify-content-between">
+            <footer class="mb-0 p-4">{{ bug.requestor }}</footer>
+            <a class="mb-0 p-4" href="mailto:{{bug.requestor_email}}">{{ bug.requestor_email }}</a>
+        </div>
+    </div>
+
+    <br />
+    <h4>Statuses:</h4>
+    <div class="list-group">
+    {% for status in bug.statuses.all %}
+        <div class="list-group-item">
+            <div class="d-flex justify-content-between full-comment">
+                <blockquote class="blockquote">
+                    <p class="mb-0 comment">{{ status.workqueue_status|linebreaksbr }}:</p>
+                    <p class="mb-0 comment">{{ status.workqueue_comment|linebreaksbr }}</p>
+                    <footer class="blockquote-footer">{{ status.workqueue_employee }}</footer>
+                </blockquote>
+                <div class="date">{{ status.workqueue_lastupdatedts }}</div>
+            </div>
+        </div>
+    {% empty %}
+    <p>No Workqueue Status Changes Yet...</p>
+    {% endfor %}
+        <br />
+        <br />
+        <h4>New Status:</h4>
+        <form class="form-group"  method="POST" action=".">{% csrf_token %}
+            {{employeeform.as_table}}
+            <br/>
+            <div class="row justify-content-around" style="text-align: center">
+                <div class="col-md-4">
+                    <input type="submit" class="btn btn-success btn-large" value="Save Update" />
+                </div>
+                <div class="col-md-4">
+                    <a type="button" class="btn btn-warning btn-large" href="{% url 'bug-list' %}"> Go Back Without Saving </a>
+                </div>
+                {% if user.is_superuser %}
+                <div class="col-md-4">
+                    <a type="button" class="btn btn-info btn-large" href="{% url 'bug-update' bug_id %}"> Update Original Submission</a>
+                </div>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+
+  </div>
+ {% endblock %}
