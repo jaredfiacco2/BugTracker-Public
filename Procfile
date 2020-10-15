@@ -1,1 +1,1 @@
-web: gunicorn {{ bugresolve-pm }}.wsgi
+web: gunicorn BugTracker.wsgi
