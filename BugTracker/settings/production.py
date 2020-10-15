@@ -22,6 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 
 
 # PRODUCTION SECURITY
+##### Remove this WHOLE BLOCK when testing on HEROKU LOCAL
+########## This should be removed When Migrating Server (When you Add new data models to the server)
 CORS_REPLACE_HTTPS_REFERER      = True
 HOST_SCHEME                     = "https://"
 SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -38,7 +40,7 @@ SECRET_KEY = 'f5d642eb-8fe9-4501-8686-84010bf18d27'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['bugresolve-pm.herokuapp.com']
+ALLOWED_HOSTS = ['bugresolve-pm.herokuapp.com', 'localhost', '127.0.0.1']
 
 # Application references
 # https://docs.djangoproject.com/en/2.1/ref/settings/#std:setting-INSTALLED_APPS
