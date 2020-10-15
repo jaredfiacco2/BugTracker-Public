@@ -92,13 +92,15 @@ WSGI_APPLICATION = 'BugTracker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bugdb',
-        'USER': 'postgres',
-        'PASSWORD':'NutSack!',
-        'HOST':'localhost',
+        'NAME': 'd706et6iv23tde,
+        'USER': 'iuikkoieykiqcf',
+        'PASSWORD':'e8ae488681f5aa724ac6e3771e91dd1e0c783f60264b2bfc91c1653f5ea6b992',
+        'HOST':'ec2-52-21-0-111.compute-1.amazonaws.com',
         'PORT':'5432',
     }
 }
+# Heroku Postgresql Database Credential Link
+# postgres://iuikkoieykiqcf:e8ae488681f5aa724ac6e3771e91dd1e0c783f60264b2bfc91c1653f5ea6b992@ec2-52-21-0-111.compute-1.amazonaws.com:5432/d706et6iv23tde
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
