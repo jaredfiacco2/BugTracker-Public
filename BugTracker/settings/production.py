@@ -38,7 +38,7 @@ SECURE_FRAME_DENY               = True
 SECRET_KEY = 'f5d642eb-8fe9-4501-8686-84010bf18d27'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['bugresolve-pm.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -120,8 +120,8 @@ LOGOUT_REDIRECT_URL = 'login'
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 SOCIAL_AUTH_FACEBOOK_KEY = "2848158112081114"        # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = "b189ef69be3ee3af31b7e9fcc05a388bR"  # App Secret
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "234848882828-7q1u0mggu206kbmoa7n841o1vfrhbb0h.apps.googleusercontent.com"        # App ID
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "dvolto8U1T39R_vZmrTUK24x"  # App Secret
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "234848882828-v16f4qm6ba6hc3npp92pkmcpb97v840p.apps.googleusercontent.com"        # App ID
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "GZTSuStTnPrvx2AVnjNtZSsd"  # App Secret
 
 SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [                 # add this
     ('name', 'name'),
