@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.utils import timezone
+from django.db import connection
 
 ##Patient Submission
 def bug_create_view(request):
@@ -26,9 +27,26 @@ def bug_create_view(request):
 ##Employee/Admin: View All Submissions where 
 @login_required(login_url='/login/')
 def bug_list_view(request):
-#    filtered_queryset = Bug.objects.exclude( Q(workqueue_status = 'Voicemail 3X - Could Not Reach') | Q(workqueue_status = 'Declided') | Q(workqueue_status = 'Declined') | Q(workqueue_status = 'Duplicate') | Q(workqueue_status = 'Scheduled')) # list of objects 
-    filtered_queryset = Bug.objects.annotate(max_wqid=Max('statuses')).filter(statuses=F('max_wqid')).select_related()
-    queryset = Bug.objects.all()
+    filtered_queryset = Bug.objects.raw(""" select b.*, w.* from
+                                                (select b.id, max(w.id) as max_s from bug_bug as b
+                                                left join bug_bugworkqueuestatus as w on b.id=w.bug_wq_id
+                                                group by b.id
+                                                having max(bug_wq_id) is not null) as m_id
+                                            left join bug_bug as b on b.id = m_id.id
+                                            left join bug_bugworkqueuestatus as w on w.id = m_id.max_s
+                                            where 
+                                                w.workqueue_status <> 'Duplicate' and
+                                                w.workqueue_status Not Like '%%t Fix (%%' and
+                                                w.workqueue_status Not Like '%%Fixe%%' and
+                                                w.workqueue_status <> 'Closed' """)
+    #queryset = Bug.objects.all()
+    queryset = Bug.objects.raw(""" select b.*, w.* from
+                                                (select b.id, max(w.id) as max_s from bug_bug as b
+                                                left join bug_bugworkqueuestatus as w on b.id=w.bug_wq_id
+                                                group by b.id
+                                                having max(bug_wq_id) is not null) as m_id
+                                            left join bug_bug as b on b.id = m_id.id
+                                            left join bug_bugworkqueuestatus as w on w.id = m_id.max_s """)
     context = {
         "filtered_bug_list" : filtered_queryset,
         "bug_list": queryset

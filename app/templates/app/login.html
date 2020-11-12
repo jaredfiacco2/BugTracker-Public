@@ -25,7 +25,7 @@
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="hidden" name="next" value="/" />
-                        <input type="submit" value="Log in" class="btn btn-default" />
+                        <input type="submit" value="Log in" class="btn btn-info" />
                     </div>
                 </div>
                 {% if form.errors %}
@@ -37,6 +37,20 @@
     <div class="col-md-4">
         <section id="socialLoginForm"></section>
     </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 mx-auto social-container my-2 order-md-1">
+        <a class="btn btn-success  mb-2" href="{% url 'social:begin' 'google-oauth2' %}">
+            <i id="website" class="fab fa-google fa-1x" style="padding-right:8px"></i>
+            Login with Google
+        </a>
+        <a class="btn btn-primary  mb-2" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">
+            <i id="website" class="fab fa-facebook fa-1x" style="padding-right:8px"></i>
+            Login with Facebook
+        </a>
+    </div>
+</div>
 </div>
 
 {% endblock %}

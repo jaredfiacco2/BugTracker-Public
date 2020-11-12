@@ -1,4 +1,4 @@
-﻿{% extends 'layout.html' %}
+{% extends 'layout.html' %}
 {% block content %}
 
 
@@ -16,13 +16,14 @@
 
     <div class="tab-pane" id="filtered-wq" role="tabpanel" aria-labelledby="Workqueue - Action Needed">
             <div class="container">
-                <h2>Action Required</h2>
+                <h2> Active Workqueue - Action Required</h2>
                 <div class="table-resposive">
                     <table class="table-resposive table-striped table-sm">
                         <thead>
                             <tr>
                                 <th>Submission ID</th>
                                 <th>Title</th>
+                                <th>Workqueue Status</th>
                                 <th>Priority</th>
                                 <th>Category</th>
                                 <th>Requestor</th>
@@ -30,10 +31,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for bug in filtered_bug_list.all %}
+                            {% for bug in filtered_bug_list %}
                             <tr>
                                 <td><a href="{% url 'bug-detail' bug.id %}">{{bug.id}}</a></td>
                                 <td>{{bug.title}}</td>
+                                <td>{{bug.workqueue_status}}</td>
                                 <td>{{bug.priority}}</td>
                                 <td>{{bug.category}}</td>
                                 <td>{{bug.requestor}}</td>
@@ -49,7 +51,7 @@
 
     <div class="tab-pane"  role="tabpanel" id="all-wq"  style="display:none" aria-labelledby="Workqueue - All Submissions">
             <div class="container">
-                <h2>All Data: Data that has been completed, and data that needs to be complete</h2>
+                <h2>All Submissions</h2>
                 <div class="table-resposive">
                     <table class="table-resposive table-striped table-sm">
                         <thead>
@@ -63,7 +65,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for bug in bug_list.all %}
+                            {% for bug in bug_list %}
                             <tr>
                                 <td><a href="{% url 'bug-detail' bug.id %}">{{bug.id}}</a></td>
                                 <td>{{bug.title}}</td>
