@@ -123,6 +123,7 @@ SOCIAL_AUTH_FACEBOOK_SECRET = "b189ef69be3ee3af31b7e9fcc05a388b"  # App Secret
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "234848882828-v16f4qm6ba6hc3npp92pkmcpb97v840p.apps.googleusercontent.com"        # App ID
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "GZTSuStTnPrvx2AVnjNtZSsd"  # App Secret
 
+
 SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [                 # add this
     ('name', 'name'),
     ('email', 'email'),
@@ -130,6 +131,7 @@ SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [                 # add this
     ('link', 'profile_url'),
 ]
 
+CLICKUP_API_TOKEN = "pk_10761609_CAP37AOETXJ3MVBXMQCI25CKW6LU5CO9"
 
 WSGI_APPLICATION = 'BugTracker.wsgi.application'
 # Database

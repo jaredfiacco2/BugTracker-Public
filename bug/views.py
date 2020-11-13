@@ -8,14 +8,32 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.utils import timezone
 from django.db import connection
+from pyclickup import ClickUp
 
 ##Patient Submission
 def bug_create_view(request):
     bug = CreateBug(request.POST or None)
     if bug.is_valid():
         bug.save()
+
+        #Add Clickup Task
+        clickup = ClickUp("pk_10761609_CAP37AOETXJ3MVBXMQCI25CKW6LU5CO9")
+        name = bug.title
+        content = bug.description + '\n' + '\n' + 'Requestor Name: ' + bug.requestor + '\n' + 'Requestor Email:  ' + bug.requestor_email
+        status = 'New Request'
+        main_team = clickup.teams[0]
+        main_space = main_team.spaces[0]
+        main_project = main_space.projects[0]
+        main_list = main_project.lists[0]
+
+        #Back to Form
         bug = CreateBug()
-        messages.success(request, 'Form successfully submitted. We will reach out to you soon.')
+        messages.success(request, 'Form successfully submitted.')
+        try:
+            main_list.create_task(name=name, content=content, status=status)
+            messages.info(request, 'Clickup Task Generated - We will review and reach out to you shortly.')
+        except:
+            messages.error(request, 'Clickup Task Not Created - Please contact admin(s) to follow up.')
         return HttpResponseRedirect(reverse('home'))
         #return render(request, 'form/form_create_success.html')
     context = {
