@@ -18,8 +18,8 @@ def bug_create_view(request):
 
         #Add Clickup Task
         clickup = ClickUp("pk_10761609_CAP37AOETXJ3MVBXMQCI25CKW6LU5CO9")
-        name = str(bug['title'].value)
-        content = str(bug['description'].value) + '\n' + '\n' + 'Requestor Name: ' + str(bug['requestor'].value) + '\n' + 'Requestor Email:  ' + str(bug['requestor_email'].value)
+        name = str(bug['title'].value())
+        content = str(bug['description'].value()) + '\n' + '\n' + 'Requestor Name: ' + str(bug['requestor'].value()) + '\n' + 'Requestor Email:  ' + str(bug['requestor_email'].value())
         status = 'New Request'
         main_team = clickup.teams[0]
         main_space = main_team.spaces[0]
