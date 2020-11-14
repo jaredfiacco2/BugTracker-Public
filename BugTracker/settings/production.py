@@ -40,7 +40,7 @@ SECRET_KEY = 'f5d642eb-8fe9-4501-8686-84010bf18d27'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['bugresolve-pm.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['bugresolve-pm.herokuapp.com', 'bugtrackertools.com', 'localhost', '127.0.0.1']
 
 # Application references
 # https://docs.djangoproject.com/en/2.1/ref/settings/#std:setting-INSTALLED_APPS
