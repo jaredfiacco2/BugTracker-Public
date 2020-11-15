@@ -5,8 +5,11 @@
 <div class="row"></div>
 <div class="jumbotron">
     <h1>Bug Tracker</h1>
-    <p class="lead">Found a bug, want to suggest a new feature? Fill out our form to request our services!</p>
-    <p class="lead">When you submit the form, the request will automatically be added into ClickUp, our Project Managment Software. We will add it to our project/task workqueue and our Project Manager or Director will initiate the project with a call or brief meeting.</p>
+    <p class="lead">
+            Found a bug, want to suggest a new feature? Fill out our form to request our services!
+            <br>
+            When you submit the form, the request will automatically be added into ClickUp, our Project Managment Software. Our Project Manager or Director will initiate the project with a call or brief discovery meeting.
+    </p>
     <p><a href="{% url 'bug-create' %}" class="btn btn-primary btn-large">Click Here To Add your Request to our Workqueue!</a></p>
 </div>
 
@@ -49,6 +52,16 @@
             <p><a class="btn btn-info" href="{% url 'bug-list' %}">Bug Tracker Admin</a></p>
         </blockquote>
     </div>
+</div>
+
+
+<div>
+    <h2 class="ttu tracked2 b f3 mv0 ph4 pv3 bg-gray8 br2 br--top white">Requestor</h2>
+    <article class="fw6 flex flex-row items-center ph3 bg-white-90 o-50 mb1">
+        <i class="fa fa-check"></i>
+        <span class="ml3 bl bw1 b--lime7 pl3 pv3"> Do something </span>
+    </article>
+    
 </div>
 
 {% endblock %}
