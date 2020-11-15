@@ -55,13 +55,121 @@
 </div>
 
 
-<div>
-    <h2 class="ttu tracked2 b f3 mv0 ph4 pv3 bg-gray8 br2 br--top white">Requestor</h2>
-    <article class="fw6 flex flex-row items-center ph3 bg-white-90 o-50 mb1">
-        <i class="fa fa-check"></i>
-        <span class="ml3 bl bw1 b--lime7 pl3 pv3"> Do something </span>
-    </article>
-    
+<div class="row">
+    <div class="col-lg-4">
+        <div class="header">
+            <h2>Requestor</h2>
+        </div>
+        <ul>
+            <article class="checked">
+                Do something
+            </article>
+        </ul>
+    </div>
+    <div class="col-lg-4">
+        <div class="header">
+            <h2>Requestor</h2>
+        </div>
+        <ul>
+            <article class="checked">
+                Do something
+            </article>
+        </ul>
+    </div>
+    <div class="col-lg-4">
+        <div class="header">
+            <h2>Requestor</h2>
+        </div>
+        <ul>
+            <article class="checked">
+                Do something
+            </article>
+        </ul>
+    </div>
 </div>
+
+<style>
+    body {
+      margin: 0;
+    }
+    
+    /* Include the padding and border in an element's total width and height */
+    * {
+      box-sizing: border-box;
+    }
+    
+    /* Remove margins and padding from the list */
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Style the list items */
+    ul article {
+      cursor: pointer;
+      position: relative;
+      padding: 12px 8px 12px 40px;
+      list-style-type: none;
+      background: #eee;
+      font-size: 18px;
+      transition: 0.2s;
+      
+      /* make the list items unselectable */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    
+    /* Set all odd list items to a different color (zebra-stripes) */
+    ul article.checked:nth-child(even) {
+      background: #1e2d47;
+    }
+    /* Set all odd list items to a different color (zebra-stripes) */
+    ul article.checked:nth-child(odd) {
+      background: #1c4966;
+    }
+    /* Darker background-color on hover */
+    ul article.checked:hover {
+      background: #141e2f;
+    }
+    
+    /* When clicked on, add a background color and strike out text */
+    ul article.checked {
+      background: #888;
+      color: #fff;
+    }
+    
+    /* Add a "checked" mark when clicked on */
+    ul article.checked::before {
+      content: '';
+      position: absolute;
+      border-color: #fff;
+      border-style: solid;
+      border-width: 0 2px 2px 0;
+      top: 10px;
+      left: 16px;
+      transform: rotate(45deg);
+      height: 15px;
+      width: 7px;
+    }
+    
+    
+    /* Style the header */
+    .header {
+      background-color: #061f41;
+      padding: 30px 40px;
+      color: white;
+      text-align: center;
+    }
+    
+    /* Clear floats after the header */
+    .header:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    
+</style>
 
 {% endblock %}
