@@ -24,7 +24,7 @@
     <div class="col-lg-4">
         <blockquote class="blockquote">
             <h2 id="type-blockquotes">User Type: Requestor</h2>
-            <h5 id="type-blockquotes">Request a bug, new feature, process change, etc.</h5>
+            <h5 id="type-blockquotes">Request a bug fix, new feature, process change, etc.</h5>
             <p class="mb-0">
                 To make a request, just log into the site through your google or facebook account. The website uses OAuth to collect your email address and name, and it creates a user instance for you. To review status changes on your request, you can open the "Bug Workqueue" page and click on your request. 
             </p>
@@ -59,31 +59,41 @@
     <div class="col-lg-4">
         <div class="header">
             <h2>Requestor</h2>
+            <h5>Request a bug fix, new feature, process change, etc.</h5>
         </div>
         <ul>
-            <article class="checked">
-                Do something
-            </article>
+            <article class="checked">Login using Google Oauth</article>
+            <article class="checked">Login using Facebook Oauth</article>
+            <article class="checked">Submit New Request to Bug Workqueue</article>
+            <article class="checked">New ClickUp Task Generated Upon Request Submission</article>
+            <article class="checked">View Requests</article>
+            <article class="checked">View Request Status Changes and Comments</article>
         </ul>
     </div>
     <div class="col-lg-4">
         <div class="header">
-            <h2>Requestor</h2>
+            <h2>Developer</h2>
+            <h5>Work the queue, answer peoples questions, solve peoples problems.</h5>
         </div>
         <ul>
-            <article class="checked">
-                Do something
-            </article>
+            <article class="checked">Full Functionality Of A Requestor</article>
+            <article class="checked">Login As Django Staff User</article>
+            <article class="checked">View Full Workqueue List</article>
+            <article class="checked">Add Statuses & Comments to Requests</article>
         </ul>
     </div>
     <div class="col-lg-4">
         <div class="header">
-            <h2>Requestor</h2>
+            <h2>Admin</h2>
+            <h5>Director, Project Manager, Engineer Manager</h5>
         </div>
         <ul>
-            <article class="checked">
-                Do something
-            </article>
+            <article class="checked">Full Functionality Of A Developer</article>
+            <article class="checked">Login As Django Admin User</article>
+            <article class="checked">Edit & Delete Requests</article>
+            <article class="checked">Edit & Delete Status Updates/Comments</article>
+            <article class="checked">Add & Delete Staff User Accounts</article>
+            <article class="checked">Add & Delete Requestor User Accounts</article>
         </ul>
     </div>
 </div>
@@ -102,6 +112,12 @@
     ul {
       margin: 0;
       padding: 0;
+    }
+
+    /* Add padding to rows */
+    div.row {
+        margin: 5;
+        padding: 5;
     }
     
     /* Style the list items */
@@ -158,7 +174,7 @@
     /* Style the header */
     .header {
       background-color: #061f41;
-      padding: 30px 40px;
+      padding: 5px 5px;
       color: white;
       text-align: center;
     }
