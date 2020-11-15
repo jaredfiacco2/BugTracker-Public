@@ -58,42 +58,44 @@
 <div class="row">
     <div class="col-lg-4">
         <div class="header">
-            <h2>Requestor</h2>
-            <h5>Request a bug fix, new feature, process change, etc.</h5>
+            <h5>Requestor</h5>
+            <p>Request a bug fix, new feature, process change, etc.</p>
         </div>
         <ul>
-            <article class="checked">Login using Google Oauth</article>
-            <article class="checked">Login using Facebook Oauth</article>
-            <article class="checked">Submit New Request to Bug Workqueue</article>
-            <article class="checked">New ClickUp Task Generated Upon Request Submission</article>
-            <article class="checked">View Requests</article>
-            <article class="checked">View Request Status Changes and Comments</article>
+            <article><i class="fas fa-check-circle"></i>    Login using Google Oauth</article>
+            <article><i class="fas fa-check-circle"></i>    Login using Facebook Oauth</article>
+            <article><i class="fas fa-check-circle"></i>    Submit New Request to Bug Workqueue</article>
+            <article><i class="fas fa-check-circle"></i>    New ClickUp Task Generated Upon Request Submission</article>
+            <article><i class="fas fa-check-circle"></i>    View Requests</article>
+            <article><i class="fas fa-check-circle"></i>    View Request Status Changes and Comments</article>
         </ul>
     </div>
+    <br/>
     <div class="col-lg-4">
         <div class="header">
-            <h2>Developer</h2>
-            <h5>Work the queue, answer peoples questions, solve peoples problems.</h5>
+            <h5>Developer</h5>
+            <p>Work the queue, answer peoples questions, solve peoples problems.</p>
         </div>
         <ul>
-            <article class="checked">Full Functionality Of A Requestor</article>
-            <article class="checked">Login As Django Staff User</article>
-            <article class="checked">View Full Workqueue List</article>
-            <article class="checked">Add Statuses & Comments to Requests</article>
+            <article><i class="fas fa-check-circle"></i>    Full Functionality Of A Requestor</article>
+            <article><i class="fas fa-check-circle"></i>    Login As Django Staff User</article>
+            <article><i class="fas fa-check-circle"></i>    View Full Workqueue List</article>
+            <article><i class="fas fa-check-circle"></i>    Add Statuses & Comments to Requests</article>
         </ul>
     </div>
+    <br/>
     <div class="col-lg-4">
         <div class="header">
-            <h2>Admin</h2>
-            <h5>Director, Project Manager, Engineer Manager</h5>
+            <h5>Admin</h5>
+            <p>Director, Project Manager, Engineer Manager</p>
         </div>
         <ul>
-            <article class="checked"> <i class="fas fa-check-circle"></i> Full Functionality Of A Developer</article>
-            <article class="checked">Login As Django Admin User</article>
-            <article class="checked">Edit & Delete Requests</article>
-            <article class="checked">Edit & Delete Status Updates/Comments</article>
-            <article class="checked">Add & Delete Staff User Accounts</article>
-            <article class="checked">Add & Delete Requestor User Accounts</article>
+            <article><i class="fas fa-check-circle"></i>    Full Functionality Of A Developer</article>
+            <article><i class="fas fa-check-circle"></i>    Login As Django Admin User</article>
+            <article><i class="fas fa-check-circle"></i>    Edit & Delete Requests</article>
+            <article><i class="fas fa-check-circle"></i>    Edit & Delete Status Updates/Comments</article>
+            <article><i class="fas fa-check-circle"></i>    Add & Delete Staff User Accounts</article>
+            <article><i class="fas fa-check-circle"></i>    Add & Delete Requestor User Accounts</article>
         </ul>
     </div>
 </div>
@@ -133,20 +135,20 @@
     }
     
     /* Set all odd list items to a different color (zebra-stripes) */
-    ul article.checked:nth-child(even) {
+    ul article:nth-child(even) {
       background: #1e2d47;
     }
     /* Set all odd list items to a different color (zebra-stripes) */
-    ul article.checked:nth-child(odd) {
+    ul article:nth-child(odd) {
       background: #1c4966;
     }
     /* Darker background-color on hover */
-    ul article.checked:hover {
+    ul article:hover {
       background: #141e2f;
     }
     
     /* When clicked on, add a background color and strike out text */
-    ul article.checked {
+    ul article {
       background: #888;
       color: #fff;
     }
