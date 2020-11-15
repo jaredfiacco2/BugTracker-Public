@@ -17,10 +17,10 @@
                                 <h1 class="text-uppercase">{{ contact.FirstName }} {{ contact.LastName }} </h1>
                                 <h5 class="text">{{ contact.Current_Title }} at {{ contact.Current_Employeer }}</h5>
                                 <div class="tab-pane" align="right">
-                                    <i onclick="rotate1(event)" id="linkedin" class="fab fa-linkedin fa-3x" data-toggle="tooltip" data-placement="top" title="Click Me!"></i> 
-                                    <i onclick="rotate2(event)" id="github" class="fab fa-github-square fa-bounce  fa-2x" data-toggle="tooltip" data-placement="top" title="Click Me!"></i>
-                                    <i onclick="rotate3(event)" id="tableau" class="far fa-chart-bar  fa-2x" data-toggle="tooltip" data-placement="top" title="Click Me!"></i>
-                                    <i onclick="rotate4(event)" id="website" class="fas fa-laptop-code  fa-2x" data-toggle="tooltip" data-placement="top" title="Click Me!"></i>
+                                    <i onclick="rotate1(event)" id="linkedin" class="fab fa-linkedin fa-3x hover-blue" data-toggle="tooltip" data-placement="top" title="Click Me!"></i> 
+                                    <i onclick="rotate2(event)" id="github" class="fab fa-github-square fa-bounce  fa-2x hover-blue" data-toggle="tooltip" data-placement="top" title="Click Me!"></i>
+                                    <i onclick="rotate3(event)" id="tableau" class="far fa-chart-bar  fa-2x hover-blue" data-toggle="tooltip" data-placement="top" title="Click Me!"></i>
+                                    <i onclick="rotate4(event)" id="website" class="fas fa-laptop-code  fa-2x hover-blue" data-toggle="tooltip" data-placement="top" title="Click Me!"></i>
                                 </div>
                                 <img class="img-fluid" src="{{ contact.PictureLink }}" >
                                 <div class="row align-items-center justify-content-between">
@@ -114,6 +114,7 @@
       <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
+        <i class="fas fa-laptop-code  fa-2x hover-blue" ></i>
       </a>
     </div>
 
