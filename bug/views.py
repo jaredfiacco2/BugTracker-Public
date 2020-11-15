@@ -10,7 +10,8 @@ from django.utils import timezone
 from django.db import connection
 from pyclickup import ClickUp
 
-##Patient Submission
+##Requestor Login: Request Fix
+@login_required(login_url='/login/')
 def bug_create_view(request):
     bug = CreateBug(request.POST or None)
     if bug.is_valid():

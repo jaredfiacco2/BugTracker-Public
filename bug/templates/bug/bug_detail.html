@@ -54,24 +54,27 @@
     {% endfor %}
         <br />
         <br />
-        <h4>New Status:</h4>
-        <form class="form-group"  method="POST" action=".">{% csrf_token %}
-            {{employeeform.as_table}}
-            <br/>
-            <div class="row justify-content-around" style="text-align: center">
-                <div class="col-md-4">
-                    <input type="submit" class="btn btn-success btn-large" value="Save Update" />
+        {% if user.is_staff or user.is_superuser %}
+        <div>
+            <h4>New Status:</h4>
+            <form class="form-group"  method="POST" action=".">{% csrf_token %}
+                {{employeeform.as_table}}
+                <br/>
+                <div class="row justify-content-around" style="text-align: center">
+                    <div class="col-md-4">
+                        <input type="submit" class="btn btn-success btn-large" value="Save Update" />
+                    </div>
+                    <div class="col-md-4">
+                        <a type="button" class="btn btn-warning btn-large" href="{% url 'bug-list' %}"> Go Back Without Saving </a>
+                    </div>
+                    {% if user.is_superuser %}
+                    <div class="col-md-4">
+                        <a type="button" class="btn btn-info btn-large" href="{% url 'bug-update' bug_id %}"> Update Original Submission</a>
+                    </div>
+                    {% endif %}
                 </div>
-                <div class="col-md-4">
-                    <a type="button" class="btn btn-warning btn-large" href="{% url 'bug-list' %}"> Go Back Without Saving </a>
-                </div>
-                {% if user.is_superuser %}
-                <div class="col-md-4">
-                    <a type="button" class="btn btn-info btn-large" href="{% url 'bug-update' bug_id %}"> Update Original Submission</a>
-                </div>
-                {% endif %}
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
   </div>
