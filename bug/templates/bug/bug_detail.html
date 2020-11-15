@@ -54,7 +54,7 @@
     {% endfor %}
         <br />
         <br />
-        {% if user.is_staff %}
+        {% if user.is_superuser %}
         <div>
             <h4>New Status:</h4>
             <form class="form-group"  method="POST" action=".">{% csrf_token %}
