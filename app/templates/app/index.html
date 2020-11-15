@@ -2,34 +2,49 @@
 
 {% block content %}
 
+<div class="row"></div>>
 <div class="jumbotron">
     <h1>Bug Tracker</h1>
-    <p class="lead">Found a bug, want to suggest a new feature? Fill out our form!</p>
-    <p><a href="{% url 'bug-create' %}" class="btn btn-primary btn-large">Click Here To Fill Out a Form! &raquo;</a></p>
+    <p class="lead">Found a bug, want to suggest a new feature? Fill out our form to request our services!</p>
+    <p class="lead">When you submit the form, the request will automatically be added into ClickUp, our Project Managment Software. We will add it to our project/task workqueue and our Project Manager or Director will initiate the project with a call or brief meeting.</p>
+    <p><a href="{% url 'bug-create' %}" class="btn btn-primary btn-large">Click Here To Add your Request to our Workqueue!</a></p>
 </div>
+
+<br />
+<!-- User Descriptions -->
+<blockquote class="blockquote text-center">
+    <h2 id="type-blockquotes">How to Use This Site:</h2>
+</blockquote>
 
 <div class="row">
     <div class="col-lg-4">
         <blockquote class="blockquote">
-            <h2 id="type-blockquotes">Form Requestor</h2>
+            <h2 id="type-blockquotes">User Type: Requestor</h2>
+            <h3 id="type-blockquotes">Request a bug, new feature, process change, etc.</h3>
             <p class="mb-0">
-                A requestor cannot log into the site, but they can fill out a form. As a security feature, a requestor cannot view the record list. Only a logged in user can navigate records.
+                To make a request, just log into the site through your google or facebook account. The website uses OAuth to collect your email address and name, and it creates a user instance for you. To review status changes on your request, you can open the "Bug Workqueue" page and click on your request. 
             </p>
-            <p><a class="btn btn-info" href="{% url 'bug-create' %}">Requestor Form &raquo;</a></p>
+            <p><a class="btn btn-info" href="{% url 'bug-create' %}">Requestor Form</a></p>
         </blockquote>
     </div>
     <div class="col-lg-4">
         <blockquote class="blockquote text-center">
-            <h2 id="type-blockquotes">Employee</h2>
-            <p class="mb-0">An Employee can log in and view all records, view each record's detail, update the status of a record. An employee cannot delete a record, or update the original request. They can only add new statuses and comments.</p>
-            <p><a class="btn btn-info" href="{% url 'bug-list' %}">Bug Tracker Employee &raquo;</a></p>
+            <h2 id="type-blockquotes">User Type: Developer</h2>
+            <h3 id="type-blockquotes">Work the queue, answer peoples questions, solve peoples problems.</h3>
+            <p class="mb-0">
+                Log in and view all requests in the workqueue, view each requests's detail, update the status of a request and add comments to keep the requestor informed of your progress.
+            </p>
+            <p><a class="btn btn-info" href="{% url 'bug-list' %}">Bug Tracker Employee</a></p>
         </blockquote>
     </div>
     <div class="col-lg-4">
         <blockquote class="blockquote text-right">
-            <h2 id="type-blockquotes">Admin</h2>
-            <p class="mb-0">An Admin can log in and view all records, view each record's detail, update the status of a record, update the entire record, and delete the record.</p>
-            <p><a class="btn btn-info" href="{% url 'bug-list' %}">Bug Tracker Admin &raquo;</a></p>
+            <h2 id="type-blockquotes">User Type: Admin or Project Manager</h2>
+            <p class="mb-0">
+                Log in and view all requests in the workqueue, view each request's detail, update the status of a request, update the original request, and delete requests entirely.
+                Log into the Admin page to add or remove employees. Update models that control the about page content, work queue category, priority, and status types. Remove or edit comments.
+            </p>
+            <p><a class="btn btn-info" href="{% url 'bug-list' %}">Bug Tracker Admin</a></p>
         </blockquote>
     </div>
 </div>
