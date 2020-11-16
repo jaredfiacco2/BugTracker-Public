@@ -16,7 +16,7 @@ def bug_create_view(request):
     bug = CreateBug(request.POST or None)
     if bug.is_valid():
         newbug = bug.save(commit=False)    
-        newbug.requestor   = request.user.first_name + ' ' + request.user.last_name
+        newbug.requestor   = request.user.get_full_name
         newbug.requestor_email = request.user.email 
         newbug.save()
 
