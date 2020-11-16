@@ -13,8 +13,6 @@ class CreateBug(forms.ModelForm):
             'description',    
             'priority',       
             'category',       
-            'requestor',      
-            'requestor_email',
             ]
 
 class BugCommentForm(forms.ModelForm):
