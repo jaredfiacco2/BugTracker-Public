@@ -15,10 +15,10 @@ from pyclickup import ClickUp
 def bug_create_view(request):
     bug = CreateBug(request.POST or None)
     if bug.is_valid():
-        bug = bug.save(commit=False)    
-        bug.requestor   = request.user.get_full_name()
-        bug.requestor_email = request.user.email 
-        bug.save()
+        newbug = bug.save(commit=False)    
+        newbug.requestor   = request.user.get_full_name
+        newbug.requestor_email = request.user.email 
+        newbug.save()
 
         #Add Clickup Task
         clickup = ClickUp("pk_10761609_CAP37AOETXJ3MVBXMQCI25CKW6LU5CO9")
