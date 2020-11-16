@@ -6,8 +6,6 @@ class CreateBug(forms.ModelForm):
     description                     = forms.CharField(max_length = 4000,                        widget=forms.Textarea(attrs={'class':'form-control', 'placeholder': 'Bug Description'}))
     priority                        = forms.ModelChoiceField(BugPriorityTypes.objects.all(),    widget=forms.Select(attrs={'class':'form-control', 'placeholder': 'Bug Priority'}))
     category                        = forms.ModelChoiceField(BugCategoryTypes.objects.all(),    widget=forms.Select(attrs={'class':'form-control', 'placeholder': 'Bug Category'}))
-    requestor                       = forms.CharField(max_length=255,                           widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Your Name'}))
-    requestor_email                 = forms.EmailField(max_length=255,                          widget=forms.EmailInput(attrs={'class':'form-control', 'placeholder': 'Your Email'}))
     class Meta:
         model = Bug
         fields = [
