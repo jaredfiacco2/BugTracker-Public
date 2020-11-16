@@ -15,6 +15,9 @@ from pyclickup import ClickUp
 def bug_create_view(request):
     bug = CreateBug(request.POST or None)
     if bug.is_valid():
+        bug = bug.save(commit=False)    
+        bug.requestor   = request.user.get_full_name()
+        bug.requestor_email = request.user.email 
         bug.save()
 
         #Add Clickup Task
