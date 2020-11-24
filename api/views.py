@@ -1,5 +1,5 @@
 from django.apps import apps
-Bug = apps.get_model('app', 'Bug')
+Bug = apps.get_model('bug', 'Bug')
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Max, F
 from django.db import connection
