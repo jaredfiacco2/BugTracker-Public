@@ -82,6 +82,20 @@
     </div>
 
 
+    <body>
+        <!--Grid Component Placement[2]-->
+        <zing-grid caption="Test ZingGrid" sort search pager page-size="3" page-size-options="2,3,6" layout="row" viewport-stop data=bug_list>
+        </zing-grid>
+        <script>
+          // window:load event for Javascript to run after HTML
+          // because this Javascript is injected into the document head
+          window.addEventListener('load', () => {
+            // content after DOM load
+          });
+        </script>
+    </body>
+
+
 {% endblock %}
 
 
