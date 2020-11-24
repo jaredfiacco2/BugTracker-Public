@@ -45,6 +45,7 @@ ALLOWED_HOSTS = ['bugresolve-pm.herokuapp.com', 'bugtrackertools.com', 'www.bugt
 # Application references
 # https://docs.djangoproject.com/en/2.1/ref/settings/#std:setting-INSTALLED_APPS
 INSTALLED_APPS = [
+    'api',
     'app',
     'bug.apps.bugConfig',
     # Add your apps here to enable them
