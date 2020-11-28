@@ -6,9 +6,15 @@ from django.db import connection
 from django.core import serializers
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from .serializers import BugSerializer
+# from rest_framework.decorators import api_view
+# from rest_framework.response import Response
+# from .serializers import BugSerializer
+
+
+from django.contrib.auth.models import User, Group
+from rest_framework import viewsets
+from rest_framework import permissions
+from serializers import UserSerializer, GroupSerializer
 
 
 ##################################### API/JSON Views #############################
@@ -43,9 +49,26 @@ def json_bug_list_wq(request):
     qs_json = serializers.serialize('json', filtered_queryset)
     return HttpResponse(qs_json, content_type='application/json')
 
-@login_required(login_url='/login/')
-@api_view(['GET'])
-def restApiBugList(request):
-    bugs = Bug.ojbects.all()
-    serializer = BugSerializer(bugs, manu=True)
-    return Response(serializer.data)
+# @login_required(login_url='/login/')
+# @api_view(['GET'])
+# def restApiBugList(request):
+#     bugs = Bug.ojbects.all()
+#     serializer = BugSerializer(bugs, manu=True)
+#     return Response(serializer.data)
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class GroupViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+    permission_classes = [permissions.IsAuthenticated]
