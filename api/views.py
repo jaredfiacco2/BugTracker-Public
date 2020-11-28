@@ -5,6 +5,7 @@ from django.db.models import Q, Max, F
 from django.db import connection
 from django.core import serializers
 from django.http import HttpResponse
+from .serializers import BugSerializer
 
 
 ##################################### API/JSON Views #############################
@@ -39,3 +40,9 @@ def json_bug_list_wq(request):
     qs_json = serializers.serialize('json', filtered_queryset)
     return HttpResponse(qs_json, content_type='application/json')
 
+@login_required(login_url='/login/')
+@api_view(['GET'])
+def restApiBugList(request):
+    bugs = Bug.ojbects.all()
+    serializer = BugSerializer(bugs, manu=True)
+    return Response(serializer.data)
