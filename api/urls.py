@@ -9,7 +9,7 @@ router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     path('workqueue-all/', views.json_bug_list_all, name='wq-all'),
     path('workqueue-filtered/', views.json_bug_list_wq, name='wq-filtered'),
