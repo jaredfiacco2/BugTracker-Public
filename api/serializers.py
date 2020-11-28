@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from django.apps import apps
-Bug = apps.get_model('bug', 'Bug')
+##from django.apps import apps
+##Bug = apps.get_model('bug', 'Bug')
+from django.apps.get_model import Bug
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
