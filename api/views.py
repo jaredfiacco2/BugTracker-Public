@@ -72,4 +72,5 @@ class GroupViewSet(viewsets.ModelViewSet):
 @api_view(['GET'])
 def restApiBugList(request):
     bugs = Bug.ojbects.all
+    serializer = BugSerializer
     return Response(serializer.data)
