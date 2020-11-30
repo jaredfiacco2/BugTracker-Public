@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from bug.models import Bug
+from .models import Bug
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
