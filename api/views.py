@@ -6,15 +6,16 @@ from django.db import connection
 from django.core import serializers
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 # from .serializers import BugSerializer
 
 
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
 from .serializers import UserSerializer, GroupSerializer, BugSerializer
+
 
 ##################################### API/JSON Views #############################
 ##Employee/Admin: View All Submissions where 
@@ -67,8 +68,9 @@ class GroupViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
-
-class BugViewSet(viewsets.ModelViewSet):
-    queryset = Bug.ojbects.all()
+@login_required(login_url='/login/')
+@api_view(['GET'])
+def restApiBugList(request):
+    bugs = Bug.ojbects.all
     serializer_class = BugSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    return Response(serializer.data)
