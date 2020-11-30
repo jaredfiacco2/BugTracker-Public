@@ -71,17 +71,5 @@ class GroupViewSet(viewsets.ModelViewSet):
 @login_required(login_url='/login/')
 @api_view(['GET'])
 def restApiBugList(request):
-    bugs = Bug.ojbects.raw(""" select b.*, w.* from
-                                                (select b.id, max(w.id) as max_s from bug_bug as b
-                                                left join bug_bugworkqueuestatus as w on b.id=w.bug_wq_id
-                                                group by b.id
-                                                having max(bug_wq_id) is not null) as m_id
-                                            left join bug_bug as b on b.id = m_id.id
-                                            left join bug_bugworkqueuestatus as w on w.id = m_id.max_s
-                                            where 
-                                                w.workqueue_status <> 'Duplicate' and
-                                                w.workqueue_status Not Like '%%t Fix (%%' and
-                                                w.workqueue_status Not Like '%%Fixe%%' and
-                                                w.workqueue_status <> 'Closed' """)
-    serializer = BugSerializer(bugs, many=True)
+    bugs = Bug.ojbects.all
     return Response(serializer.data)
