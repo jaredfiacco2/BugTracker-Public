@@ -15,5 +15,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 class BugSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Bug
-        fields = ['title', 'description', 'priority', 'category', 'submission_dts', 'requestor', 'requestor_email']
+        model = Group
+        fields = ['url', 'name']
+        # model = Bug
+        # fields = ['title', 'description', 'priority', 'category', 'submission_dts', 'requestor', 'requestor_email']
