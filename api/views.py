@@ -68,9 +68,8 @@ class GroupViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
-@login_required(login_url='/login/')
-@api_view(['GET'])
-def restApiBugList(request):
-    bugs = Bug.ojbects.all
-    serializer = BugSerializer(bugs, many=True)
-    return Response(serializer.data)
+
+class BugViewSet(viewsets.ModelViewSet):
+    queryset = Bug.ojbects.all()
+    serializer_class = BugSerializer
+    permission_classes = [permissions.IsAuthenticated]
