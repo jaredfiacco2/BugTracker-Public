@@ -17,3 +17,8 @@ class BugSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Bug
         fields = ['title', 'description', 'priority', 'category', 'submission_dts', 'requestor', 'requestor_email']
+
+class BugsSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Bug
+        fields = ['title', 'description', 'priority', 'category', 'submission_dts', 'requestor', 'requestor_email']
