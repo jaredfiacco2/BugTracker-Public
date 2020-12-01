@@ -15,5 +15,5 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 class BugSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Bug
+        model = BugWorkqueueStatus
         fields = ['title', 'description', 'priority', 'category', 'submission_dts', 'requestor', 'requestor_email']
