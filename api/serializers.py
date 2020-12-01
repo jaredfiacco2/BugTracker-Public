@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Bug
+from BugTracker.bug.models import Bug, BugWorkqueueStatus
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -15,7 +15,5 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 class BugSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Group
-        fields = ['url', 'name']
-        # model = Bug
-        # fields = ['title', 'description', 'priority', 'category', 'submission_dts', 'requestor', 'requestor_email']
+        model = Bug
+        fields = ['title', 'description', 'priority', 'category', 'submission_dts', 'requestor', 'requestor_email']
