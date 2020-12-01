@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from BugTracker.bug.models import Bug, BugWorkqueueStatus
+from bug.models import Bug, BugWorkqueueStatus
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
