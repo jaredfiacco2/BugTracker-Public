@@ -72,6 +72,6 @@ class GroupViewSet(viewsets.ModelViewSet):
 @login_required(login_url='/login/')
 @api_view(['GET'])
 def restApiBugList(request):
-    bugs = Bug.ojbects.all()
+    bugs = Bug.ojbects.raw(""" select * from bug_bug """)
     serializer_class = BugSerializer(bugs, many=True)
     return Response(serializer_class.data)
