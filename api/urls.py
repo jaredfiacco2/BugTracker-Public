@@ -6,7 +6,7 @@ from api import views
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
-router.register(r'bugs', views.BugsSerializer)
+router.register(r'buglisting', views.BugsSerializer)
 
 urlpatterns = [
     path('', include(router.urls)),
@@ -14,5 +14,5 @@ urlpatterns = [
 
     path('workqueue-all/', views.json_bug_list_all, name='wq-all'),
     path('workqueue-filtered/', views.json_bug_list_wq, name='wq-filtered'),
-    path('bug-list/', views.restApiBugList, name="api-buglist"),
+    #path('api-buglist/', views.restApiBugList, name="api-buglist"),
 ] 

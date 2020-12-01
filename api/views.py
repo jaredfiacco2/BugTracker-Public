@@ -85,11 +85,11 @@ class BugsSerializer(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
-bugs = Bug.objects.all()
-@login_required(login_url='/login/')
-@api_view(['GET'])
-def restApiBugList(request):
+# bugs = Bug.objects.all()
+# @login_required(login_url='/login/')
+# @api_view(['GET'])
+# def restApiBugList(request):
     
-    serializer_class = BugSerializer(bugs, many=True)
-    return Response(serializer_class.data)
+#     serializer_class = BugSerializer(bugs, many=True)
+#     return Response(serializer_class.data)
 
