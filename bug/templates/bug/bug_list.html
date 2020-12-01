@@ -94,7 +94,7 @@
     </div>
     <div>
         <div class="zg-body">
-            <zing-grid pager page-size="5" search>
+            <zing-grid pager page-size="8" search>
               <zg-caption>
                 ZingGrid Star Wars
                 <span class="button" id="reloadBtn">Reload Demo</span>
@@ -105,7 +105,7 @@
            
                 <!-- define the path in the JSON to get the array of results. 
                       In this case it is body.results -->
-                <zg-param name="recordPath" value="fields"></zg-param>
+                <zg-param name="recordPath" value="results"></zg-param>
            
                 <!-- if loadByPage is set to true it will go to the 
                     server for each new page of data -->
@@ -126,14 +126,9 @@
                 <zg-param name="searchKey" value="search"></zg-param>
               </zg-data>
               <zg-colgroup>
-                <zg-column index="title"></zg-column>
-                <zg-column index="description"></zg-column>
-                <zg-column index="priority"></zg-column>
-                <zg-column index="category"></zg-column>
-                <zg-column index="eye_color"></zg-column>
-                <zg-column index="submission_dts"></zg-column>
-                <zg-column index="requestor"></zg-column>
-                <zg-column index="requestor_email"></zg-column>
+                <zg-column index="url"></zg-column>
+                <zg-column index="username"></zg-column>
+                <zg-column index="email"></zg-column>
               </zg-colgroup>
             </zing-grid>
             <script>
