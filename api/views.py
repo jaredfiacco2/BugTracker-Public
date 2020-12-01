@@ -1,5 +1,5 @@
-from django.apps import apps
-Bug = apps.get_model('bug', 'Bug')
+# from django.apps import apps
+# Bug = apps.get_model('bug', 'Bug')
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Max, F
 from django.db import connection
@@ -9,6 +9,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 # from .serializers import BugSerializer
+from bug.models import Bug, BugWorkqueueStatus
 
 
 from django.contrib.auth.models import User, Group
@@ -18,7 +19,7 @@ from .serializers import UserSerializer, GroupSerializer, BugSerializer
 
 
 ##################################### API/JSON Views #############################
-##Employee/Admin: View All Submissions where 
+##Employee/Admin: View All Submissions where
 @login_required(login_url='/login/')
 def json_bug_list_all(request):
     #queryset = Bug.objects.all()
@@ -41,7 +42,7 @@ def json_bug_list_wq(request):
                                                 having max(bug_wq_id) is not null) as m_id
                                             left join bug_bug as b on b.id = m_id.id
                                             left join bug_bugworkqueuestatus as w on w.id = m_id.max_s
-                                            where 
+                                            where
                                                 w.workqueue_status <> 'Duplicate' and
                                                 w.workqueue_status Not Like '%%t Fix (%%' and
                                                 w.workqueue_status Not Like '%%Fixe%%' and
