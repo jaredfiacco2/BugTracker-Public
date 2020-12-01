@@ -14,5 +14,5 @@ urlpatterns = [
 
     path('workqueue-all/', views.json_bug_list_all, name='wq-all'),
     path('workqueue-filtered/', views.json_bug_list_wq, name='wq-filtered'),
-    #path('api-buglist/', views.restApiBugList, name="api-buglist"),
+    path('bug-list/', views.BugsSerializer, name="bug-list"),
 ] 
