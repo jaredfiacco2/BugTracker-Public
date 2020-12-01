@@ -19,7 +19,7 @@ class BugSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['title', 'description', 'priority', 'category', 'submission_dts', 'requestor', 'requestor_email']
 
 class BugsSerializer(serializers.HyperlinkedModelSerializer):
-    bug_wq                          = serializers.CharField()
+   # bug_wq                          = serializers.CharField()
     workqueue_status                = serializers.CharField()
     workqueue_comment               = serializers.CharField()
     class Meta:
