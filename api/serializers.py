@@ -21,6 +21,8 @@ class BugSerializer(serializers.HyperlinkedModelSerializer):
 class BugsSerializer(serializers.HyperlinkedModelSerializer):
     workqueue_status                = serializers.CharField()
     workqueue_comment               = serializers.CharField()
+    submission_id                   = serializers.CharField()
+    submission_hyperlink            = serializers.CharField()
     class Meta:
         model = Bug
-        fields = ['url', 'title', 'description', 'priority', 'category', 'submission_dts', 'requestor', 'requestor_email', 'workqueue_status', 'workqueue_comment']
+        fields = ['url', 'title', 'description', 'priority', 'category', 'submission_dts', 'requestor', 'requestor_email', 'workqueue_status', 'workqueue_comment', 'submission_id', 'submission_hyperlink']
