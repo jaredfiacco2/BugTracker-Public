@@ -6,8 +6,8 @@ from api import views
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
-router.register(r'buglistall', views.BugListAllSerializer)
-router.register(r'buglistfiltered', views.BugListFilteredSerializer)
+router.register(r'buglistall', views.BugListAllViewSet)
+router.register(r'buglistfiltered', views.BugListFilteredViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
