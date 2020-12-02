@@ -91,73 +91,126 @@
 
     <div>
     </div>
-    <div>
-        <div class="zg-body">
-            <zing-grid pager page-size="8" search>
-              <zg-caption>
-                ZingGrid Star Wars
-                <span class="button" id="reloadBtn">Reload Demo</span>
-              </zg-caption>
-              <zg-data>
-                <!-- define the main source for the API -->
-                <zg-param name="src" value="https://www.bugtrackertools.com/api/buglist/?format=json"></zg-param>
-           
-                <!-- define the path in the JSON to get the array of results. 
-                      In this case it is body.results -->
-                <zg-param name="recordPath" value="results"></zg-param>
-           
-                <!-- if loadByPage is set to true it will go to the 
-                    server for each new page of data -->
-                <zg-param name="loadByPage" value="true"></zg-param>
-           
-                <!-- define the "page" query parameter -->
-                <zg-param name="pageKey" value="page"></zg-param>
-           
-                <!-- Need to tell ZG how many records were returned so it knows
-                      how to divide up the page-size -->
-                <zg-param name="countPath" value="count"></zg-param>
-           
-                <!-- define the path in the result JSON to find next/prev urls -->
-                <zg-param name="nextPath" value="next"></zg-param>
-                <zg-param name="prevPath" value="previous"></zg-param>
-           
-                <!-- Need to tell ZG how mto search the API -->
-                <zg-param name="searchKey" value="search"></zg-param>
-              </zg-data>
-              <zg-colgroup>
-                <zg-column index="url"></zg-column>
-                <zg-column index="title"></zg-column>
-                <zg-column index="description"></zg-column>
-                <zg-column index="priority"></zg-column>
-                <zg-column index="category"></zg-column>
-                <zg-column index="submission_dts"></zg-column>
-                <zg-column index="requestor"></zg-column>
-                <zg-column index="requestor_email"></zg-column>
-                <zg-column index="workqueue_status"></zg-column>
-                <zg-column index="workqueue_comment"></zg-column>
-                <zg-column index="submission_id"></zg-column>
-                <zg-column index="submission_hyperlink"></zg-column>
-              </zg-colgroup>
-            </zing-grid>
-            <script>
-              // window:load event for Javascript to run after HTML
-              // because this Javascript is injected into the document head
-              window.addEventListener('load', () => {
-                // Javascript code to execute after DOM content
-                const zgRef = document.querySelector('zing-grid');
-                zgRef.executeOnLoad(() => {
-                  // Add event listener to button
-                  reloadBtn.addEventListener('click', () => {
-                    zgRef.refresh();
-                  });
-                });
-              });
-            </script>
+          <!--ZingGrid Workqueue Filtered-->
+          <div id="filtered-wq"  >
+            <div class="zg-body">
+                <zing-grid pager page-size="8" search>
+                  <zg-caption>
+                    ZingGrid Star Wars
+                    <span class="button" id="reloadBtn">Reload Demo</span>
+                  </zg-caption>
+                  <zg-data>
+                    <!-- define the main source for the API -->
+                    <zg-param name="src" value="https://www.bugtrackertools.com/api/buglistfiltered/?format=json"></zg-param>
+              
+                    <!-- define the path in the JSON to get the array of results. 
+                          In this case it is body.results -->
+                    <zg-param name="recordPath" value="results"></zg-param>
+              
+                    <!-- if loadByPage is set to true it will go to the 
+                        server for each new page of data -->
+                    <zg-param name="loadByPage" value="true"></zg-param>
+              
+                    <!-- define the "page" query parameter -->
+                    <zg-param name="pageKey" value="page"></zg-param>
+              
+                    <!-- Need to tell ZG how many records were returned so it knows
+                          how to divide up the page-size -->
+                    <zg-param name="countPath" value="count"></zg-param>
+              
+                    <!-- define the path in the result JSON to find next/prev urls -->
+                    <zg-param name="nextPath" value="next"></zg-param>
+                    <zg-param name="prevPath" value="previous"></zg-param>
+              
+                    <!-- Need to tell ZG how mto search the API -->
+                    <zg-param name="searchKey" value="search"></zg-param>
+                  </zg-data>
+                  <zg-colgroup>
+                    <zg-column index="url"></zg-column>
+                    <zg-column index="title"></zg-column>
+                    <zg-column index="description"></zg-column>
+                    <zg-column index="priority"></zg-column>
+                    <zg-column index="category"></zg-column>
+                    <zg-column index="submission_dts"></zg-column>
+                    <zg-column index="requestor"></zg-column>
+                    <zg-column index="requestor_email"></zg-column>
+                    <zg-column index="workqueue_status"></zg-column>
+                    <zg-column index="workqueue_comment"></zg-column>
+                    <zg-column index="submission_id"></zg-column>
+                    <zg-column index="submission_hyperlink"></zg-column>
+                  </zg-colgroup>
+                </zing-grid>
+              </div>
           </div>
-
-    </div>
+          <!--ZingGrid Workqueue All-->
+          <div id="all-wq"  style="display:none" >
+              <div class="zg-body">
+                  <zing-grid pager page-size="8" search>
+                    <zg-caption>
+                      ZingGrid Star Wars
+                      <span class="button" id="reloadBtn">Reload Demo</span>
+                    </zg-caption>
+                    <zg-data>
+                      <!-- define the main source for the API -->
+                      <zg-param name="src" value="https://www.bugtrackertools.com/api/buglistall/?format=json"></zg-param>
+                
+                      <!-- define the path in the JSON to get the array of results. 
+                            In this case it is body.results -->
+                      <zg-param name="recordPath" value="results"></zg-param>
+                
+                      <!-- if loadByPage is set to true it will go to the 
+                          server for each new page of data -->
+                      <zg-param name="loadByPage" value="true"></zg-param>
+                
+                      <!-- define the "page" query parameter -->
+                      <zg-param name="pageKey" value="page"></zg-param>
+                
+                      <!-- Need to tell ZG how many records were returned so it knows
+                            how to divide up the page-size -->
+                      <zg-param name="countPath" value="count"></zg-param>
+                
+                      <!-- define the path in the result JSON to find next/prev urls -->
+                      <zg-param name="nextPath" value="next"></zg-param>
+                      <zg-param name="prevPath" value="previous"></zg-param>
+                
+                      <!-- Need to tell ZG how mto search the API -->
+                      <zg-param name="searchKey" value="search"></zg-param>
+                    </zg-data>
+                    <zg-colgroup>
+                      <zg-column index="url"></zg-column>
+                      <zg-column index="title"></zg-column>
+                      <zg-column index="description"></zg-column>
+                      <zg-column index="priority"></zg-column>
+                      <zg-column index="category"></zg-column>
+                      <zg-column index="submission_dts"></zg-column>
+                      <zg-column index="requestor"></zg-column>
+                      <zg-column index="requestor_email"></zg-column>
+                      <zg-column index="workqueue_status"></zg-column>
+                      <zg-column index="workqueue_comment"></zg-column>
+                      <zg-column index="submission_id"></zg-column>
+                      <zg-column index="submission_hyperlink"></zg-column>
+                    </zg-colgroup>
+                  </zing-grid>
+                </div>
+          </div>
+          
 <div>
 </div>
+
+    <script>
+      // window:load event for Javascript to run after HTML
+      // because this Javascript is injected into the document head
+      window.addEventListener('load', () => {
+        // Javascript code to execute after DOM content
+        const zgRef = document.querySelector('zing-grid');
+        zgRef.executeOnLoad(() => {
+          // Add event listener to button
+          reloadBtn.addEventListener('click', () => {
+            zgRef.refresh();
+          });
+        });
+      });
+    </script>
 
 {% endblock %}
 
