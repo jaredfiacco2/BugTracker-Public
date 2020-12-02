@@ -41,7 +41,7 @@
                         <tbody>
                             {% for bug in filtered_bug_list %}
                             <tr>
-                                <td><a href="{% url 'bug-detail' bug.id %}">{{bug.id}}</a></td>
+                                <td><a href="{% url 'bug-wqdetail' bug.id %}">{{bug.id}}</a></td>
                                 <td>{{bug.title}}</td>
                                 <td>{{bug.workqueue_status}}</td>
                                 <td>{{bug.priority}}</td>
@@ -75,7 +75,7 @@
                         <tbody>
                             {% for bug in bug_list %}
                             <tr>
-                                <td><a href="{% url 'bug-detail' bug.id %}">{{bug.id}}</a></td>
+                                <td><a href="{% url 'bug-wqdetail' bug.id %}">{{bug.id}}</a></td>
                                 <td>{{bug.title}}</td>
                                 <td>{{bug.priority}}</td>
                                 <td>{{bug.category}}</td>
@@ -90,7 +90,6 @@
     </div>
 
     <div>
-        <p>Hi This show show up before</p>
     </div>
     <div>
         <div class="zg-body">
@@ -156,7 +155,6 @@
 
     </div>
 <div>
-    <p>Hi This show show up after</p>
 </div>
 
 {% endblock %}
