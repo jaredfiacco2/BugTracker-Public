@@ -18,7 +18,16 @@ class BugSerializer(serializers.HyperlinkedModelSerializer):
         model = Bug
         fields = ['title', 'description', 'priority', 'category', 'submission_dts', 'requestor', 'requestor_email']
 
-class BugsSerializer(serializers.HyperlinkedModelSerializer):
+class BugListAllSerializer(serializers.HyperlinkedModelSerializer):
+    workqueue_status                = serializers.CharField()
+    workqueue_comment               = serializers.CharField()
+    submission_id                   = serializers.CharField()
+    submission_hyperlink            = serializers.CharField()
+    class Meta:
+        model = Bug
+        fields = ['url', 'title', 'description', 'priority', 'category', 'submission_dts', 'requestor', 'requestor_email', 'workqueue_status', 'workqueue_comment', 'submission_id', 'submission_hyperlink']
+
+class BugListFilteredSerializer(serializers.HyperlinkedModelSerializer):
     workqueue_status                = serializers.CharField()
     workqueue_comment               = serializers.CharField()
     submission_id                   = serializers.CharField()

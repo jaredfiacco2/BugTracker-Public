@@ -68,7 +68,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-class BugsSerializer(viewsets.ModelViewSet):
+class BugListAllSerializer(viewsets.ModelViewSet):
     queryset = Bug.objects.raw(""" select b.*, w.*, b.id as submission_id, concat('https://www.bugtrackertools.com/bug/',cast(b.id as text),'/') as submission_hyperlink from
                                                 (select b.id, max(w.id) as max_s from bug_bug as b
                                                 left join bug_bugworkqueuestatus as w on b.id=w.bug_wq_id
@@ -81,6 +81,17 @@ class BugsSerializer(viewsets.ModelViewSet):
                                                 w.workqueue_status Not Like '%%t Fix (%%' and
                                                 w.workqueue_status Not Like '%%Fixe%%' and
                                                 w.workqueue_status <> 'Closed' """)
+    serializer_class = BugsSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class BugListFilteredSerializer(viewsets.ModelViewSet):
+    queryset = Bug.objects.raw(""" select b.*, w.*, b.id as submission_id, concat('https://www.bugtrackertools.com/bug/',cast(b.id as text),'/') as submission_hyperlink from
+                                                (select b.id, max(w.id) as max_s from bug_bug as b
+                                                left join bug_bugworkqueuestatus as w on b.id=w.bug_wq_id
+                                                group by b.id
+                                                having max(bug_wq_id) is not null) as m_id
+                                            left join bug_bug as b on b.id = m_id.id
+                                            left join bug_bugworkqueuestatus as w on w.id = m_id.max_s""")
     serializer_class = BugsSerializer
     permission_classes = [permissions.IsAuthenticated]
 
