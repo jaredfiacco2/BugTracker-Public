@@ -9,7 +9,7 @@ from api import views
 # router.register(r'buglist', views.BugsSerializer)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    # path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('users', views.UserViewSet, name='api_users'),
     path('groups', views.GroupViewSet, name='api_groups'),
