@@ -75,12 +75,7 @@ class BugListAllViewSet(viewsets.ModelViewSet):
                                                 group by b.id
                                                 having max(bug_wq_id) is not null) as m_id
                                             left join bug_bug as b on b.id = m_id.id
-                                            left join bug_bugworkqueuestatus as w on w.id = m_id.max_s
-                                            where
-                                                w.workqueue_status <> 'Duplicate' and
-                                                w.workqueue_status Not Like '%%t Fix (%%' and
-                                                w.workqueue_status Not Like '%%Fixe%%' and
-                                                w.workqueue_status <> 'Closed' """)
+                                            left join bug_bugworkqueuestatus as w on w.id = m_id.max_s""")
     serializer_class = BugListAllSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -91,7 +86,12 @@ class BugListFilteredViewSet(viewsets.ModelViewSet):
                                                 group by b.id
                                                 having max(bug_wq_id) is not null) as m_id
                                             left join bug_bug as b on b.id = m_id.id
-                                            left join bug_bugworkqueuestatus as w on w.id = m_id.max_s""")
+                                            left join bug_bugworkqueuestatus as w on w.id = m_id.max_s
+                                            where
+                                                w.workqueue_status <> 'Duplicate' and
+                                                w.workqueue_status Not Like '%%t Fix (%%' and
+                                                w.workqueue_status Not Like '%%Fixe%%' and
+                                                w.workqueue_status <> 'Closed' """)
     serializer_class = BugListFilteredSerializer
     permission_classes = [permissions.IsAuthenticated]
 
