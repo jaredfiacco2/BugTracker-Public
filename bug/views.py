@@ -1,5 +1,5 @@
 from django.shortcuts import render,  get_object_or_404, redirect
-from .models import Bug
+from .models import Bug, BugWorkqueueStatus
 from .forms import CreateBug, AdminUpdateBug, EmployeeUpdateBug
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Max, F
@@ -46,40 +46,6 @@ def bug_create_view(request):
         }
     return render(request, 'bug/bug_create.html', context)
 
-##Requestor Login: Request Fix
-@login_required(login_url='/login/')
-def bug_create_view(request):
-    bug = CreateBug(request.POST or None)
-    if bug.is_valid():
-        newbug = bug.save(commit=False)    
-        newbug.requestor   = request.user.first_name + ' ' + request.user.last_name
-        newbug.requestor_email = request.user.email 
-        newbug.save()
-
-        #Add Clickup Task
-        clickup = ClickUp("pk_10761609_CAP37AOETXJ3MVBXMQCI25CKW6LU5CO9")
-        name = str(newbug.title)
-        content = str(newbug.description) + '\n' + '\n' + 'Priority: ' + str(newbug.priority) + '\n' + 'Category: ' + str(newbug.category) + '\n' + 'Requestor Name: ' + str(newbug.requestor) + '\n' + 'Requestor Email:  ' + str(newbug.requestor_email)
-        status = 'New Request'
-        main_team = clickup.teams[0]
-        main_space = main_team.spaces[0]
-        main_project = main_space.projects[0]
-        main_list = main_project.lists[0]
-
-        #Back to Form
-        bug = CreateBug()
-        messages.success(request, 'Form successfully submitted.')
-        try:
-            main_list.create_task(name=name, content=content, status=status)
-            messages.info(request, 'Clickup Task Generated - We will review and reach out to you shortly.')
-        except:
-            messages.error(request, 'Clickup Task Not Created - Please contact admin(s) to follow up.')
-        return HttpResponseRedirect(reverse('home'))
-        #return render(request, 'form/form_create_success.html')
-    context = {
-            'bug':bug,
-        }
-    return render(request, 'bug/bug_create.html', context)
 
 
 ##Employee/Admin: View All Submissions where 
@@ -162,3 +128,20 @@ def bug_delete_view(request, id):
         "bug": bug
     }
     return render(request, "bug/bug_delete.html", context)
+
+
+##Requestor Login: Request Fix
+@login_required(login_url='/login/')
+def bug__dashboard(request):
+    requests_queryset = Bug.objects.raw(""" select b.submission_dts, count(*) from
+                                                bug_bug as b
+                                                group by b.submission_dts """)
+    #queryset = Bug.objects.all()
+    actions_queryset = Bug.objects.raw(""" select w.workqueue_lastupdatedts, count(*) from
+                                                bug_bugworkqueuestatus as w 
+                                                group by w.workqueue_lastupdatedts """)
+    context = {
+        "filtered_bug_list" : requests_queryset,
+        "bug_list": actions_queryset
+    }
+    return render(request, "bug/bug_dashboard.html", context)

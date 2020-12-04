@@ -1,0 +1,324 @@
+{% extends 'layout.html' %}
+{% block content %}
+<head>
+    <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <style>
+      .chart--container {
+        height: 100%;
+        width: 100%;
+        min-height: 530px;
+      }
+  
+      .zc-ref {
+        display: none;
+      }
+    </style>
+</head>
+
+      <body class="zc-body">
+        ​
+        <div id="myChart" class="chart--container">
+          <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+        </div>
+
+        <script>
+          ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"]; // DEFINE DATA
+          // -----------------------------
+          let optionValues = [
+            ['2020-01-01', 3],
+            ['2020-01-04', 12],
+            ['2020-01-05', 3],
+            ['2020-01-06', 4],
+            ['2020-01-07', 9],
+            ['2020-01-08', 11],
+            ['2020-01-11', 5],
+            ['2020-01-12', 5],
+            ['2020-01-13', 9],
+            ['2020-01-14', 9],
+            ['2020-01-15', 9],
+            ['2020-01-18', 4],
+            ['2020-01-19', 6],
+            ['2020-01-20', 5],
+            ['2020-01-21', 6],
+            ['2020-01-22', 2],
+            ['2020-01-25', 5],
+            ['2020-01-26', 9],
+            ['2020-01-27', 6],
+            ['2020-01-28', 6],
+            ['2020-01-29', 7],
+            ['2020-02-01', 7],
+            ['2020-02-02', 12],
+            ['2020-02-03', 3],
+            ['2020-02-04', 3],
+            ['2020-02-05', 9],
+            ['2020-02-08', 9],
+            ['2020-02-09', 9],
+            ['2020-02-10', 4],
+            ['2020-02-11', 5],
+            ['2020-02-12', 8],
+            ['2020-02-15', 8],
+            ['2020-02-16', 3],
+            ['2020-02-17', 7],
+            ['2020-02-18', 5],
+            ['2020-02-19', 9],
+            ['2020-02-22', 6],
+            ['2020-02-23', 5],
+            ['2020-02-24', 8],
+            ['2020-02-25', 10],
+            ['2020-02-26', 4],
+            ['2020-02-29', 5],
+            ['2020-03-01', 9],
+            ['2020-03-02', 9],
+            ['2020-03-03', 3],
+            ['2020-03-04', 3],
+            ['2020-03-07', 4],
+            ['2020-03-08', 2],
+            ['2020-03-09', 10],
+            ['2020-03-10', 9],
+            ['2020-03-11', 7],
+            ['2020-03-14', 8],
+            ['2020-03-15', 7],
+            ['2020-03-16', 8],
+            ['2020-03-17', 8],
+            ['2020-03-18', 2],
+            ['2020-03-21', 3],
+            ['2020-03-22', 4],
+            ['2020-03-23', 5],
+            ['2020-03-24', 6],
+            ['2020-03-25', 7],
+            ['2020-03-28', 8],
+            ['2020-03-29', 8],
+            ['2020-03-30', 9],
+            ['2020-03-31', 7],
+            ['2020-04-01', 9],
+            ['2020-04-04', 7],
+            ['2020-04-05', 5],
+            ['2020-04-06', 6],
+            ['2020-04-07', 9],
+            ['2020-04-08', 4],
+            ['2020-04-11', 8],
+            ['2020-04-12', 9],
+            ['2020-04-13', 3],
+            ['2020-04-14', 5],
+            ['2020-04-15', 5],
+            ['2020-04-18', 8],
+            ['2020-04-19', 8],
+            ['2020-04-20', 9],
+            ['2020-04-21', 3],
+            ['2020-04-22', 6],
+            ['2020-04-25', 12],
+            ['2020-04-26', 6],
+            ['2020-04-27', 5],
+            ['2020-04-28', 5],
+            ['2020-04-29', 11],
+            ['2020-05-02', 9],
+            ['2020-05-03', 3],
+            ['2020-05-04', 5],
+            ['2020-05-05', 4],
+            ['2020-05-06', 9],
+            ['2020-05-09', 5],
+            ['2020-05-10', 5],
+            ['2020-05-11', 7],
+            ['2020-05-12', 7],
+            ['2020-05-13', 5],
+            ['2020-05-16', 3],
+            ['2020-05-17', 2],
+            ['2020-05-18', 7],
+            ['2020-05-19', 5],
+            ['2020-05-20', 3],
+            ['2020-05-23', 9],
+            ['2020-05-24', 11],
+            ['2020-05-25', 5],
+            ['2020-05-26', 9],
+            ['2020-05-27', 4],
+            ['2020-05-30', 5],
+            ['2020-05-31', 7],
+            ['2020-06-01', 9],
+            ['2020-06-02', 5],
+            ['2020-06-03', 5],
+            ['2020-06-06', 6],
+            ['2020-06-07', 7],
+            ['2020-06-08', 8],
+            ['2020-06-09', 5],
+            ['2020-06-10', 8],
+            ['2020-06-13', 6],
+            ['2020-06-14', 6],
+            ['2020-06-15', 2],
+            ['2020-06-16', 7],
+            ['2020-06-17', 5],
+            ['2020-06-20', 5],
+            ['2020-06-21', 8],
+            ['2020-06-22', 8],
+            ['2020-06-23', 8],
+            ['2020-06-24', 10],
+            ['2020-06-27', 7],
+            ['2020-06-28', 12],
+            ['2020-06-29', 7],
+            ['2020-06-30', 6]
+          ];
+
+          // CHART CONFIG
+          // -----------------------------
+          let chartConfig = {
+            type: 'calendar',
+            options: {
+              values: optionValues,
+              month: {
+                item: {
+                  fontColor: 'gray',
+                  fontSize: '9px'
+                }
+              },
+              palette: ['none', '#4CAF50'],
+              startMonth: 1,
+              endMonth: 6,
+              weekday: {
+                values: ['', 'M', '', 'W', '', 'F', ''],
+                item: {
+                  fontColor: 'gray',
+                  fontSize: '9px'
+                }
+              },
+              year: {
+                text: '2020',
+                visible: false
+              }
+            },
+            plotarea: {
+              marginTop: '15%',
+              marginRight: '8%',
+              marginBottom: '55%',
+              marginLeft: '8%'
+            },
+            labels: [{ //Lefthand Label (container portion)
+                borderColor: 'gray',
+                borderWidth: '1px',
+                width: '40%',
+                height: '30%',
+                x: '8%',
+                y: '60%'
+              },
+              { //Lefthand Label (top portion)
+                text: 'Daily Contribution',
+                fontColor: '#212121',
+                textAlign: 'center',
+                width: '36%',
+                x: '10%',
+                y: '65%'
+              },
+              { //Lefthand Label (middle portion)
+                text: '%plot-value',
+                fontColor: '#4CAF50',
+                fontFamily: 'Georgia',
+                fontSize: '35px',
+                textAlign: 'center',
+                width: '36%',
+                x: '10%',
+                y: '68%'
+              },
+              // Note: the bottom portion of the Bottom-Left Label is the fixed tooltip, below.
+              { //Rightside Label (container portion)
+                borderColor: 'gray',
+                borderWidth: '1px',
+                width: '40%',
+                height: '30%',
+                x: '52%',
+                y: '60%'
+              },
+              { //Rightside Label (top portion)
+                text: 'Total Contributions',
+                fontColor: '#212121',
+                textAlign: 'center',
+                width: '36%',
+                x: '54%',
+                y: '65%'
+              },
+              { //Rightside Label (middle portion)
+                text: '1414',
+                fontColor: '#4CAF50',
+                fontFamily: 'Georgia',
+                fontSize: '35px',
+                textAlign: 'center',
+                width: '36%',
+                x: '54%',
+                y: '68%'
+              },
+              { //Rightside Label (bottom portion)
+                text: 'Jan 1 - Jun 30',
+                padding: '2px',
+                fontColor: '#212121',
+                textAlign: 'center',
+                width: '36%',
+                x: '54%',
+                y: '80%'
+              }
+            ],
+            tooltip: { //Lefthand Label (bottom portion)
+              text: '%data-day',
+              align: 'center',
+              padding: '2px',
+              backgroundColor: 'none',
+              borderColor: 'none',
+              fontColor: '#212121',
+              sticky: true,
+              timeout: 30000,
+              width: '36%',
+              x: '10%',
+              y: '80%'
+            }
+          };
+
+          // RENDER CHARTS
+          // -----------------------------
+          zingchart.loadModules('calendar', () => {
+            zingchart.render({
+              id: 'myChart',
+              data: chartConfig
+            });
+          });
+        </script>
+      </body>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+
+{% load static %}
+<script>
+$(document).ready(function() {
+  $("#formButton").click(function() {
+    $("#form1").toggle();
+  });
+});
+</script>
+    <script>
+        function showonlyonev2(thechosenone, buttonid, buttonid2) {
+              var newboxes = document.getElementsByTagName("div");
+              for(var x=0; x<newboxes.length; x++) {
+                    name = newboxes[x].getAttribute("class");
+                    if (name == 'tab-pane') {
+                          if (newboxes[x].id == thechosenone) {
+                                if (newboxes[x].style.display == 'block') {
+                                      newboxes[x].style.display = 'none';
+                                }
+                                else {
+                                      newboxes[x].style.display = 'block';
+                                }
+                          }else {
+                                newboxes[x].style.display = 'none';
+                          }
+                    }
+              }
+            document.getElementById(buttonid).className = "btn btn-primary";
+            document.getElementById(buttonid2).className = "btn btn-info";
+        }
+    </script>
+
+{% endblock %}
+
+{# Good resource for creating tabs: http://www.randomsnippets.com/2008/02/12/how-to-hide-and-show-your-div/ #}
+{# I could probably clean this up a bit by iterating through the types of content I want to see (filtered/all) and by cleaning up the variable names #}
+{# Known Issue: Once you press the button twice the main table disappears. #}
