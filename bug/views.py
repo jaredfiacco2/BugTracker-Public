@@ -141,7 +141,7 @@ def bug_dashboard(request):
                                                 bug_bugworkqueuestatus as w 
                                                 group by w.workqueue_lastupdatedts """)
     context = {
-        "filtered_bug_list" : requests_queryset,
-        "bug_list": actions_queryset
+        "requests_queryset" : requests_queryset,
+        "actions_queryset": actions_queryset
     }
     return render(request, "bug/bug_dashboard.html", context)
