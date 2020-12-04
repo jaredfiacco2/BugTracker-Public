@@ -132,7 +132,7 @@ def bug_delete_view(request, id):
 
 ##Requestor Login: Request Fix
 @login_required(login_url='/login/')
-def bug__dashboard(request):
+def bug_dashboard(request):
     requests_queryset = Bug.objects.raw(""" select b.submission_dts, count(*) from
                                                 bug_bug as b
                                                 group by b.submission_dts """)
