@@ -123,7 +123,7 @@ def bug_detail_view(request, id):
         update.workqueue_lastupdatedts = timezone.now()
         update.save()
         messages.success(request, 'Changes successfully saved.')
-        return HttpResponseRedirect(reverse('bug-list'))
+        return HttpResponseRedirect(reverse('bug-wq'))
     context = {
         "employeeform" : employeeform,
         "bug_id": id,
@@ -140,7 +140,7 @@ def bug_update_view(request, id=id):
     if admin_form.is_valid():
         admin_form.save()
         messages.success(request, 'Changes successfully saved.')
-        return HttpResponseRedirect(reverse('bug-list'))
+        return HttpResponseRedirect(reverse('bug-wq'))
     context = {
         'adminupdateform' : admin_form,
         'bug_id': id,
@@ -157,7 +157,7 @@ def bug_delete_view(request, id):
     if request.method == "POST":
         obj.delete()
         messages.success(request, 'Record Successfully Deleted.')
-        return HttpResponseRedirect(reverse('bug-list'))
+        return HttpResponseRedirect(reverse('bug-wq'))
     context = {
         "bug": bug
     }
