@@ -133,13 +133,13 @@ def bug_delete_view(request, id):
 ##Requestor Login: Request Fix
 @login_required(login_url='/login/')
 def bug_dashboard(request):
-    requests_queryset = Bug.objects.raw(""" select b.submission_dts, count(*) from
+    requests_queryset = Bug.objects.raw(""" select cast(b.submission_dts as date) as date, count(*) as count from
                                                 bug_bug as b
-                                                group by b.submission_dts """)
+                                                group by cast(b.submission_dts as date) """)
     #queryset = Bug.objects.all()
-    actions_queryset = Bug.objects.raw(""" select w.workqueue_lastupdatedts, count(*) from
+    actions_queryset = Bug.objects.raw(""" select cast(w.workqueue_lastupdatedts as date) as date, count(*) as count from
                                                 bug_bugworkqueuestatus as w 
-                                                group by w.workqueue_lastupdatedts """)
+                                                group by cast(w.workqueue_lastupdatedts as date) """)
     context = {
         "requests_queryset" : requests_queryset,
         "actions_queryset": actions_queryset
