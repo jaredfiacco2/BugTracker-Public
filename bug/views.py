@@ -152,12 +152,13 @@ def bug_dashboard(request):
     requests_queryset = Bug.objects.raw(""" select cast(b.submission_dts as date) as date, count(b.id) as count from
                                                 bug_bug as b
                                                 group by cast(b.submission_dts as date) """)
-    aSeriesDateData  = []
-    aSeriesCountData = []
-    response_data    = {}
-    for r in requests_queryset:
-        aSeriesDateData.append(r.date)
-        aSeriesCountData.append(r.count)
-    response_data['dates']  = aSeriesDateData
-    response_data['counts'] = aSeriesCountData 
+    # aSeriesDateData  = []
+    # aSeriesCountData = []
+    # response_data    = {}
+    # for r in requests_queryset:
+    #     aSeriesDateData.append(r.date)
+    #     aSeriesCountData.append(r.count)
+    # response_data['dates']  = aSeriesDateData
+    # response_data['counts'] = aSeriesCountData 
+    response_data = requests_queryset
     return JsonResponse(response_data)
