@@ -23,10 +23,15 @@
         </div>
         
         <dv>
+          [
           {% for request in requests_queryset %}
+          [ '
           {{ request.date }}
+          ' , 
           {{ request.count }}
+          ],
           {% endfor %}
+          ]
         </dv>
 
         <!-- <script>
