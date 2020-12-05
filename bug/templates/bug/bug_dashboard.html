@@ -21,11 +21,15 @@
         <div id="myChart" class="chart--container">
           <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
         </div>
+        
+        <dv>
+          response_data
+        </dv>
 
         <script>
           ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"]; // DEFINE DATA
           // -----------------------------
-          let optionValues = [ {% for action in actions_queryset %} [ {{action.date}},{{action.count}} ] {% endfor %} ];
+          let optionValues = response_data;
 
           // CHART CONFIG
           // -----------------------------
