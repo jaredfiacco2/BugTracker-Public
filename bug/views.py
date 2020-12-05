@@ -149,7 +149,7 @@ def bug_delete_view(request, id):
 ##Requestor Login: Request Fix
 @login_required(login_url='/login/')
 def bug_dashboard(request):
-    requests_queryset = Bug.objects.raw(""" select 1 as id, cast(b.submission_dts as date) as date, count(b.id) as count from
+    requests_queryset = Bug.objects.raw(""" select 1 as id, cast(cast(b.submission_dts as date) as text) as date, count(b.id) as count from
                                                 bug_bug as b
                                                 group by cast(b.submission_dts as date) """)
     aSeriesDateData = []
