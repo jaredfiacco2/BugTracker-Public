@@ -155,7 +155,7 @@ def bug_dashboard(request):
     context = {
             'requests_queryset':requests_queryset,
         }
-    return render(request, 'bug/dashboard.html', context)
+    return render(request, 'bug/bug_dashboard.html', context)
     
     
     # aSeriesDateData  = []
