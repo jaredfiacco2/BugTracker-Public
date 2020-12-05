@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.utils import timezone
 from django.db import connection
 from pyclickup import ClickUp
-
+from datetime import datetime
 
 ##Requestor Login: Request Fix
 @login_required(login_url='/login/')
@@ -152,8 +152,10 @@ def bug_dashboard(request):
     requests_queryset = Bug.objects.raw(""" select 1 as id, cast(b.submission_dts as date) as date, count(b.id) as count from
                                                 bug_bug as b
                                                 group by cast(b.submission_dts as date) """)
+    requests_string = [ requests_queryset.date.strftime(%Y-%m-%d) , requests_queryset.count]
     context = {
-            'requests_queryset':requests_queryset,
+            'requests_queryset' : requests_queryset,
+            'requests_string'   : requests_string,
         }
     return render(request, 'bug/bug_dashboard.html', context)
     
