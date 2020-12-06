@@ -145,10 +145,12 @@ def data(request):
                                                 bug_bug as b
                                                 group by cast(b.submission_dts as date)
                                                 order by cast(b.submission_dts as date) """)
+    aSeries = []
     response_data = {}
     for r in requests_queryset:
-        response_data.setdefault(r.date, r.count).append(response_data)
-    
+        aSeries.append(r.date)
+        aSeries.append(r.count)
+    response_data['values'] = aSeries
     # aSeriesDateData = []
     # aSeriesCountData = []
     # response_data = {}
