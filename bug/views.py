@@ -146,10 +146,13 @@ def data(request):
                                                 group by cast(b.submission_dts as date)
                                                 order by cast(b.submission_dts as date) """)
     aSeries = []
+    bSeries = []
     response_data = {}
     for r in requests_queryset:
         aSeries.append(r.date)
         aSeries.append(r.count)
+        bSeries.append(aSeries)
+        aSeries = []
     response_data['values'] = aSeries
     # aSeriesDateData = []
     # aSeriesCountData = []
