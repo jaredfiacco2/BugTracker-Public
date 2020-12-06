@@ -147,7 +147,7 @@ def data(request):
                                                 order by cast(b.submission_dts as date) """)
     response_data = {}
     for r in requests_queryset:
-        response_data.setdefault(r.date, []).append(response_data)
+        response_data.setdefault(r.date, r.count).append(response_data)
     
     # aSeriesDateData = []
     # aSeriesCountData = []
