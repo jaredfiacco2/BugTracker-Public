@@ -4,7 +4,7 @@ from .forms import CreateBug, AdminUpdateBug, EmployeeUpdateBug
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Max, F
 from django.urls import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.contrib import messages
 from django.utils import timezone
 from django.db import connection
@@ -129,27 +129,19 @@ def bug_delete_view(request, id):
     }
     return render(request, "bug/bug_delete.html", context)
 
-
-# ##Requestor Login: Request Fix
-# @login_required(login_url='/login/')
-# def bug_dashboard(request):
-#     requests_queryset = Bug.objects.raw(""" select cast(b.submission_dts as date) as date, count(b.id) as count from
-#                                                 bug_bug as b
-#                                                 group by cast(b.submission_dts as date) """)
-
-#     actions_queryset = Bug.objects.raw(""" select cast(w.workqueue_lastupdatedts as date) as date, count(w.id) as count from
-#                                                 bug_bugworkqueuestatus as w 
-#                                                 group by cast(w.workqueue_lastupdatedts as date) """)
-#     context = {
-#         "requests_queryset" : requests_queryset,
-#         "actions_queryset": actions_queryset
-#     }
-#     return render(request, "bug/bug_dashboard.html", context)
-
+##################################################################################################
+##################################################################################################
+################## Dashboard #####################################################################
+##################################################################################################
+##################################################################################################
 ##Requestor Login: Request Fix
 @login_required(login_url='/login/')
 def bug_dashboard(request):
-    requests_queryset = Bug.objects.raw(""" select 1 as id, cast(cast(b.submission_dts as date) as text) as date, count(b.id) as count from
+    return render(request, 'bug/bug_dashboard.html')
+    
+@login_required(login_url='/login/')
+def data(request):
+        requests_queryset = Bug.objects.raw(""" select 1 as id, cast(cast(b.submission_dts as date) as text) as date, count(b.id) as count from
                                                 bug_bug as b
                                                 group by cast(b.submission_dts as date)
                                                 order by cast(b.submission_dts as date) """)
@@ -161,20 +153,11 @@ def bug_dashboard(request):
         aSeriesCountData.append(r.count)
     response_data['dates'] = aSeriesDateData
     response_data['counts'] = aSeriesCountData
+    return JsonResponse(response_data)
 
-    context = {
-            'requests_queryset' : requests_queryset,
-            'requests_string'   : response_data,
-        }
-    return render(request, 'bug/bug_dashboard.html', context)
-    
-    
-    # aSeriesDateData  = []
-    # aSeriesCountData = []
-    # response_data    = {}
-    # for r in requests_queryset:
-    #     aSeriesDateData.append(r.date)
-    #     aSeriesCountData.append(r.count)
-    # response_data['dates']  = aSeriesDateData
-    # response_data['counts'] = aSeriesCountData 
-    #return JsonResponse(response_data)
+@login_required(login_url='/login/')
+def zingchartConfig(request):
+    response_data = {}
+    response_data['title'] = 'This Is My Calendar'
+    return JsonResponse(response_data)
+
