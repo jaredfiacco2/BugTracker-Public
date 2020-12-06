@@ -30,7 +30,7 @@
         <script>
           function getCalendarData(url) {
             var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("Get", url, false);
+            xmlHttp.open("Get", url, true);
             xmlHttp.send(null);
             return xmlHttp.responseText;
           };
