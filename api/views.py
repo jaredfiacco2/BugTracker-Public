@@ -20,7 +20,7 @@ from .serializers import UserSerializer, GroupSerializer, BugSerializer, BugList
 
 ##################################### API/JSON Views #############################
 ##Employee/Admin: View All Submissions where
-@login_required(login_url='/login/')
+##@login_required(login_url='/login/')
 def json_bug_list_all(request):
     #queryset = Bug.objects.all()
     queryset = Bug.objects.raw(""" select b.*, w.* from
