@@ -148,21 +148,45 @@ def data(request):
     dataRows = []
     dataColumns = []
     response_data = {}
+    options = {}
+    calConfig = {}
+    
+    #Add in values
     for r in requests_queryset:
         dataRows.append(r.date)
         dataRows.append(r.count)
         dataColumns.append(dataRows)
         dataRows = []
-    response_data[values] = dataColumns
-    # aSeriesDateData = []
-    # aSeriesCountData = []
-    # response_data = {}
-    # for r in requests_queryset:
-    #     aSeriesDateData.append(r.date)
-    #     aSeriesCountData.append(r.count)
-    # response_data['dates'] = aSeriesDateData
-    # response_data['counts'] = aSeriesCountData
-    return JsonResponse(response_data)
+    response_data["values"] = dataColumns
+
+    #Add Values to Options
+    options = { 
+        year: {
+                text: '2020',
+                visible: false
+                },
+        startMonth: 1,
+        endMonth: 12,
+        palette: ['none', '#2196F3'],
+        month: {
+            item: {
+                fontColor: 'gray',
+                fontSize: 9
+            }
+        },
+        weekday: {
+            values: ['','M','','W','','F',''],
+            item:{
+                fontColor: 'gray',
+                fontSize:9
+            }
+        }}
+    options.append(response_data)
+    calConfig = {
+      type: 'calendar' 
+    }
+    calConfig.append(options)
+    return JsonResponse(calConfig)
 
 # @login_required(login_url='/login/')
 # def zingchartConfig(request):
