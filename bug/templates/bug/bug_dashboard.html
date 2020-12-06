@@ -22,31 +22,32 @@
           <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
         </div>
         
-        <dv>
-          
-          [
-          {% for request in requests_queryset %}
-          [ '
-          {{ request.date }}
-          ' , 
-          {{ request.count }}
-          ],
-          {% endfor %}
-          ]
-        </dv>
-        <p></p>
-        <p></p>
-        <p></p>
-        <dv>
-          {{requests_queryset}}
-        </dv>
-        <p></p>
-        <p></p>
-        <p></p>
 
-
+        <p></p>
+        <p></p>
+        <p></p>
 
         <script>
+          function getCalendarData(url) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("Get", url, false);
+            xmlHttp.send(null);
+            return xmlHttp.responseText;
+          };
+
+          window.onload = function() {
+          var rData     = JSON.parse(getCalendarData('https://bugtrackertools.com/bug/requestsdata'));
+          var rDate     = rData.dates
+          var rCount    = rData.counts
+          var calData = [];
+          rDate.forEach((rDate, i) => calData[rDate]=rCount[i])
+        }
+        document.write(rDate)
+        document.write(rCount)
+        document.write(calData)
+        </script>
+
+        <!-- <script>
           function getCalendarConfig(url) {
             var xmlHttp = new XMLHttpRequest();
             xmlHttp.open("Get", url, false);
@@ -192,7 +193,7 @@
               data: chartConfig
             });
           });
-        </script>
+        </script> -->
       </body>
 
 {% endblock %}
