@@ -139,21 +139,21 @@ def bug_delete_view(request, id):
 def bug_dashboard(request):
     return render(request, 'bug/bug_dashboard.html')
     
-@login_required(login_url='/login/')
+#@login_required(login_url='/login/')
 def data(request):
     requests_queryset = Bug.objects.raw(""" select 1 as id, cast(cast(b.submission_dts as date) as text) as date, count(b.id) as count, '"' from
                                                 bug_bug as b
                                                 group by cast(b.submission_dts as date)
                                                 order by cast(b.submission_dts as date) """)
-    aSeries = []
-    bSeries = []
+    dataRows = []
+    dataColumns = []
     response_data = {}
     for r in requests_queryset:
-        aSeries.append(r.date)
-        aSeries.append(r.count)
-        bSeries.append(aSeries)
-        aSeries = []
-    response_data['values'] = bSeries
+        dataRows.append(r.date)
+        dataRows.append(r.count)
+        dataColumns.append(dataRows)
+        dataRows = []
+    response_data[values] = dataColumns
     # aSeriesDateData = []
     # aSeriesCountData = []
     # response_data = {}
