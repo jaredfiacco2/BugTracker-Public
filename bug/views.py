@@ -145,6 +145,7 @@ def data(request):
                                                 bug_bug as b
                                                 group by cast(b.submission_dts as date)
                                                 order by cast(b.submission_dts as date) """)
+ 
     aSeriesDateData = []
     aSeriesCountData = []
     response_data = {}
