@@ -42,33 +42,23 @@
           var calData = [];
           rDate.forEach((rDate, i) => calData[rDate]=rCount[i])
           };
-          document.write(rDate);
-          document.write(rCount);
-          document.write(calData);
         </script>
 
-        <!-- <script>
-          function getCalendarConfig(url) {
+        <script>
+           function getCalendarData(url) {
             var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("Get", url, false);
-            xmlHttp.send(null);
-            return xmlHttp.responseText;
-          };
-
-          function getCalendarData(url) {
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("Get", url, false);
+            xmlHttp.open("Get", url, true);
             xmlHttp.send(null);
             return xmlHttp.responseText;
           };
 
           window.onload = function() {
-            var rData     = JSON.parse(getCalendarData('https://bugtrackertools.com/bug/requestsdata'));
-            var rDate     = rData.dates
-            var rCount    = rData.counts
-            var calData = [];
-            rDate.forEach((rDate, i) => calData[calData]=values[i])
-          }
+          var rData     = JSON.parse(getCalendarData('https://bugtrackertools.com/bug/requestsdata'));
+          var rDate     = rData.dates
+          var rCount    = rData.counts
+          var calData = {};
+          rDate.forEach((rDate, i) => calData[rDate]=rCount[i])
+          };
 
           ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"]; // DEFINE DATA
           // -----------------------------
@@ -193,7 +183,7 @@
               data: chartConfig
             });
           });
-        </script> -->
+        </script>
       </body>
 
 {% endblock %}
