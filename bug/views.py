@@ -155,9 +155,9 @@ def data(request):
     response_data['counts'] = aSeriesCountData
     return JsonResponse(response_data)
 
-@login_required(login_url='/login/')
-def zingchartConfig(request):
-    response_data = {}
-    response_data['title'] = 'This Is My Calendar'
-    return JsonResponse(response_data)
+# @login_required(login_url='/login/')
+# def zingchartConfig(request):
+#     response_data = {}
+#     response_data['title'].[0] = 'This Is My Calendar'
+#     return JsonResponse(response_data)
 

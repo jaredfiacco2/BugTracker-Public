@@ -10,5 +10,5 @@ urlpatterns = [
     path('<int:id>/delete/', views.bug_delete_view, name='bug-delete'),
     path('dashboard', views.bug_dashboard, name='bug-db'),
     path('requestsdata', views.data, name='bugdata-requests'),
-    path('calendarconfig', views.zingchartConfig, name= 'bugdb-calendarconfig'),
+    # path('calendarconfig', views.zingchartConfig, name= 'bugdata-calendarconfig'),
 ] 
