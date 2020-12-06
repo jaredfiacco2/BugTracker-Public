@@ -153,7 +153,7 @@ def data(request):
         aSeries.append(r.count)
         bSeries.append(aSeries)
         aSeries = []
-    response_data['values'] = aSeries
+    response_data['values'] = bSeries
     # aSeriesDateData = []
     # aSeriesCountData = []
     # response_data = {}
