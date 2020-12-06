@@ -141,7 +141,7 @@ def bug_dashboard(request):
     
 @login_required(login_url='/login/')
 def data(request):
-        requests_queryset = Bug.objects.raw(""" select 1 as id, cast(cast(b.submission_dts as date) as text) as date, count(b.id) as count from
+    requests_queryset = Bug.objects.raw(""" select 1 as id, cast(cast(b.submission_dts as date) as text) as date, count(b.id) as count from
                                                 bug_bug as b
                                                 group by cast(b.submission_dts as date)
                                                 order by cast(b.submission_dts as date) """)
