@@ -20,7 +20,7 @@ from .serializers import UserSerializer, GroupSerializer, BugSerializer, BugList
 
 ##################################### API/JSON Views #############################
 ##Employee/Admin: View All Submissions where
-##@login_required(login_url='/login/')
+@login_required(login_url='/login/')
 def json_bug_list_all(request):
     #queryset = Bug.objects.all()
     queryset = Bug.objects.raw(""" select b.*, w.* from
@@ -77,7 +77,7 @@ class BugListAllViewSet(viewsets.ModelViewSet):
                                             left join bug_bug as b on b.id = m_id.id
                                             left join bug_bugworkqueuestatus as w on w.id = m_id.max_s""")
     serializer_class = BugListAllSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    #permission_classes = [permissions.IsAuthenticated]
 
 class BugListFilteredViewSet(viewsets.ModelViewSet):
     queryset = Bug.objects.raw(""" select b.*, w.*, b.id as submission_id, concat('https://www.bugtrackertools.com/bug/',cast(b.id as text),'/') as submission_hyperlink from
