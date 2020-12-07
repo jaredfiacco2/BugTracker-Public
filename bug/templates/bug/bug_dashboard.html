@@ -15,12 +15,15 @@
       }
     </style>
     <script>
-      var myjson;
+      $myjson = new array();
       $.getJSON('https://www.bugtrackertools.com/bug/requestsdata', 
           function(data) {
-              myjson = data.values;
+              assignMyjson(data);
           }
       )
+      function assignMyjson(data){
+        $myjson = data;
+      }
     </script>
     
 </head>
@@ -36,7 +39,7 @@
         <p></p>
         <p></p>
         <script> 
-          document.write(myjson)
+          document.write($myjson)
         </script>
 
         <script>
