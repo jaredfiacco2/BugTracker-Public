@@ -15,16 +15,12 @@
       }
     </style>
     <script>
-              $.getJSON('https://www.bugtrackertools.com/bug/requestsdata', 
-                  function(data, textStatus, jqXHR) {
-                      alert(data);
-                  }
-              )
-    
-
-              var rData     = JSON.parse(getCalendarData('https://www.bugtrackertools.com/bug/requestsdata'));
-              var rValues     = rData.values;
-
+      var myjson;
+      $.getJSON('https://www.bugtrackertools.com/bug/requestsdata', 
+          function(data) {
+              myjson = data;
+          }
+      )
     </script>
     
 </head>
