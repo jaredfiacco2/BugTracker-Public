@@ -15,12 +15,11 @@
       }
     </style>
     <script>
-               function getCalendarData(url) {
-                var xmlHttp = new XMLHttpRequest();
-                xmlHttp.open("Get", url, true);
-                xmlHttp.send(null);
-                return xmlHttp.responseText;
-              };
+              $.getJSON('https://www.bugtrackertools.com/bug/requestsdata', 
+                  function(data, textStatus, jqXHR) {
+                      alert(data);
+                  }
+              )
     
 
               var rData     = JSON.parse(getCalendarData('https://www.bugtrackertools.com/bug/requestsdata'));
@@ -43,129 +42,13 @@
 
 
         <script>
-          ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"]; // DEFINE DATA
-          // -----------------------------
-          let optionValues = rValues;
-
-          // CHART CONFIG
-          // -----------------------------
-          let chartConfig = {
-            type: 'calendar',
-            options: {
-              values: optionValues,
-              month: {
-                item: {
-                  fontColor: 'gray',
-                  fontSize: '9px'
-                }
-              },
-              palette: ['none', '#4CAF50'],
-              startMonth: 9,
-              endMonth: 12,
-              weekday: {
-                values: ['', 'M', '', 'W', '', 'F', ''],
-                item: {
-                  fontColor: 'gray',
-                  fontSize: '9px'
-                }
-              },
-              year: {
-                text: '2020',
-                visible: false
-              }
-            },
-            plotarea: {
-              marginTop: '15%',
-              marginRight: '8%',
-              marginBottom: '55%',
-              marginLeft: '8%'
-            },
-            labels: [{ //Lefthand Label (container portion)
-                borderColor: 'gray',
-                borderWidth: '1px',
-                width: '40%',
-                height: '30%',
-                x: '8%',
-                y: '60%'
-              },
-              { //Lefthand Label (top portion)
-                text: 'Daily Contribution',
-                fontColor: '#212121',
-                textAlign: 'center',
-                width: '36%',
-                x: '10%',
-                y: '65%'
-              },
-              { //Lefthand Label (middle portion)
-                text: '%plot-value',
-                fontColor: '#4CAF50',
-                fontFamily: 'Georgia',
-                fontSize: '35px',
-                textAlign: 'center',
-                width: '36%',
-                x: '10%',
-                y: '68%'
-              },
-              // Note: the bottom portion of the Bottom-Left Label is the fixed tooltip, below.
-              { //Rightside Label (container portion)
-                borderColor: 'gray',
-                borderWidth: '1px',
-                width: '40%',
-                height: '30%',
-                x: '52%',
-                y: '60%'
-              },
-              { //Rightside Label (top portion)
-                text: 'Total Contributions',
-                fontColor: '#212121',
-                textAlign: 'center',
-                width: '36%',
-                x: '54%',
-                y: '65%'
-              },
-              { //Rightside Label (middle portion)
-                text: '1414',
-                fontColor: '#4CAF50',
-                fontFamily: 'Georgia',
-                fontSize: '35px',
-                textAlign: 'center',
-                width: '36%',
-                x: '54%',
-                y: '68%'
-              },
-              { //Rightside Label (bottom portion)
-                text: 'Jan 1 - Jun 30',
-                padding: '2px',
-                fontColor: '#212121',
-                textAlign: 'center',
-                width: '36%',
-                x: '54%',
-                y: '80%'
-              }
-            ],
-            tooltip: { //Lefthand Label (bottom portion)
-              text: '%data-day',
-              align: 'center',
-              padding: '2px',
-              backgroundColor: 'none',
-              borderColor: 'none',
-              fontColor: '#212121',
-              sticky: true,
-              timeout: 30000,
-              width: '36%',
-              x: '10%',
-              y: '80%'
-            }
-          };
-
-          // RENDER CHARTS
-          // -----------------------------
-          zingchart.loadModules('calendar', () => {
-            zingchart.render({
-              id: 'myChart',
-              data: chartConfig
-            });
-          });
+          zingchart.render({
+            id:'mychart',
+            type: 'line',
+            data: rValues, 
+            height: 400,
+            width: 900,
+          })
         </script>
       </body>
 
