@@ -141,6 +141,8 @@ def bug_dashboard(request):
     
 #@login_required(login_url='/login/')
 def data(request):
+
+    #Request Dataset Query
     requests_queryset = Bug.objects.raw(""" select 1 as id, cast(cast(b.submission_dts as date) as text) as date, count(b.id) as count, '"' from
                                                 bug_bug as b
                                                 group by cast(b.submission_dts as date)
@@ -148,20 +150,38 @@ def data(request):
     dataRows = []
     dataColumns = []
     response_data = {}
-    
-    #Add in values
+
+    #Make Request Data
     for r in requests_queryset:
         dataRows.append(r.date)
         dataRows.append(r.count)
         dataColumns.append(dataRows)
         dataRows = []
     response_data["values"] = dataColumns
+
+    #Workqueue Dataset Query
+    workqueue_queryset = Bug.objects.raw(""" select 1 as id, cast(cast(w.workqueue_lastupdatedts as date) as text) as date, count(w.id) as count, '"' from
+                                                bug_bugworkqueueqtatus as w
+                                                group by cast(w.submission_dts as date)
+                                                order by cast(w.submission_dts as date) """)
+    dataRows = []
+    dataColumns = []
+    response_data = {}
+
+    #Workqueue Request Data
+    for w in workqueue_queryset:
+        dataRows.append(w.date)
+        dataRows.append(w.count)
+        dataColumns.append(dataRows)
+        dataRows = []
+    workqueue_data["values"] = dataColumns
+
     thedata = {
         "type": "line", 
         "title": {
             "text":"So cool its my graph finally"
         },
-        "series": [response_data]
+        "series": [response_data, workqueue_data]
     }
     return JsonResponse(thedata)
 
