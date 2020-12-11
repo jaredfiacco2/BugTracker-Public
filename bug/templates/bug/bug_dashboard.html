@@ -14,18 +14,7 @@
         display: none;
       }
     </style>
-    <script>
-      $myjson = new array();
-      $.getJSON('https://www.bugtrackertools.com/bug/requestsdata', 
-          function(data) {
-              assignMyjson(data);
-          }
-      )
-      function assignMyjson(data){
-        $myjson = data;
-      }
-    </script>
-    
+
 </head>
 
       <body class="zc-body">
@@ -43,13 +32,13 @@
         </script>
 
         <script>
-          zingchart.render({
-            id:'mychart',
-            type: 'line',
-            values: myjson, 
-            height: 400,
-            width: 900,
-          })
+            zingchart.render({ 
+              id : 'myChart', 
+              output:"svg",
+              "dataurl":"https://storage.googleapis.com/studio-assets/resources/chart.json",
+              height : "100%", 
+              width: "100%" 
+            });
         </script>
       </body>
 
