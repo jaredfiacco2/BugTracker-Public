@@ -35,7 +35,7 @@
             zingchart.render({ 
               id : 'myChart', 
               output:"svg",
-              "dataurl":"https://storage.googleapis.com/studio-assets/resources/chart.json",
+              "dataurl":"https://www.bugtrackertools.com/bug/datatest2",
               height : "100%", 
               width: "100%" 
             });
@@ -49,35 +49,6 @@
 
 
 {% load static %}
-<!-- <script>
-$(document).ready(function() {
-  $("#formButton").click(function() {
-    $("#form1").toggle();
-  });
-});
-</script>
-    <script>
-        function showonlyonev2(thechosenone, buttonid, buttonid2) {
-              var newboxes = document.getElementsByTagName("div");
-              for(var x=0; x<newboxes.length; x++) {
-                    name = newboxes[x].getAttribute("class");
-                    if (name == 'tab-pane') {
-                          if (newboxes[x].id == thechosenone) {
-                                if (newboxes[x].style.display == 'block') {
-                                      newboxes[x].style.display = 'none';
-                                }
-                                else {
-                                      newboxes[x].style.display = 'block';
-                                }
-                          }else {
-                                newboxes[x].style.display = 'none';
-                          }
-                    }
-              }
-            document.getElementById(buttonid).className = "btn btn-primary";
-            document.getElementById(buttonid2).className = "btn btn-info";
-        }
-    </script> -->
 
 {% endblock %}
 
