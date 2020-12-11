@@ -11,5 +11,6 @@ urlpatterns = [
     path('dashboard', views.bug_dashboard, name='bug-db'),
     path('requestsdata', views.data, name='bugdata-requests'),
     path('datatest', views.data_test, name='bugdata-test'),
+    path('datatest2', views.data_test2, name='bugdata-test2'),
     # path('calendarconfig', views.zingchartConfig, name= 'bugdata-calendarconfig'),
 ] 
