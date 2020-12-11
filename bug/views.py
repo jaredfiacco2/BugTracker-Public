@@ -161,7 +161,7 @@ def data(request):
         "title": {
             "text":"So cool its my graph finally"
         },
-        "series": [response_data["values"]]
+        "series": {"values": response_data}
     }
     return JsonResponse(thedata)
 
