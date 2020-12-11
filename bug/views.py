@@ -156,8 +156,14 @@ def data(request):
         dataColumns.append(dataRows)
         dataRows = []
     response_data["values"] = dataColumns
-
-    return JsonResponse(response_data)
+    thedata = {
+        "type": "line", 
+        "title": {
+            "text":"So cool its my graph finally"
+        },
+        "series": [response_data["values"]]
+    }
+    return JsonResponse(thedata)
 
 # @login_required(login_url='/login/')
 # def zingchartConfig(request):
