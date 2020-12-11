@@ -166,7 +166,7 @@ def data(request):
                                                 order by cast(w.submission_dts as date) """)
     dataRows = []
     dataColumns = []
-    response_data = {}
+    workqueue_data = {}
 
     #Workqueue Request Data
     for w in workqueue_queryset:
