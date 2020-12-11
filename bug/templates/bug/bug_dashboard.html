@@ -24,22 +24,16 @@
         </div>
         
 
-        <p></p>
-        <p></p>
-        <p></p>
-        <script> 
-          document.write($myjson)
-        </script>
 
         <script>
             zingchart.render({ 
               id : 'myChart', 
               output:"svg",
-              "dataurl":"https://www.bugtrackertools.com/bug/datatest2",
               type:'line',
               title:{
                         "text": "Chart Loaded from External JSON File"
                     },
+              "dataurl":"https://www.bugtrackertools.com/bug/datatest2",
               height : "100%", 
               width: "100%" 
             });
