@@ -161,9 +161,9 @@ def data(request):
 
     #Workqueue Dataset Query
     workqueue_queryset = Bug.objects.raw(""" select 1 as id, cast(cast(w.workqueue_lastupdatedts as date) as text) as date, count(w.id) as count, '"' from
-                                                bug_bugworkqueueqtatus as w
-                                                group by cast(w.submission_dts as date)
-                                                order by cast(w.submission_dts as date) """)
+                                                bug_bugworkqueuestatus as w
+                                                group by cast(w.workqueue_lastupdatedts as date)
+                                                order by cast(w.workqueue_lastupdatedts as date) """)
     dataRows = []
     dataColumns = []
     workqueue_data = {}
