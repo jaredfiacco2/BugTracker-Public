@@ -542,9 +542,9 @@ def zing_cal_requests(request):
 @login_required(login_url='/login/')
 def zing_dashboard(request):
 
-    line_requests   = requests.get('https://www.bugtrackertools.com/bug/zingdata-requests')
-    line_workqueue  = requests.get('https://www.bugtrackertools.com/bug/zingdata-wqupdates')
-    cal_workqueue   = requests.get('https://www.bugtrackertools.com/bug/zingdata-cal-wqupdates')
+    line_requests   = requests.get('https://www.bugtrackertools.com/bug/zingdata-requests').json()
+    line_workqueue  = requests.get('https://www.bugtrackertools.com/bug/zingdata-wqupdates').json()
+    cal_workqueue   = requests.get('https://www.bugtrackertools.com/bug/zingdata-cal-wqupdates').json()
 
     zingdata =  {
                 "backgroundColor": "#454754",
