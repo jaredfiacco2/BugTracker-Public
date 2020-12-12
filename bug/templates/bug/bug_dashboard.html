@@ -19,20 +19,33 @@
 
       <body class="zc-body">
         ​
-        <div id="myChart" class="chart--container">
+        <div id="line_requests" class="chart--container">
+          <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+        </div>
+
+        <div id="line_wqupdates" class="chart--container">
           <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
         </div>
         
 
 
         <script>
-            zingchart.render({ 
-              id : 'myChart', 
-              output:"svg",
-              "dataurl":"https://www.bugtrackertools.com/bug/requestsdata",
-              height : "100%", 
-              width: "100%" 
-            });
+            zingchart.render(
+              { 
+                id : 'line_requests', 
+                output:"svg",
+                "dataurl":"https://www.bugtrackertools.com/bug/zingdata-requests",
+                height : "100%", 
+                width: "100%" 
+              }, 
+              { 
+                id : 'line_wqupdates', 
+                output:"svg",
+                "dataurl":"https://www.bugtrackertools.com/bug/zingdata-wqupdates",
+                height : "100%", 
+                width: "100%" 
+              }, 
+            );
         </script>
       </body>
 
