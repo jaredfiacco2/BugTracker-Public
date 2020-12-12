@@ -409,7 +409,7 @@ def zing_cal_requests(request):
     zingdata = {
         "type": "calendar",
         "plotarea":   {
-                    margin": "75px 75px 5px 67px"
+                    "margin": "75px 75px 5px 67px"
                     },
         "options": {
                     "year": {
