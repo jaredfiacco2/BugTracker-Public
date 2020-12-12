@@ -333,7 +333,7 @@ def zing_cal_wqupdates(request):
             "padding": 2,
             ##textAlign: "center",
             "align": "center",
-            "sticky": true,
+            "sticky": "true",
             "timeout": 30000,
             "x": "10%",
             "y": "80%",
