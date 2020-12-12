@@ -30,7 +30,11 @@
         <div id="cal_wqupdates" class="chart--container">
           <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
         </div>
-
+        
+        <div id="cal_requests" class="chart--container">
+          <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+        </div>
+        
         <script>
             zingchart.render(
               { 
@@ -55,6 +59,15 @@
                 id : 'cal_wqupdates', 
                 output:"svg",
                 "dataurl":"https://www.bugtrackertools.com/bug/zingdata-cal-wqupdates",
+                height : "100%", 
+                width: "100%" 
+              }, 
+            );
+            zingchart.render(
+              { 
+                id : 'cal_requests', 
+                output:"svg",
+                "dataurl":"https://www.bugtrackertools.com/bug/zingdata-cal-requests",
                 height : "100%", 
                 width: "100%" 
               }, 
