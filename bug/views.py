@@ -245,6 +245,7 @@ def zing_cal_wqupdates(request):
         dataColumns.append(dataRows)
         dataRows = []
         year = w.year
+    title = 'Workqueue Status Update Calendar - ' + year
 
     zingdata = {
         "type": "calendar",
@@ -273,7 +274,7 @@ def zing_cal_wqupdates(request):
                 },
         "labels": [
             { ##Title
-            "text": 'Workqueue Status Update Calendar',
+            "text": title,
             "textAlign": 'center',
             "x": "10%",
             "y":"2.5%",
@@ -402,6 +403,7 @@ def zing_cal_requests(request):
         dataColumns.append(dataRows)
         dataRows = []
         year = r.year
+    title = 'New Bug Submissions Calendar - ' + year
 
     zingdata = {
         "type": "calendar",
@@ -430,7 +432,7 @@ def zing_cal_requests(request):
                 },
         "labels": [
             { ##Title
-            "text": 'New Bug Submissions Calendar',
+            "text": title,
             "textAlign": 'center',
             "x": "10%",
             "y":"2.5%",
