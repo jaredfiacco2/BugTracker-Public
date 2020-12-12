@@ -232,13 +232,14 @@ def zing_cal_wqupdates(request):
         dataRows.append(w.count)
         dataColumns.append(dataRows)
         dataRows = []
+        year = left(4, w.date)
     ##workqueue_data["values"] = dataColumns
 
     zingdata = {
         "type": "calendar",
         "options": {
                     "year": {
-                    "text": "2020",
+                    "text": year,
                     "visible": "false"
                     },
                     "startMonth": 1,
