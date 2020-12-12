@@ -218,7 +218,7 @@ def zing_line_wqupdates(request):
 def zing_cal_wqupdates(request):
 
     #Workqueue Dataset Query
-    workqueue_queryset = Bug.objects.raw(""" select 1 as id, cast(cast(w.workqueue_lastupdatedts as date) as text) as date, count(w.id) as count, '"' from
+    workqueue_queryset = Bug.objects.raw(""" select 1 as id, cast(cast(w.workqueue_lastupdatedts as date) as text) as date, count(w.id) as count, cast(to_char(cast(w.workqueue_lastupdatedts as date), 'YYYY') as text) as year, '"' from
                                                 bug_bugworkqueuestatus as w
                                                 group by cast(w.workqueue_lastupdatedts as date)
                                                 order by cast(w.workqueue_lastupdatedts as date) """)
@@ -232,7 +232,7 @@ def zing_cal_wqupdates(request):
         dataRows.append(w.count)
         dataColumns.append(dataRows)
         dataRows = []
-        year = left(4, w.date)
+        year = w.year
     ##workqueue_data["values"] = dataColumns
 
     zingdata = {
