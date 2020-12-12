@@ -542,9 +542,9 @@ def zing_cal_requests(request):
 @login_required(login_url='/login/')
 def zing_dashboard(request):
 
-    line_requests   =   json.loads(zing_line_request(request))
-    line_workqueue  =   json.loads(zing_line_wqupdates(request)) 
-    cal_workqueue   =   json.loads(zing_cal_wqupdates(request))
+    line_requests   =   zing_line_request(request)
+    line_workqueue  =   zing_line_wqupdates(request) 
+    cal_workqueue   =   zing_cal_wqupdates(request)
 
     zingdata =  {
                 "backgroundColor": "#454754",
