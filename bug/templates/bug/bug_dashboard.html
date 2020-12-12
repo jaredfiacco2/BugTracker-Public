@@ -18,56 +18,17 @@
 </head>
 
       <body class="zc-body">
-        ​
-        <div id="line_requests" class="chart--container">
-          <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
-        </div>
 
-        <div id="line_wqupdates" class="chart--container">
-          <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
-        </div>
-        
-        <div id="cal_wqupdates" class="chart--container">
-          <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
-        </div>
-        
-        <div id="cal_requests" class="chart--container">
+        <div id="dashboard" class="chart--container">
           <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
         </div>
         
         <script>
             zingchart.render(
               { 
-                id : 'line_requests', 
+                id : 'dashboard', 
                 output:"svg",
-                "dataurl":"https://www.bugtrackertools.com/bug/zingdata-requests",
-                height : "100%", 
-                width: "100%" 
-              }, 
-            );
-            zingchart.render(
-              { 
-                id : 'line_wqupdates', 
-                output:"svg",
-                "dataurl":"https://www.bugtrackertools.com/bug/zingdata-wqupdates",
-                height : "100%", 
-                width: "100%" 
-              }, 
-            );
-            zingchart.render(
-              { 
-                id : 'cal_wqupdates', 
-                output:"svg",
-                "dataurl":"https://www.bugtrackertools.com/bug/zingdata-cal-wqupdates",
-                height : "100%", 
-                width: "100%" 
-              }, 
-            );
-            zingchart.render(
-              { 
-                id : 'cal_requests', 
-                output:"svg",
-                "dataurl":"https://www.bugtrackertools.com/bug/zingdata-cal-requests",
+                "dataurl":"https://www.bugtrackertools.com/bug/zingdata-dashboard",
                 height : "100%", 
                 width: "100%" 
               }, 

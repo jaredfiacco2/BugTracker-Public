@@ -1,0 +1,90 @@
+{% extends 'layout.html' %}
+{% block content %}
+<head>
+    <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <style>
+      .chart--container {
+        height: 100%;
+        width: 100%;
+        min-height: 530px;
+      }
+  
+      .zc-ref {
+        display: none;
+      }
+    </style>
+
+</head>
+
+      <body class="zc-body">
+        ​
+        <div id="line_requests" class="chart--container">
+          <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+        </div>
+
+        <div id="line_wqupdates" class="chart--container">
+          <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+        </div>
+        
+        <div id="cal_wqupdates" class="chart--container">
+          <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+        </div>
+        
+        <div id="cal_requests" class="chart--container">
+          <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+        </div>
+        
+        <script>
+            zingchart.render(
+              { 
+                id : 'line_requests', 
+                output:"svg",
+                "dataurl":"https://www.bugtrackertools.com/bug/zingdata-requests",
+                height : "100%", 
+                width: "100%" 
+              }, 
+            );
+            zingchart.render(
+              { 
+                id : 'line_wqupdates', 
+                output:"svg",
+                "dataurl":"https://www.bugtrackertools.com/bug/zingdata-wqupdates",
+                height : "100%", 
+                width: "100%" 
+              }, 
+            );
+            zingchart.render(
+              { 
+                id : 'cal_wqupdates', 
+                output:"svg",
+                "dataurl":"https://www.bugtrackertools.com/bug/zingdata-cal-wqupdates",
+                height : "100%", 
+                width: "100%" 
+              }, 
+            );
+            zingchart.render(
+              { 
+                id : 'cal_requests', 
+                output:"svg",
+                "dataurl":"https://www.bugtrackertools.com/bug/zingdata-cal-requests",
+                height : "100%", 
+                width: "100%" 
+              }, 
+            );
+        </script>
+      </body>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+
+{% load static %}
+
+{% endblock %}
+
+{# Good resource for creating tabs: http://www.randomsnippets.com/2008/02/12/how-to-hide-and-show-your-div/ #}
+{# I could probably clean this up a bit by iterating through the types of content I want to see (filtered/all) and by cleaning up the variable names #}
+{# Known Issue: Once you press the button twice the main table disappears. #}
