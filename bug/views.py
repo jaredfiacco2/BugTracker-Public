@@ -374,7 +374,7 @@ def zing_cal_requests(request):
                                                 1 as id, 
                                                 cast(cast(b.submission_dts as date) as text) as date, 
                                                 count(b.id) as count, 
-                                                cast(to_char(cast(b.submission_dts), 'YYYY') as text) as year
+                                                cast(to_char(cast(b.submission_dts as date), 'YYYY') as text) as year,
                                                 '"' 
                                             from
                                                 bug_bug as b
