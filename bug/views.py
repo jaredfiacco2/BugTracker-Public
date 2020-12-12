@@ -272,6 +272,17 @@ def zing_cal_wqupdates(request):
                     "values": dataColumns
                 },
         "labels": [
+            { ##Title
+            "text": 'Workqueue Status Update Calendar',
+            "textAlign": 'center',
+            "x": "10%",
+            "y":"2.5%",
+            "width": "80%",
+            "height": "5%",
+            "fontFamily": "Georgia",
+            "fontColor": "#1c4966",
+            "fontSize": 35,
+            },
             { ##Lefthand Label (container portion)
             "borderColor": "gray",
             "borderWidth": 1,
@@ -418,6 +429,17 @@ def zing_cal_requests(request):
                     "values": dataColumns
                 },
         "labels": [
+            { ##Title
+            "text": 'New Bug Submissions Calendar',
+            "textAlign": 'center',
+            "x": "10%",
+            "y":"2.5%",
+            "width": "80%",
+            "height": "5%",
+            "fontFamily": "Georgia",
+            "fontColor": "#1c4966",
+            "fontSize": 35,
+            },
             { ##Lefthand Label (container portion)
             "borderColor": "gray",
             "borderWidth": 1,
