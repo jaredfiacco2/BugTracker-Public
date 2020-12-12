@@ -235,116 +235,116 @@ def zing_cal_wqupdates(request):
     ##workqueue_data["values"] = dataColumns
 
     zingdata = {
-        type: 'calendar',
-        options: {
-                    year: {
-                    text: '2016',
-                    visible: false
+        "type": "calendar",
+        "options": {
+                    "year": {
+                    "text": "2020",
+                    "visible": "false"
                     },
-                    startMonth: 1,
-                    endMonth: 6,
-                    palette: ['none', '#2196F3'],
-                    month: {
-                    item: {
-                        fontColor: 'gray',
-                        fontSize: 9
+                    "startMonth": 1,
+                    "endMonth": 12,
+                    "palette": ["none", "#2196F3"],
+                    "month": {
+                    "item": {
+                        "fontColor": "gray",
+                        "fontSize": 9
                     }
                     },
-                    weekday: {
-                    values: ['','M','','W','','F',''],
-                    item:{
-                        fontColor: 'gray',
-                        fontSize:9
+                    "weekday": {
+                    "values": ["","M","","W","","F",""],
+                    "item":{
+                        "fontColor": "gray",
+                        "fontSize":9
                     }
                     },
-                    values: dataColumns
+                    "values": dataColumns
                 },
-        labels: [
+        "labels": [
             { ##Lefthand Label (container portion)
-            borderColor: 'gray',
-            borderWidth: 1,
-            x: '8%',
-            y: '60%',
-            width: '40%',
-            height: '30%'
+            "borderColor": "gray",
+            "borderWidth": 1,
+            "x": "8%",
+            "y": "60%",
+            "width": "40%",
+            "height": "30%"
             },
             { ##Lefthand Label (top portion)
-            text: 'Daily Contribution',
-            fontColor: '#212121',
-            textAlign: 'center',
-            x: '10%',
-            y:'65%',
-            width: '36%'
+            "text": "Daily Contribution",
+            "fontColor": "#212121",
+            "textAlign": "center",
+            "x": "10%",
+            "y":"65%",
+            "width": "36%"
             },
             { ##Lefthand Label (middle portion)
-            text: '%plot-value',
-            fontColor: '#2196F3',
-            fontFamily: 'Georgia',
-            fontSize: 35,
-            textAlign: 'center',
-            x: '10%',
-            y: '68%',
-            width: '36%'
+            "text": "%plot-value",
+            "fontColor": "#2196F3",
+            "fontFamily": "Georgia",
+            "fontSize": 35,
+            "textAlign": "center",
+            "x": "10%",
+            "y": "68%",
+            "width": "36%"
             },
             ## Note: the bottom portion of the Bottom-Left Label is the fixed tooltip, below.
             
             { ##Rightside Label (container portion)
-            borderColor: 'gray',
-            borderWidth: 1,
-            x: '52%',
-            y: '60%',
-            width: '40%',
-            height: '30%',
+            "borderColor": "gray",
+            "borderWidth": 1,
+            "x": "52%",
+            "y": "60%",
+            "width": "40%",
+            "height": "30%",
             },
             { ##Rightside Label (top portion)
-            text: 'Total Contributions',
-            fontColor: '#212121',
-            textAlign: 'center',
-            x: '54%',
-            y: '65%',
-            width: '36%'
+            "text": "Total Contributions",
+            "fontColor": "#212121",
+            "textAlign": "center",
+            "x": "54%",
+            "y": "65%",
+            "width": "36%"
             },
             { ##Rightside Label (middle portion)
-            text: '1414',
-            fontColor: '#2196F3',
-            fontFamily: 'Georgia',
-            fontSize: 35,
-            textAlign: 'center',
-            x: '54%',
-            y: '68%',
-            width: '36%'
+            "text": "1414",
+            "fontColor": "#2196F3",
+            "fontFamily": "Georgia",
+            "fontSize": 35,
+            "textAlign": "center",
+            "x": "54%",
+            "y": "68%",
+            "width": "36%"
             },
             { ##Rightside Label (bottom portion)
-            text: 'Jan 1 - Jun 30',
-            fontColor: '#212121',
-            padding: 2,
-            textAlign: 'center',
-            x: '54%',
-            y: '80%',
-            width: '36%'
+            "text": "Jan 1 - Jun 30",
+            "fontColor": "#212121",
+            "padding": 2,
+            "textAlign": "center",
+            "x": "54%",
+            "y": "80%",
+            "width": "36%"
             }
         ],
         
-        tooltip : { ##Lefthand Label (bottom portion)
-            text: '%data-day',
-            backgroundColor: 'none',
-            borderColor: 'none',
-            fontColor: '#212121',
-            padding: 2,
-            ##textAlign: 'center',
-            align: 'center',
-            sticky: true,
-            timeout: 30000,
-            x: '10%',
-            y: '80%',
-            width: '36%'
+        "tooltip" : { ##Lefthand Label (bottom portion)
+            "text": "%data-day",
+            "backgroundColor": "none",
+            "borderColor": "none",
+            "fontColor": "#212121",
+            "padding": 2,
+            ##textAlign: "center",
+            "align": "center",
+            "sticky": true,
+            "timeout": 30000,
+            "x": "10%",
+            "y": "80%",
+            "width": "36%"
         },
         
-        plotarea: {
-            marginTop: '15%',
-            marginBottom:'55%',
-            marginLeft: '8%',
-            marginRight: '8%'
+        "plotarea": {
+            "marginTop": "15%",
+            "marginBottom":"55%",
+            "marginLeft": "8%",
+            "marginRight": "8%"
         }
         }
 
