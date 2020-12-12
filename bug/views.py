@@ -10,6 +10,7 @@ from django.utils import timezone
 from django.db import connection
 from pyclickup import ClickUp
 from datetime import datetime
+import requests
 
 ##Requestor Login: Request Fix
 @login_required(login_url='/login/')
