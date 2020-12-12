@@ -407,6 +407,9 @@ def zing_cal_requests(request):
 
     zingdata = {
         "type": "calendar",
+        "plotarea":   {
+                    margin": "75px 75px 5px 67px"
+                    },
         "options": {
                     "year": {
                     "text": year,
@@ -529,5 +532,24 @@ def zing_cal_requests(request):
             "marginRight": "8%"
         }
         }
+
+    return JsonResponse(zingdata)
+
+################################################################################################################################################################
+################################################### Dashboard - Putting It All Together ########################################################################
+################################################################################################################################################################
+@login_required(login_url='/login/')
+def zing_dashboard(request):
+
+    line_requests   = requests.get('https://www.bugtrackertools.com/bug/zingdata-requests')
+    line_workqueue  = requests.get('https://www.bugtrackertools.com/bug/zingdata-wqupdates')
+    cal_workqueue   = requests.get('https://www.bugtrackertools.com/bug/zingdata-cal-wqupdates')
+
+    zingdata =  {
+                "backgroundColor": "#454754",
+                "graphset":   [
+                                line_requests, line_workqueue, cal_workqueue, 
+                            ]
+                }
 
     return JsonResponse(zingdata)
