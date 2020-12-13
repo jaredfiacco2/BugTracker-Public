@@ -350,7 +350,7 @@ def zing_cal_wqupdates(request):
                             "active": {
                             "borderColor": "#ffffff"
                             },
-                            "borderColor"": "#ffffff"
+                            "borderColor": "#ffffff"
                         }
                     },
                     "palette": ["#00ace6", "#006080"],
@@ -374,7 +374,7 @@ def zing_cal_wqupdates(request):
                         "visible": "true",
                         "fontColor": "white",
                         "fontFamily": "Arial",
-                    }
+                    },
                     "values": dataColumns
                 },
         "labels": [
