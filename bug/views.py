@@ -251,7 +251,7 @@ def zing_line_wqupdates(request):
         "width": "34%",
         "x": "66%",
         "title": {
-            "text":"Workqueue Updates Over Time"
+            "text":"Workqueue Updates Over Time",
             "backgroundColor": "none",
             "fontColor": "#ffffff",
             "fontFamily": "Arial",
