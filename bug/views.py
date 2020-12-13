@@ -333,7 +333,7 @@ def zing_cal_wqupdates(request):
         },
         "plotarea": {
             "marginTop": "25%",
-            "marginBottom": "2.5%",
+            "marginBottom": "5%",
             "marginLeft": "10%",
             "marginRight": "5%",
         },
@@ -341,11 +341,9 @@ def zing_cal_wqupdates(request):
         "width": "100%",
         "plot": {
             "animation": {
-                "delay": 0,
-                "effect": "ANIMATION_EXPAND_BOTTOM",
-                "method": "ANIMATION_LINEAR",
-                "sequence": "ANIMATION_NO_SEQUENCE",
-                "speed": "1000"
+                "delay": 500,
+                "effect": "ANIMATION_FADE_IN",
+                "speed": "1800"
             },
             "tooltip": {
             "text": "%data-day:<br>%v statuses <br>updated.",
@@ -454,11 +452,9 @@ def zing_cal_requests(request):
         "width": "100%",
         "plot": {
             "animation": {
-                "delay": 0,
-                "effect": "ANIMATION_EXPAND_BOTTOM",
-                "method": "ANIMATION_LINEAR",
-                "sequence": "ANIMATION_NO_SEQUENCE",
-                "speed": "1000"
+                "delay": 500,
+                "effect": "ANIMATION_FADE_IN",
+                "speed": "1800"
             },
         },
         "options": {
