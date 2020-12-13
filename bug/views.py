@@ -635,7 +635,7 @@ def zing_dashboard(request):
     zingdata =  {
                 "backgroundColor": "#454754",
                 "graphset":   [
-                                line_requests, line_workqueue, cal_workqueue, 
+                                line_requests, line_workqueue, cal_workqueue, cal_requests,
                             ]
                 }
 
