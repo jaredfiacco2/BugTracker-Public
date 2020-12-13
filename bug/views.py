@@ -319,6 +319,17 @@ def zing_cal_wqupdates(request):
 
     zingdata = {
         "type": "calendar",
+        "title": {
+            "text": title,
+            "fontColor": "white",
+            "fontFamily": "Arial",
+            "fontSize": "32px",
+            "fontWeight": "normal",
+            "textAlign": "left",
+            "width": "60%",
+            "x": "10%",
+            "y": "9%"
+        },
         "plotarea":   {
                     "margin": "45px 30px 40px 65px"
                     },
