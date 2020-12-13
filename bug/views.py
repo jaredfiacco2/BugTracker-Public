@@ -321,6 +321,7 @@ def zing_cal_wqupdates(request):
         "title": {
             "text": title,
             "paddingLeft": '20px',
+            "paddingTop": '15px',
             "backgroundColor": 'none',
             "fontColor": '#ffffff',
             "fontFamily": 'Arial',
@@ -331,13 +332,12 @@ def zing_cal_wqupdates(request):
             "y": '10px'
         },
         "plotarea": {
-            "marginTop": "20%",
+            "marginTop": "25%",
             "marginBottom": "2.5%",
             "marginLeft": "10%",
             "marginRight": "5%",
         },
         "backgroundColor": "#454754",
-        "borderBottom": "8px solid #565867",
         "width": "100%",
         "plot": {
             "animation": {
@@ -387,12 +387,12 @@ def zing_cal_wqupdates(request):
                     },
                     "palette": ["#00ace6", "#006080"],
                     "rows": 2,
-                    "scale": {
-                        "width": "30%",
-                        "height": "10px",
-                        "x": "75%",
-                        "y": "15%"
-                    },
+                    # "scale": {
+                    #     "width": "30%",
+                    #     "height": "10px",
+                    #     "x": "75%",
+                    #     "y": "10px"
+                    # },
                     "weekday": {
                         "values": ["", "Mon", "", "Wed", "", "Fri", ""],
                         "item": {
