@@ -218,7 +218,7 @@ def zing_line_request(request):
             "borderWidth": "2px",
             "shadow": "false"
         },
-        "series": [response_data]
+        "series": [response_data],
     }
     return zingdata
 
@@ -247,8 +247,31 @@ def zing_line_wqupdates(request):
 
     zingdata = {
         "type": "line", 
+        "backgroundColor": "#454754",
+        "width": "34%",
+        "x": "66%",
         "title": {
-            "text":"So cool its my graph finally"
+            "text":"Workqueue Updates Over Time"
+            "backgroundColor": "none",
+            "fontColor": "#ffffff",
+            "fontFamily": "Arial",
+            "fontWeight": "normal",
+            "height": "40px"
+        },
+        "plot": {
+            "valueBox": {
+            "visible": "false"
+            },
+            "animation": {
+            "delay": 0,
+            "effect": "ANIMATION_EXPAND_VERTICAL",
+            "method": "ANIMATION_LINEAR",
+            "sequence": "ANIMATION_BY_PLOT",
+            "speed": "300"
+            }
+        },
+        "plotarea": {
+            "margin": "60px 10px 0px 0px"
         },
         "series": [workqueue_data]
     }
