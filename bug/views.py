@@ -481,7 +481,7 @@ def zing_cal_wqupdates(request):
                         "width": "30%",
                         "height": "10px",
                         "x": "75%",
-                        "y": "10px"
+                        "paddingTop": '15px',
                     },
                     "weekday": {
                         "values": ["", "Mon", "", "Wed", "", "Fri", ""],
