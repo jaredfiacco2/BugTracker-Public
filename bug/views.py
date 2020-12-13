@@ -330,26 +330,51 @@ def zing_cal_wqupdates(request):
             },
         },
         "options": {
-                    "year": {
-                    "text": year,
-                    "visible": "false"
+                    "day": {
+                        "inactive": {
+                            "backgroundColor": "#00ace6",
+                            "borderColor": "#454754"
+                        },
+                        "active": {
+                            "backgroundColor": "#00ace6",
+                            "borderColor": "#454754",
+                            },
                     },
-                    "startMonth": 1,
-                    "endMonth": 12,
-                    "palette": ["none", "#2196F3"],
                     "month": {
-                    "item": {
-                        "fontColor": "gray",
-                        "fontSize": 9
-                    }
+                        "item": {
+                            "fontColor": "white",
+                            "fontFamily": "Arial",
+                            "fontSize": "9px"
+                        },
+                        "outline": {
+                            "active": {
+                            "borderColor": "#ffffff"
+                            },
+                            "borderColor"": "#ffffff"
+                        }
+                    },
+                    "palette": ["#00ace6", "#006080"],
+                    "rows": 2,
+                    "scale": {
+                        "width": "30%",
+                        "height": "10px",
+                        "x": "75%",
+                        "y": "15%"
                     },
                     "weekday": {
-                    "values": ["","M","","W","","F",""],
-                    "item":{
-                        "fontColor": "gray",
-                        "fontSize":9
-                    }
+                        "values": ["", "Mon", "", "Wed", "", "Fri", ""],
+                        "item": {
+                            "fontColor": "white",
+                            "fontFamily": "Arial",
+                            "fontSize": "9px"
+                        }
                     },
+                    "year": {
+                        "text": year,
+                        "visible": "true",
+                        "fontColor": "white",
+                        "fontFamily": "Arial",
+                    }
                     "values": dataColumns
                 },
         "labels": [
