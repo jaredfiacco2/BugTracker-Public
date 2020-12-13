@@ -281,7 +281,7 @@ def zing_line_wqupdates(request):
             },
         },
         "plotarea": {
-            "margin": "60px 10px 0px 0px"
+            "margin": "75px 75px 5px 67px"
         },
         "series": [workqueue_data]
     }
@@ -323,7 +323,6 @@ def zing_cal_wqupdates(request):
             "text": title,
             "backgroundColor": "none",
             "paddingLeft": '20px',
-            "backgroundColor": 'none',
             "fontColor": '#ffffff',
             "fontFamily": 'Arial',
             "fontSize": '18px',
@@ -408,11 +407,6 @@ def zing_cal_wqupdates(request):
                     },
                     "values": dataColumns
                 },
-
-        
-        
-        
-
         }
 
     return zingdata
