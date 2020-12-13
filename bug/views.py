@@ -207,6 +207,14 @@ def zing_line_request(request):
                 "sequence": "ANIMATION_BY_PLOT",
                 "speed":    "1800"
             },
+            "lineColor": "#96feff",
+            "lineWidth": "2px",
+            "marker": {
+                "backgroundColor": "#a3bcb8",
+                "borderColor": "#88f5fa",
+                "borderWidth": "2px",
+                "shadow": "false"
+            },
         },
         "tooltip": {
             "padding": "5px 10px",
@@ -277,6 +285,14 @@ def zing_line_wqupdates(request):
                 "method":   "ANIMATION_LINEAR",
                 "sequence": "ANIMATION_BY_PLOT",
                 "speed":    "1800"
+            },
+            "lineColor": "#96feff",
+            "lineWidth": "2px",
+            "marker": {
+                "backgroundColor": "#a3bcb8",
+                "borderColor": "#88f5fa",
+                "borderWidth": "2px",
+                "shadow": "false"
             },
         },
         "plotarea": {
@@ -362,12 +378,12 @@ def zing_cal_wqupdates(request):
         "options": {
                     "day": {
                         "inactive": {
-                            "backgroundColor": "#00ace6",
-                            "borderColor": "#454754"
+                            "backgroundColor": "#e1f5fe",
+                            "borderColor": "#ffffff"
                         },
                         "active": {
-                            "backgroundColor": "#00ace6",
-                            "borderColor": "#454754",
+                            "backgroundColor": "#e1f5fe",
+                            "borderColor": "#ffffff",
                             },
                     },
                     "month": {
@@ -378,12 +394,12 @@ def zing_cal_wqupdates(request):
                         },
                         "outline": {
                             "active": {
-                            "borderColor": "#ffffff"
+                            "borderColor": "#454754"
                             },
-                            "borderColor": "#ffffff"
+                            "borderColor": "#454754"
                         }
                     },
-                    "palette": ["#00ace6", "#006080"],
+                    "palette": ["#00ace6", "#01579b"],
                     "rows": 2,
                     # "scale": {
                     #     "width": "30%",
