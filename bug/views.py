@@ -179,8 +179,29 @@ def zing_line_request(request):
 
     zingdata = {
         "type": "line", 
+        "backgroundColor": "#454754",
+        "width": "70%",
         "title": {
-            "text":"Requests Over Time"
+            "text":"Requests Over Time",
+            "paddingLeft": '20px',
+            "backgroundColor": 'none',
+            "fontColor": '#ffffff',
+            "fontFamily": 'Arial',
+            "fontSize": '18px',
+            "fontWeight": 'normal',
+            "height": '40px',
+            "textAlign": 'left',
+            "y": '10px'
+        },
+        "plotarea": {
+        "margin": "75px 75px 5px 67px"
+        },
+        "animation": {
+            "delay": 500,
+            "effect":   "ANIMATION_EXPAND_LEFT",
+            "method":   "ANIMATION_LINEAR",
+            "sequence": "ANIMATION_BY_PLOT",
+            "speed":    "1800"
         },
         "series": [response_data]
     }
@@ -365,12 +386,7 @@ def zing_cal_wqupdates(request):
             "width": "36%"
         },
         
-        "plotarea": {
-            "marginTop": "15%",
-            "marginBottom":"55%",
-            "marginLeft": "8%",
-            "marginRight": "8%"
-        }
+
         }
 
     return zingdata
