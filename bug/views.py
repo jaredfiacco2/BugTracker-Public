@@ -371,7 +371,7 @@ def zing_pie_requesttypes(request):
 
 
 ################################################################################################################################################################
-################################################### Calendar - Workqueue #############################################################################
+################################################### Calendar - Workqueue #######################################################################################
 ################################################################################################################################################################
 @login_required(login_url='/login/')
 def zing_cal_wqupdates(request):
@@ -473,7 +473,7 @@ def zing_cal_wqupdates(request):
                         "width": "30%",
                         "height": "10px",
                         "x": "75%",
-                        "y": "2px"
+                        "y": "10px"
                     },
                     "weekday": {
                         "values": ["", "Mon", "", "Wed", "", "Fri", ""],
@@ -518,59 +518,20 @@ def zing_cal_requests(request):
     ##workqueue_data = {}
 
     #Workqueue Request Data
-    for r in workqueue_queryset:
-        dataRows.append(r.date)
-        dataRows.append(r.count)
+    for w in workqueue_queryset:
+        dataRows.append(w.date)
+        dataRows.append(w.count)
         dataColumns.append(dataRows)
         dataRows = []
-        year = r.year
-    title = 'New Bug Submissions Calendar - ' + year
+        year = w.year
+    title = 'Bug Requests Calendar - ' + year
 
     zingdata = {
         "type": "calendar",
-        "plotarea":   {
-                    "margin": "45px 30px 40px 65px"
-                    },
-        "backgroundColor": "#454754",
-        "borderBottom": "8px solid #565867",
-        "width": "100%",
-        "plot": {
-            "animation": {
-                "delay": 500,
-                "effect": "ANIMATION_FADE_IN",
-                "speed": "1800"
-            },
-        },
-        "options": {
-                    "year": {
-                    "text": year,
-                    "visible": "false"
-                    },
-                    "startMonth": 1,
-                    "endMonth": 12,
-                    "palette": ["none", "#2196F3"],
-                    "month": {
-                        "item": {
-                            "fontColor": "white",
-                            "fontSize": 9
-                        }
-                    },
-                    "weekday": {
-                        "values": ["","M","","W","","F",""],
-                        "item":{
-                            "fontColor": "white",
-                            "fontSize":9
-                        }
-                    },
-                    "values": dataColumns,
-                    "backgroundColor": "#454754",
-                },
-        "labels": [
-            { ##Title
+        "title": {
             "text": title,
-            "x": "10%",
-            "width": "80%",
             "paddingLeft": '20px',
+            "paddingTop": '15px',
             "backgroundColor": 'none',
             "fontColor": '#ffffff',
             "fontFamily": 'Arial',
@@ -579,88 +540,83 @@ def zing_cal_requests(request):
             "height": '40px',
             "textAlign": 'left',
             "y": '10px'
-            },
-            { ##Lefthand Label (container portion)
-            "borderColor": "gray",
-            "borderWidth": 1,
-            "x": "8%",
-            "y": "60%",
-            "width": "40%",
-            "height": "30%"
-            },
-            { ##Lefthand Label (top portion)
-            "text": "Daily Contribution",
-            "fontColor": "#212121",
-            "textAlign": "center",
-            "x": "10%",
-            "y":"65%",
-            "width": "36%"
-            },
-            { ##Lefthand Label (middle portion)
-            "text": "%plot-value",
-            "fontColor": "#2196F3",
-            "fontFamily": "Georgia",
-            "fontSize": 35,
-            "textAlign": "center",
-            "x": "10%",
-            "y": "68%",
-            "width": "36%"
-            },
-            ## Note: the bottom portion of the Bottom-Left Label is the fixed tooltip, below.
-            
-            { ##Rightside Label (container portion)
-            "borderColor": "gray",
-            "borderWidth": 1,
-            "x": "52%",
-            "y": "60%",
-            "width": "40%",
-            "height": "30%",
-            },
-            { ##Rightside Label (top portion)
-            "text": "Total Contributions",
-            "fontColor": "#212121",
-            "textAlign": "center",
-            "x": "54%",
-            "y": "65%",
-            "width": "36%"
-            },
-            { ##Rightside Label (middle portion)
-            "text": "1414",
-            "fontColor": "#2196F3",
-            "fontFamily": "Georgia",
-            "fontSize": 35,
-            "textAlign": "center",
-            "x": "54%",
-            "y": "68%",
-            "width": "36%"
-            },
-            { ##Rightside Label (bottom portion)
-            "text": "Jan 1 - Jun 30",
-            "fontColor": "#212121",
-            "padding": 2,
-            "textAlign": "center",
-            "x": "54%",
-            "y": "80%",
-            "width": "36%"
-            }
-        ],
-        
-        "tooltip" : { ##Lefthand Label (bottom portion)
-            "text": "%data-day",
-            "backgroundColor": "none",
-            "borderColor": "none",
-            "fontColor": "#212121",
-            "padding": 2,
-            ##textAlign: "center",
-            "align": "center",
-            "sticky": "true",
-            "timeout": 30000,
-            "x": "10%",
-            "y": "80%",
-            "width": "36%"
         },
-        
-
+        "plotarea": {
+            "marginTop": "25%",
+            "marginBottom": "7%",
+            "marginLeft": "10%",
+            "marginRight": "5%",
+        },
+        "backgroundColor": "#454754",
+        "width": "100%",
+        "plot": {
+            "animation": {
+                "delay": 500,
+                "effect": "ANIMATION_FADE_IN",
+                "speed": "1800"
+            },
+            "tooltip": {
+            "text": "%data-day:<br>%v statuses <br>updated.",
+            "alpha": 0.8,
+            "backgroundColor": "#454754",
+            "borderColor": "#212121",
+            "borderRadius": "3px",
+            "fontColor": "white",
+            "fontFamily": "Arial",
+            "fontSize": "12px",
+            "offsetY": "-10px",
+            "textAlign": "center",
+            "textAlpha": 1
+            }
+        },
+        "options": {
+                    "day": {
+                        "inactive": {
+                            "backgroundColor": "#F5F5F5",
+                            "borderColor": "#ffffff"
+                        },
+                        "active": {
+                            "backgroundColor": "#F5F5F5",
+                            "borderColor": "#ffffff",
+                            },
+                    },
+                    "month": {
+                        "item": {
+                            "fontColor": "white",
+                            "fontFamily": "Arial",
+                            "fontSize": "9px"
+                        },
+                        "outline": {
+                            "active": {
+                            "borderColor": "#454754"
+                            },
+                            "borderColor": "#454754"
+                        }
+                    },
+                    "palette": ["#00ace6", "#b659b4"],
+                    "rows": 2,
+                    "scale": {
+                        "width": "30%",
+                        "height": "10px",
+                        "x": "75%",
+                        "y": "10px"
+                    },
+                    "weekday": {
+                        "values": ["", "Mon", "", "Wed", "", "Fri", ""],
+                        "item": {
+                            "fontColor": "white",
+                            "fontFamily": "Arial",
+                            "fontSize": "9px"
+                        }
+                    },
+                    "year": {
+                        "text": year,
+                        "visible": "true",
+                        "fontColor": "white",
+                        "fontFamily": "Arial",
+                    },
+                    "values": dataColumns
+                },
         }
 
     return zingdata
@@ -674,6 +630,7 @@ def zing_dashboard(request):
     line_requests   =   zing_line_request(request)
     line_workqueue  =   zing_line_wqupdates(request) 
     cal_workqueue   =   zing_cal_wqupdates(request)
+    cal_requests   =   zing_cal_requests(request)
 
     zingdata =  {
                 "backgroundColor": "#454754",
