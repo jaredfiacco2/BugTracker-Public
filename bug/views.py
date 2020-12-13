@@ -349,7 +349,7 @@ def zing_cal_wqupdates(request):
         },
         "plotarea": {
             "marginTop": "25%",
-            "marginBottom": "5%",
+            "marginBottom": "7%",
             "marginLeft": "10%",
             "marginRight": "5%",
         },
@@ -378,11 +378,11 @@ def zing_cal_wqupdates(request):
         "options": {
                     "day": {
                         "inactive": {
-                            "backgroundColor": "#e1f5fe",
+                            "backgroundColor": "#f9f0d2",
                             "borderColor": "#ffffff"
                         },
                         "active": {
-                            "backgroundColor": "#e1f5fe",
+                            "backgroundColor": "#f9f0d2",
                             "borderColor": "#ffffff",
                             },
                     },
