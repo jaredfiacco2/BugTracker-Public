@@ -303,6 +303,74 @@ def zing_line_wqupdates(request):
     return zingdata
 
 ################################################################################################################################################################
+################################################### Pie Chart - Request Types ##################################################################################
+################################################################################################################################################################
+@login_required(login_url='/login/')
+def zing_pie_requesttypes(request):
+
+    #Workqueue Dataset Query
+    workqueue_queryset = Bug.objects.raw(""" select 1 as id, cast(cast(w.workqueue_lastupdatedts as date) as text) as date, count(w.id) as count, '"' from
+                                                bug_bugworkqueuestatus as w
+                                                group by cast(w.workqueue_lastupdatedts as date)
+                                                order by cast(w.workqueue_lastupdatedts as date) """)
+    dataRows = []
+    dataColumns = []
+    workqueue_data = {}
+
+    #Workqueue Request Data
+    for w in workqueue_queryset:
+        dataRows.append(w.date)
+        dataRows.append(w.count)
+        dataColumns.append(dataRows)
+        dataRows = []
+    workqueue_data["values"] = dataColumns
+
+    zingdata = {
+        "type": "line", 
+        "backgroundColor": "#454754",
+        "width": "34%",
+        "x": "66%",
+        "title": {
+            "text":"Workqueue Updates Over Time",
+            "paddingLeft": '20px',
+            "backgroundColor": 'none',
+            "fontColor": '#ffffff',
+            "fontFamily": 'Arial',
+            "fontSize": '18px',
+            "fontWeight": 'normal',
+            "height": '40px',
+            "textAlign": 'left',
+            "y": '10px'
+        },
+        "plot": {
+            "valueBox": {
+            "visible": "false"
+            },
+            "animation": {
+                "delay": 1300,
+                "effect":   "ANIMATION_EXPAND_LEFT",
+                "method":   "ANIMATION_LINEAR",
+                "sequence": "ANIMATION_BY_PLOT",
+                "speed":    "1800"
+            },
+            "lineColor": "#96feff",
+            "lineWidth": "2px",
+            "marker": {
+                "backgroundColor": "#a3bcb8",
+                "borderColor": "#88f5fa",
+                "borderWidth": "2px",
+                "shadow": "false"
+            },
+        },
+        "plotarea": {
+            "margin": "75px 75px 5px 67px"
+        },
+        "series": [workqueue_data]
+    }
+    return zingdata
+
+
+################################################################################################################################################################
 ################################################### Calendar - Workqueue #############################################################################
 ################################################################################################################################################################
 @login_required(login_url='/login/')
@@ -401,12 +469,12 @@ def zing_cal_wqupdates(request):
                     },
                     "palette": ["#00ace6", "#b659b4"],
                     "rows": 2,
-                    # "scale": {
-                    #     "width": "30%",
-                    #     "height": "10px",
-                    #     "x": "75%",
-                    #     "y": "10px"
-                    # },
+                    "scale": {
+                        "width": "30%",
+                        "height": "10px",
+                        "x": "75%",
+                        "y": "2px"
+                    },
                     "weekday": {
                         "values": ["", "Mon", "", "Wed", "", "Fri", ""],
                         "item": {
