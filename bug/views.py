@@ -183,7 +183,7 @@ def zing_line_request(request):
         "x":0,
         "y":0,
         "width": "70%",
-        "height": "33%",
+        "height": "30%",
         "title": {
             "text":"Requests Over Time",
             "paddingLeft": '20px',
@@ -267,7 +267,7 @@ def zing_line_wqupdates(request):
         "x": "70%",
         "y": 0,
         "width": "30%",
-        "height": "33%",
+        "height": "30%",
         "title": {
             "text":"Workqueue Updates Over Time",
             "paddingLeft": '20px',
