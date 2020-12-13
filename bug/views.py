@@ -610,7 +610,7 @@ def zing_cal_requests(request):
                         "width": "30%",
                         "height": "10px",
                         "x": "75%",
-                        "y": "10px"
+                        "paddingTop": '15px',
                     },
                     "weekday": {
                         "values": ["", "Mon", "", "Wed", "", "Fri", ""],
@@ -641,13 +641,13 @@ def zing_dashboard(request):
     line_requests   =   zing_line_request(request)
     line_workqueue  =   zing_line_wqupdates(request) 
     cal_workqueue   =   zing_cal_wqupdates(request)
-    #cal_requests   =   zing_cal_requests(request)
+    cal_requests   =   zing_cal_requests(request)
 
     zingdata =  {
                 "backgroundColor": "#454754",
                 "layout": "2x2",
                 "graphset":   [
-                                line_requests, line_workqueue, cal_workqueue,
+                                line_requests, line_workqueue, cal_workqueue, cal_requests
                             ]
                 }
 
