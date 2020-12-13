@@ -331,9 +331,9 @@ def zing_cal_wqupdates(request):
             "textAlign": 'left',
             "y": '10px'
         },
-        "plotarea":   {
-                    "margin": "45px 30px 40px 65px"
-                    },
+        "plotarea": {
+            "margin": "75px 75px 5px 67px"
+        },
         "backgroundColor": "#454754",
         "borderBottom": "8px solid #565867",
         "width": "100%",
