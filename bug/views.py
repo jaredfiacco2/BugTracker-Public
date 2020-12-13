@@ -258,10 +258,15 @@ def zing_line_wqupdates(request):
         "title": {
             "text":"Workqueue Updates Over Time",
             "backgroundColor": "none",
-            "fontColor": "#ffffff",
-            "fontFamily": "Arial",
-            "fontWeight": "normal",
-            "height": "40px"
+            "paddingLeft": '20px',
+            "backgroundColor": 'none',
+            "fontColor": '#ffffff',
+            "fontFamily": 'Arial',
+            "fontSize": '18px',
+            "fontWeight": 'normal',
+            "height": '40px',
+            "textAlign": 'left',
+            "y": '10px'
         },
         "plot": {
             "valueBox": {
@@ -328,6 +333,19 @@ def zing_cal_wqupdates(request):
                 "sequence": "ANIMATION_NO_SEQUENCE",
                 "speed": "1000"
             },
+            "tooltip": {
+            "text": "%data-day:<br><br>%v0 Statuses <br>updated.",
+            "alpha": 0.8,
+            "backgroundColor": "#454754",
+            "borderColor": "#212121",
+            "borderRadius": "3px",
+            "fontColor": "white",
+            "fontFamily": "Arial",
+            "fontSize": "12px",
+            "offsetY": "-10px",
+            "textAlign": "center",
+            "textAlpha": 1
+            }
         },
         "options": {
                     "day": {
@@ -377,100 +395,9 @@ def zing_cal_wqupdates(request):
                     },
                     "values": dataColumns
                 },
-        "labels": [
-            { ##Title
-            "text": title,
-            "x": "10%",
-            "width": "80%",
-            "paddingLeft": '20px',
-            "backgroundColor": 'none',
-            "fontColor": '#ffffff',
-            "fontFamily": 'Arial',
-            "fontSize": '18px',
-            "fontWeight": 'normal',
-            "height": '40px',
-            "textAlign": 'left',
-            "y": '10px'
-            },
-            { ##Lefthand Label (container portion)
-            "borderColor": "gray",
-            "borderWidth": 1,
-            "x": "8%",
-            "y": "60%",
-            "width": "40%",
-            "height": "30%"
-            },
-            { ##Lefthand Label (top portion)
-            "text": "Daily Contribution",
-            "fontColor": "#212121",
-            "textAlign": "center",
-            "x": "10%",
-            "y":"65%",
-            "width": "36%"
-            },
-            { ##Lefthand Label (middle portion)
-            "text": "%plot-value",
-            "fontColor": "#2196F3",
-            "fontFamily": "Georgia",
-            "fontSize": 35,
-            "textAlign": "center",
-            "x": "10%",
-            "y": "68%",
-            "width": "36%"
-            },
-            ## Note: the bottom portion of the Bottom-Left Label is the fixed tooltip, below.
-            
-            { ##Rightside Label (container portion)
-            "borderColor": "gray",
-            "borderWidth": 1,
-            "x": "52%",
-            "y": "60%",
-            "width": "40%",
-            "height": "30%",
-            },
-            { ##Rightside Label (top portion)
-            "text": "Total Contributions",
-            "fontColor": "#212121",
-            "textAlign": "center",
-            "x": "54%",
-            "y": "65%",
-            "width": "36%"
-            },
-            { ##Rightside Label (middle portion)
-            "text": "1414",
-            "fontColor": "#2196F3",
-            "fontFamily": "Georgia",
-            "fontSize": 35,
-            "textAlign": "center",
-            "x": "54%",
-            "y": "68%",
-            "width": "36%"
-            },
-            { ##Rightside Label (bottom portion)
-            "text": "Jan 1 - Jun 30",
-            "fontColor": "#212121",
-            "padding": 2,
-            "textAlign": "center",
-            "x": "54%",
-            "y": "80%",
-            "width": "36%"
-            }
-        ],
+
         
-        "tooltip" : { ##Lefthand Label (bottom portion)
-            "text": "%data-day",
-            "backgroundColor": "none",
-            "borderColor": "none",
-            "fontColor": "#212121",
-            "padding": 2,
-            ##textAlign: "center",
-            "align": "center",
-            "sticky": "true",
-            "timeout": 30000,
-            "x": "10%",
-            "y": "80%",
-            "width": "36%"
-        },
+        
         
 
         }
