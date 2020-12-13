@@ -268,7 +268,7 @@ def zing_line_wqupdates(request):
             "visible": "false"
             },
             "animation": {
-                "delay": 2300,
+                "delay": 1300,
                 "effect":   "ANIMATION_EXPAND_LEFT",
                 "method":   "ANIMATION_LINEAR",
                 "sequence": "ANIMATION_BY_PLOT",
@@ -314,6 +314,21 @@ def zing_cal_wqupdates(request):
 
     zingdata = {
         "type": "calendar",
+        "plotarea":   {
+                    "margin": "45px 30px 40px 65px"
+                    },
+        "backgroundColor": "#454754",
+        "borderBottom": "8px solid #565867",
+        "width": "100%",
+        "plot": {
+            "animation": {
+                "delay": 0,
+                "effect": "ANIMATION_EXPAND_BOTTOM",
+                "method": "ANIMATION_LINEAR",
+                "sequence": "ANIMATION_NO_SEQUENCE",
+                "speed": "1000"
+            },
+        },
         "options": {
                     "year": {
                     "text": year,
@@ -340,14 +355,17 @@ def zing_cal_wqupdates(request):
         "labels": [
             { ##Title
             "text": title,
-            "textAlign": 'center',
             "x": "10%",
-            "y":"2.5%",
             "width": "80%",
-            "height": "5%",
-            "fontFamily": "Georgia",
-            "fontColor": "#1c4966",
-            "fontSize": 35,
+            "paddingLeft": '20px',
+            "backgroundColor": 'none',
+            "fontColor": '#ffffff',
+            "fontFamily": 'Arial',
+            "fontSize": '18px',
+            "fontWeight": 'normal',
+            "height": '40px',
+            "textAlign": 'left',
+            "y": '10px'
             },
             { ##Lefthand Label (container portion)
             "borderColor": "gray",
@@ -508,7 +526,6 @@ def zing_cal_requests(request):
         "labels": [
             { ##Title
             "text": title,
-            "textAlign": 'center',
             "x": "10%",
             "width": "80%",
             "paddingLeft": '20px',
