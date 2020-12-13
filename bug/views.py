@@ -509,19 +509,20 @@ def zing_cal_requests(request):
                     "endMonth": 12,
                     "palette": ["none", "#2196F3"],
                     "month": {
-                    "item": {
-                        "fontColor": "gray",
-                        "fontSize": 9
-                    }
+                        "item": {
+                            "fontColor": "white",
+                            "fontSize": 9
+                        }
                     },
                     "weekday": {
-                    "values": ["","M","","W","","F",""],
-                    "item":{
-                        "fontColor": "gray",
-                        "fontSize":9
-                    }
+                        "values": ["","M","","W","","F",""],
+                        "item":{
+                            "fontColor": "white",
+                            "fontSize":9
+                        }
                     },
-                    "values": dataColumns
+                    "values": dataColumns,
+                    "backgroundColor": "#454754",
                 },
         "labels": [
             { ##Title
