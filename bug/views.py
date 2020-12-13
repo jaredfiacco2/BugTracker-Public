@@ -257,7 +257,6 @@ def zing_line_wqupdates(request):
         "x": "66%",
         "title": {
             "text":"Workqueue Updates Over Time",
-            "backgroundColor": "none",
             "paddingLeft": '20px',
             "backgroundColor": 'none',
             "fontColor": '#ffffff',
@@ -321,8 +320,8 @@ def zing_cal_wqupdates(request):
         "type": "calendar",
         "title": {
             "text": title,
-            "backgroundColor": "none",
             "paddingLeft": '20px',
+            "backgroundColor": 'none',
             "fontColor": '#ffffff',
             "fontFamily": 'Arial',
             "fontSize": '18px',
@@ -332,7 +331,10 @@ def zing_cal_wqupdates(request):
             "y": '10px'
         },
         "plotarea": {
-            "margin": "75px 75px 5px 67px"
+            "marginTop": "20%",
+            "marginBottom": "2.5%",
+            "marginLeft": "10%",
+            "marginRight": "5%",
         },
         "backgroundColor": "#454754",
         "borderBottom": "8px solid #565867",
