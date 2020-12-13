@@ -180,7 +180,10 @@ def zing_line_request(request):
     zingdata = {
         "type": "line", 
         "backgroundColor": "#454754",
+        "x":0,
+        "y":0,
         "width": "70%",
+        "height": "33%",
         "title": {
             "text":"Requests Over Time",
             "paddingLeft": '20px',
@@ -261,8 +264,10 @@ def zing_line_wqupdates(request):
     zingdata = {
         "type": "line", 
         "backgroundColor": "#454754",
-        "width": "34%",
-        "x": "66%",
+        "x": "70%",
+        "y": 0,
+        "width": "30%",
+        "height": "33%",
         "title": {
             "text":"Workqueue Updates Over Time",
             "paddingLeft": '20px',
@@ -402,6 +407,11 @@ def zing_cal_wqupdates(request):
 
     zingdata = {
         "type": "calendar",
+        "backgroundColor": "#454754",
+        "x": 0,
+        "y": "33%",
+        "width": "100%",
+        "height": "33%",
         "title": {
             "text": title,
             "paddingLeft": '20px',
@@ -421,8 +431,6 @@ def zing_cal_wqupdates(request):
             "marginLeft": "10%",
             "marginRight": "5%",
         },
-        "backgroundColor": "#454754",
-        "width": "100%",
         "plot": {
             "animation": {
                 "delay": 500,
@@ -528,6 +536,11 @@ def zing_cal_requests(request):
 
     zingdata = {
         "type": "calendar",
+        "backgroundColor": "#454754",
+        "x": 0,
+        "y": "66%",
+        "width": "100%",
+        "height": "34%",
         "title": {
             "text": title,
             "paddingLeft": '20px',
@@ -547,8 +560,6 @@ def zing_cal_requests(request):
             "marginLeft": "10%",
             "marginRight": "5%",
         },
-        "backgroundColor": "#454754",
-        "width": "100%",
         "plot": {
             "animation": {
                 "delay": 500,
@@ -630,12 +641,13 @@ def zing_dashboard(request):
     line_requests   =   zing_line_request(request)
     line_workqueue  =   zing_line_wqupdates(request) 
     cal_workqueue   =   zing_cal_wqupdates(request)
-    cal_requests   =   zing_cal_requests(request)
+    #cal_requests   =   zing_cal_requests(request)
 
     zingdata =  {
                 "backgroundColor": "#454754",
+                "layout": "2x2",
                 "graphset":   [
-                                line_requests, line_workqueue, cal_workqueue, cal_requests,
+                                line_requests, line_workqueue, cal_workqueue,
                             ]
                 }
 
