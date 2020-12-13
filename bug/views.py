@@ -321,14 +321,16 @@ def zing_cal_wqupdates(request):
         "type": "calendar",
         "title": {
             "text": title,
-            "fontColor": "white",
-            "fontFamily": "Arial",
-            "fontSize": "32px",
-            "fontWeight": "normal",
-            "textAlign": "left",
-            "width": "60%",
-            "x": "10%",
-            "y": "9%"
+            "backgroundColor": "none",
+            "paddingLeft": '20px',
+            "backgroundColor": 'none',
+            "fontColor": '#ffffff',
+            "fontFamily": 'Arial',
+            "fontSize": '18px',
+            "fontWeight": 'normal',
+            "height": '40px',
+            "textAlign": 'left',
+            "y": '10px'
         },
         "plotarea":   {
                     "margin": "45px 30px 40px 65px"
@@ -345,7 +347,7 @@ def zing_cal_wqupdates(request):
                 "speed": "1000"
             },
             "tooltip": {
-            "text": "%data-day:<br><br>%v0 Statuses <br>updated.",
+            "text": "%data-day:<br>%v statuses <br>updated.",
             "alpha": 0.8,
             "backgroundColor": "#454754",
             "borderColor": "#212121",
