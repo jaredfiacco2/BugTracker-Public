@@ -470,6 +470,9 @@ def zing_cal_requests(request):
         "plotarea":   {
                     "margin": "45px 30px 40px 65px"
                     },
+        "backgroundColor": "#454754",
+        "borderBottom": "8px solid #565867",
+        "width": "100%",
         "plot": {
             "animation": {
                 "delay": 0,
@@ -507,12 +510,16 @@ def zing_cal_requests(request):
             "text": title,
             "textAlign": 'center',
             "x": "10%",
-            "y":"2.5%",
             "width": "80%",
-            "height": "5%",
-            "fontFamily": "Georgia",
-            "fontColor": "#1c4966",
-            "fontSize": 35,
+            "paddingLeft": '20px',
+            "backgroundColor": 'none',
+            "fontColor": '#ffffff',
+            "fontFamily": 'Arial',
+            "fontSize": '18px',
+            "fontWeight": 'normal',
+            "height": '40px',
+            "textAlign": 'left',
+            "y": '10px'
             },
             { ##Lefthand Label (container portion)
             "borderColor": "gray",
