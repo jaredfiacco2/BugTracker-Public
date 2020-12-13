@@ -203,6 +203,21 @@ def zing_line_request(request):
             "sequence": "ANIMATION_BY_PLOT",
             "speed":    "1800"
         },
+        "tooltip": {
+            "padding": "5px 10px",
+            "backgroundColor": "#54ced4",
+            "borderRadius": "6px",
+            "fontColor": "#454754",
+            "shadow": "false"
+        },
+        "lineColor": "#96feff",
+        "lineWidth": "2px",
+        "marker": {
+            "backgroundColor": "#a3bcb8",
+            "borderColor": "#88f5fa",
+            "borderWidth": "2px",
+            "shadow": "false"
+        },
         "series": [response_data]
     }
     return zingdata
