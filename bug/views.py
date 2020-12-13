@@ -378,11 +378,11 @@ def zing_cal_wqupdates(request):
         "options": {
                     "day": {
                         "inactive": {
-                            "backgroundColor": "#f9f0d2",
+                            "backgroundColor": "#F5F5F5",
                             "borderColor": "#ffffff"
                         },
                         "active": {
-                            "backgroundColor": "#f9f0d2",
+                            "backgroundColor": "#F5F5F5",
                             "borderColor": "#ffffff",
                             },
                     },
@@ -399,7 +399,7 @@ def zing_cal_wqupdates(request):
                             "borderColor": "#454754"
                         }
                     },
-                    "palette": ["#00ace6", "#01579b"],
+                    "palette": ["#00ace6", "#b659b4"],
                     "rows": 2,
                     # "scale": {
                     #     "width": "30%",
