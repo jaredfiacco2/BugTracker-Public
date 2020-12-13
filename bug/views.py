@@ -268,7 +268,7 @@ def zing_line_wqupdates(request):
             "visible": "false"
             },
             "animation": {
-                "delay": 500,
+                "delay": 2300,
                 "effect":   "ANIMATION_EXPAND_LEFT",
                 "method":   "ANIMATION_LINEAR",
                 "sequence": "ANIMATION_BY_PLOT",
@@ -468,8 +468,17 @@ def zing_cal_requests(request):
     zingdata = {
         "type": "calendar",
         "plotarea":   {
-                    "margin": "75px 75px 5px 67px"
+                    "margin": "45px 30px 40px 65px"
                     },
+        "plot": {
+            "animation": {
+                "delay": 0,
+                "effect": "ANIMATION_EXPAND_BOTTOM",
+                "method": "ANIMATION_LINEAR",
+                "sequence": "ANIMATION_NO_SEQUENCE",
+                "speed": "1000"
+            },
+        },
         "options": {
                     "year": {
                     "text": year,
@@ -585,12 +594,7 @@ def zing_cal_requests(request):
             "width": "36%"
         },
         
-        "plotarea": {
-            "marginTop": "15%",
-            "marginBottom":"55%",
-            "marginLeft": "8%",
-            "marginRight": "8%"
-        }
+
         }
 
     return zingdata
