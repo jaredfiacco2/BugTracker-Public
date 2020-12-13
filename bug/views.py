@@ -196,12 +196,17 @@ def zing_line_request(request):
         "plotarea": {
         "margin": "75px 75px 5px 67px"
         },
-        "animation": {
-            "delay": 500,
-            "effect":   "ANIMATION_EXPAND_LEFT",
-            "method":   "ANIMATION_LINEAR",
-            "sequence": "ANIMATION_BY_PLOT",
-            "speed":    "1800"
+        "plot": {
+            "valueBox": {
+            "visible": "false"
+            },
+            "animation": {
+                "delay": 500,
+                "effect":   "ANIMATION_EXPAND_LEFT",
+                "method":   "ANIMATION_LINEAR",
+                "sequence": "ANIMATION_BY_PLOT",
+                "speed":    "1800"
+            },
         },
         "tooltip": {
             "padding": "5px 10px",
@@ -263,12 +268,12 @@ def zing_line_wqupdates(request):
             "visible": "false"
             },
             "animation": {
-            "delay": 0,
-            "effect": "ANIMATION_EXPAND_VERTICAL",
-            "method": "ANIMATION_LINEAR",
-            "sequence": "ANIMATION_BY_PLOT",
-            "speed": "300"
-            }
+                "delay": 500,
+                "effect":   "ANIMATION_EXPAND_LEFT",
+                "method":   "ANIMATION_LINEAR",
+                "sequence": "ANIMATION_BY_PLOT",
+                "speed":    "1800"
+            },
         },
         "plotarea": {
             "margin": "60px 10px 0px 0px"
