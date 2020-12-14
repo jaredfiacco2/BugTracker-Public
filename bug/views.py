@@ -331,9 +331,9 @@ def zing_pie_requestcatagory(request):
 
     #Workqueue Request Data
     for w in workqueue_queryset:
-        if w.categoty == "Bug":
+        if w.category == "Bug":
             buggie = w.count
-        elif w.categoty == "Feature Request":
+        elif w.category == "Feature Request":
             featreq = w.count
         elif w.category =="Customer Issue":
             custiss = w.count
