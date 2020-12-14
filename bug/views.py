@@ -307,11 +307,328 @@ def zing_line_wqupdates(request):
     }
     return zingdata
 
+
 ################################################################################################################################################################
-################################################### Pie Chart - Request Types ##################################################################################
+################################################### Pie Chart - Request Category ##################################################################################
 ################################################################################################################################################################
 @login_required(login_url='/login/')
-def zing_pie_requesttypes(request):
+def zing_pie_requestcatagory(request):
+
+    #Workqueue Dataset Query
+    workqueue_queryset = Bug.objects.raw("""    select 
+                                                    1 as id,  
+                                                    count(*) count, 
+                                                    b.category, '"'
+                                                from bug_bug as b
+                                                group by b.category """)
+    buggie = 0
+    featreq = 0
+    custiss = 0
+    intcl = 0
+    proc = 0
+    vuln = 0
+    title = "Category Types Pie Chart"
+
+    #Workqueue Request Data
+    for w in workqueue_queryset:
+        if w.priority == "Bug":
+            buggie = w.count
+        elif w.priority == "Feature Request":
+            featreq = w.count
+        elif w.priority =="Customer Issue":
+            custiss = w.count
+        elif w.priority =="Internal Cleanup":
+            intcl = w.count
+        elif w.priority =="Process":
+            proc = w.count
+        elif w.priority =="Vulnerability":
+            vuln = w.count
+        
+
+    zingdata = {
+        "type":"pie",
+        "backgroundColor": "#454754",
+        "x": "1%",
+        "y": "25%",
+        "width": "30%",
+        "height": "25%",
+        "title": {
+            "text":title,
+            "paddingLeft": '20px',
+            "backgroundColor": 'none',
+            "fontColor": '#ffffff',
+            "fontFamily": 'Arial',
+            "fontSize": '18px',
+            "fontWeight": 'normal',
+            "height": '40px',
+            "textAlign": 'center',
+            "y": '10px'
+        },
+        "legend":{
+            "x":"75%",
+            "y":"25%",
+            "border-width":1,
+            "backgroundColor": 'none',
+            "border-color":"white",
+            "border-radius":"5px",
+            "header":{
+                "text":"Priority Types",
+                "font-family":"Arial",
+                "font-size":12,
+                "font-color":"#ffffff",
+                "font-weight":"normal"
+            },
+            "marker":{
+                "type":"circle"
+            },
+            "toggle-action":"remove",
+            "minimize":"true",
+            "icon":{
+                "line-color":"#ffffff"
+            },
+            "max-items":8,
+            "overflow":"scroll"
+        },
+        "plotarea":{
+            "margin-right":"30%",
+            "margin-top":"15%"
+        },
+        "plot":{
+            "animation":{
+                "on-legend-toggle": "true",
+                "effect": 5,
+                "method": 1,
+                "sequence": 1,
+                "speed": 1
+            },
+            "value-box":{
+                "text":"%v",
+                "font-size":12,
+                "font-family":"Arial",
+                "font-weight":"normal",
+                "placement":"out",
+                "font-color":"#ffffff",
+            },
+            "tooltip":{
+                "text":"%t: %v (%npv%)",
+                "font-color":"black",
+                "font-family":"Arial",
+                "text-alpha":1,
+                "background-color":"white",
+                "alpha":0.7,
+                "border-width":1,
+                "border-color":"#cccccc",
+                "line-style":"dotted",
+                "border-radius":"10px",
+                "padding":"10%",
+                "placement":"node:center"
+            },
+            "border-width":1,
+            "border-color":"#cccccc",
+            "line-style":"dotted"
+        },
+        "series":[
+            {
+                "values":[buggie],
+                "background-color":"#29B6F6",
+                "legend-item": {
+                    "font-color": "#ffffff"
+                },
+                "text":"Bug"
+            },
+            {
+                "values":[featreq],
+                "background-color":"#5FB83A",
+                "legend-item": {
+                    "font-color": "#ffffff"
+                },
+                "text":"Feature Request"
+            },
+            {
+                "values":[custiss],
+                "background-color":"#A50079",
+                "legend-item": {
+                    "font-color": "#ffffff"
+                },
+                "text":"Customer Issue"
+            },
+            {
+                "values":[intcl],
+                "background-color":"#FFA726",
+                "legend-item": {
+                    "font-color": "#ffffff"
+                },
+                "text":"Internal Cleanup"
+            },
+            {
+                "values":[proc],
+                "background-color":"#EF5350",
+                "legend-item": {
+                    "font-color": "#ffffff"
+                },
+                "text":"Process"
+            },
+            {
+                "values":[vuln],
+                "background-color":"#E53935",
+                "legend-item": {
+                    "font-color": "#ffffff"
+                },
+                "text":"Vulnerability"
+            },
+        ]
+    }
+    return zingdata
+
+################################################################################################################################################################
+################################################### Guage - Outstanding Request Count ##########################################################################
+################################################################################################################################################################
+@login_required(login_url='/login/')
+def zing_guage_requestcount(request):
+
+    #Workqueue Dataset Query
+    workqueue_queryset = Bug.objects.raw("""  select 1 as id, count(*) count, '"'
+                                                from
+                                                    (select b.id, max(w.id) as max_s from bug_bug as b
+                                                    left join bug_bugworkqueuestatus as w on b.id=w.bug_wq_id
+                                                    group by b.id
+                                                    having max(bug_wq_id) is not null) as m_id
+                                                left join bug_bug as b on b.id = m_id.id
+                                                left join bug_bugworkqueuestatus as w on w.id = m_id.max_s
+                                                where 
+                                                    w.workqueue_status <> 'Duplicate' and
+                                                    w.workqueue_status Not Like '%%t Fix (%%' and
+                                                    w.workqueue_status Not Like '%%Fixe%%' and
+                                                    w.workqueue_status <> 'Closed' """)
+    dataColumns = []
+
+
+    #Workqueue Request Data
+    for w in workqueue_queryset:
+        dataColumns.append(w.count)
+    #workqueue_data["values"] = dataColumns
+    title = "Count of Outstanding Requests"
+
+    zingdata = {
+        "type": "gauge",
+        "globals": {
+            "fontSize": "20px"
+        },
+        "backgroundColor": "#454754",
+        "x": "34%",
+        "y": "25%",
+        "width": "30%",
+        "height": "25%",
+        "title": {
+            "text": title,
+            "paddingLeft": "20px",
+            "paddingTop": "10px",
+            "backgroundColor": "none",
+            "fontColor": "#ffffff",
+            "fontFamily": "Arial",
+            "fontSize": "18px",
+            "fontWeight": "normal",
+            "height": "40px",
+            "textAlign": "center",
+            "y": "10px"
+        },
+        "plot": {
+            "valueBox": {
+            "text": "%v",
+            "fontSize": "20x",
+            "placement": "center",
+            "fontWeight": "normal",
+            "rules": [
+                {
+                "text": "%v<br>Excellent",
+                "rule": "%v <= 6"
+                },
+                {
+                "text": "%v<br>Good",
+                "rule": "%v > 6 && %v < 14"
+                },
+                {
+                "text": "%v<br>Fair",
+                "rule": "%v >= 14 && %v < 18"
+                },
+                {
+                "text": "%v<br>Bad",
+                "rule": "%v >= 18"
+                }
+            ]
+            },
+            "size": "100%"
+        },
+        "plotarea": {
+            "marginTop": "80px"
+        },
+        "scaleR": {
+            "aperture": 180,
+            "center": {
+                "visible": "false"
+            },
+            "item": {
+            "offsetR": 0,
+            "rules": [
+                {
+                "offsetX": "15px",
+                "rule": "%i == 9"
+                }
+            ]
+            },
+            "labels": ["0", "4", "8", "12", "16", "20"],
+            "maxValue": 20,
+            "minValue": 0,
+            "ring": {
+            "rules": [
+                {
+                "backgroundColor": "#5FB83A",
+                "rule": "%v <= 6"
+                },
+                {
+                "backgroundColor": "#FFA726",
+                "rule": "%v > 6 && %v < 14"
+                },
+                {
+                "backgroundColor": "#EF5350",
+                "rule": "%v >= 14 && %v < 18"
+                },
+                {
+                "backgroundColor": "#E53935",
+                "rule": "%v >= 18"
+                }
+            ],
+            "size": "50px"
+            },
+            "step": 2,
+            "tick": {
+                "visible": "true"
+            }
+        },
+        "tooltip": {
+            "borderRadius": "5px"
+        },
+        "series": [
+            {
+            "values": dataColumns,
+            "backgroundColor": "#ffffff",
+            "indicator": [10, 5, 10, 10, 0.75],
+            "animation": {
+                "effect": "ANIMATION_EXPAND_VERTICAL",
+                "method": "ANIMATION_BACK_EASE_OUT",
+                "sequence": "null",
+                "speed": 900
+            }
+            }
+        ]
+    }
+    return zingdata
+
+################################################################################################################################################################
+################################################### Pie Chart - Request Priority ##################################################################################
+################################################################################################################################################################
+@login_required(login_url='/login/')
+def zing_pie_requestpriority(request):
 
     #Workqueue Dataset Query
     workqueue_queryset = Bug.objects.raw("""    select 
@@ -344,9 +661,9 @@ def zing_pie_requesttypes(request):
     zingdata = {
         "type":"pie",
         "backgroundColor": "#454754",
-        "x": "16%",
+        "x": "67%",
         "y": "25%",
-        "width": "33%",
+        "width": "30%",
         "height": "25%",
         "title": {
             "text":title,
@@ -467,151 +784,6 @@ def zing_pie_requesttypes(request):
         ]
     }
     return zingdata
-
-################################################################################################################################################################
-################################################### Guage - Outstanding Request Count ##########################################################################
-################################################################################################################################################################
-@login_required(login_url='/login/')
-def zing_guage_requestcount(request):
-
-    #Workqueue Dataset Query
-    workqueue_queryset = Bug.objects.raw("""  select 1 as id, count(*) count, '"'
-                                                from
-                                                    (select b.id, max(w.id) as max_s from bug_bug as b
-                                                    left join bug_bugworkqueuestatus as w on b.id=w.bug_wq_id
-                                                    group by b.id
-                                                    having max(bug_wq_id) is not null) as m_id
-                                                left join bug_bug as b on b.id = m_id.id
-                                                left join bug_bugworkqueuestatus as w on w.id = m_id.max_s
-                                                where 
-                                                    w.workqueue_status <> 'Duplicate' and
-                                                    w.workqueue_status Not Like '%%t Fix (%%' and
-                                                    w.workqueue_status Not Like '%%Fixe%%' and
-                                                    w.workqueue_status <> 'Closed' """)
-    dataColumns = []
-
-
-    #Workqueue Request Data
-    for w in workqueue_queryset:
-        dataColumns.append(w.count)
-    #workqueue_data["values"] = dataColumns
-    title = "Count of Outstanding Requests"
-
-    zingdata = {
-        "type": "gauge",
-        "globals": {
-            "fontSize": "20px"
-        },
-        "backgroundColor": "#454754",
-        "x": "66%",
-        "y": "25%",
-        "width": "33%",
-        "height": "25%",
-        "title": {
-            "text": title,
-            "paddingLeft": "20px",
-            "paddingTop": "10px",
-            "backgroundColor": "none",
-            "fontColor": "#ffffff",
-            "fontFamily": "Arial",
-            "fontSize": "18px",
-            "fontWeight": "normal",
-            "height": "40px",
-            "textAlign": "center",
-            "y": "10px"
-        },
-        "plot": {
-            "valueBox": {
-            "text": "%v",
-            "fontSize": "20x",
-            "placement": "center",
-            "fontWeight": "normal",
-            "rules": [
-                {
-                "text": "%v<br>Excellent",
-                "rule": "%v <= 6"
-                },
-                {
-                "text": "%v<br>Good",
-                "rule": "%v > 6 && %v < 14"
-                },
-                {
-                "text": "%v<br>Fair",
-                "rule": "%v >= 14 && %v < 18"
-                },
-                {
-                "text": "%v<br>Bad",
-                "rule": "%v >= 18"
-                }
-            ]
-            },
-            "size": "100%"
-        },
-        "plotarea": {
-            "marginTop": "80px"
-        },
-        "scaleR": {
-            "aperture": 180,
-            "center": {
-                "visible": "false"
-            },
-            "item": {
-            "offsetR": 0,
-            "rules": [
-                {
-                "offsetX": "15px",
-                "rule": "%i == 9"
-                }
-            ]
-            },
-            "labels": ["0", "4", "8", "12", "16", "20"],
-            "maxValue": 20,
-            "minValue": 0,
-            "ring": {
-            "rules": [
-                {
-                "backgroundColor": "#5FB83A",
-                "rule": "%v <= 6"
-                },
-                {
-                "backgroundColor": "#FFA726",
-                "rule": "%v > 6 && %v < 14"
-                },
-                {
-                "backgroundColor": "#EF5350",
-                "rule": "%v >= 14 && %v < 18"
-                },
-                {
-                "backgroundColor": "#E53935",
-                "rule": "%v >= 18"
-                }
-            ],
-            "size": "50px"
-            },
-            "step": 2,
-            "tick": {
-                "visible": "true"
-            }
-        },
-        "tooltip": {
-            "borderRadius": "5px"
-        },
-        "series": [
-            {
-            "values": dataColumns,
-            "backgroundColor": "#ffffff",
-            "indicator": [10, 5, 10, 10, 0.75],
-            "animation": {
-                "effect": "ANIMATION_EXPAND_VERTICAL",
-                "method": "ANIMATION_BACK_EASE_OUT",
-                "sequence": "null",
-                "speed": 900
-            }
-            }
-        ]
-    }
-    return zingdata
-
 
 ################################################################################################################################################################
 ################################################### Calendar - Workqueue #######################################################################################
@@ -878,16 +1050,17 @@ def zing_dashboard(request):
 
     line_requests       = zing_line_request(request)
     line_workqueue      = zing_line_wqupdates(request) 
-    cal_workqueue       = zing_cal_wqupdates(request)
-    cal_requests        = zing_cal_requests(request)
+    pie_categorytypes   = zing_pie_requestcatagory(request)
     guage_requestcount  = zing_guage_requestcount(request)
-    pie_prioritytypes   = zing_pie_requesttypes(request)
+    pie_prioritytypes   = zing_pie_requestpriority(request)
+    cal_requests        = zing_cal_requests(request)
+    cal_workqueue       = zing_cal_wqupdates(request)
 
     zingdata =  {
                 "backgroundColor": "#454754",
                 "layout": "2x2",
                 "graphset":   [
-                                line_requests, line_workqueue, pie_prioritytypes, guage_requestcount, cal_requests, cal_workqueue
+                                line_requests, line_workqueue, pie_categorytypes, guage_requestcount, pie_prioritytypes, cal_requests, cal_workqueue
                             ]
                 }
 
