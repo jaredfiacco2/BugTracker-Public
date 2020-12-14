@@ -394,15 +394,11 @@ def zing_guage_requestcount(request):
                                                     w.workqueue_status Not Like '%%t Fix (%%' and
                                                     w.workqueue_status Not Like '%%Fixe%%' and
                                                     w.workqueue_status <> 'Closed' """)
-    dataRows = []
-    dataColumns = []
-    #workqueue_data = {}
+
 
     #Workqueue Request Data
     for w in workqueue_queryset:
-        dataRows.append(w.count)
-        dataColumns.append(dataRows)
-        dataRows = []
+        dataColumns.append(w.count)
     #workqueue_data["values"] = dataColumns
     title = "Count of Outstanding Requests"
 
