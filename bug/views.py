@@ -406,7 +406,7 @@ def zing_guage_requestcount(request):
     zingdata = {
         "type": "gauge",
         "globals": {
-            "fontSize": "25px"
+            "fontSize": "20px"
         },
         "backgroundColor": "#454754",
         "x": "33%",
@@ -416,6 +416,7 @@ def zing_guage_requestcount(request):
         "title": {
             "text": title,
             "paddingLeft": "20px",
+            "paddingTop": "10px",
             "backgroundColor": "none",
             "fontColor": "#ffffff",
             "fontFamily": "Arial",
@@ -428,7 +429,7 @@ def zing_guage_requestcount(request):
         "plot": {
             "valueBox": {
             "text": "%v",
-            "fontSize": "25px",
+            "fontSize": "20x",
             "placement": "center",
             "fontWeight": "normal",
             "rules": [
@@ -491,11 +492,11 @@ def zing_guage_requestcount(request):
                 "rule": "%v >= 18"
                 }
             ],
-            "size": "50px"
+            "size": "20px"
             },
             "step": 2,
             "tick": {
-                "visible": "false"
+                "visible": "true"
             }
         },
         "tooltip": {
