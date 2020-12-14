@@ -314,29 +314,42 @@ def zing_line_wqupdates(request):
 def zing_pie_requesttypes(request):
 
     #Workqueue Dataset Query
-    workqueue_queryset = Bug.objects.raw(""" select 1 as id, cast(cast(w.workqueue_lastupdatedts as date) as text) as date, count(w.id) as count, '"' from
-                                                bug_bugworkqueuestatus as w
-                                                group by cast(w.workqueue_lastupdatedts as date)
-                                                order by cast(w.workqueue_lastupdatedts as date) """)
-    dataRows = []
-    dataColumns = []
-    workqueue_data = {}
+    workqueue_queryset = Bug.objects.raw("""    select 
+                                                    1 as id,  
+                                                    count(*) count, 
+                                                    b.priority, '"'
+                                                from bug_bug as b
+                                                group by b.priority """)
+    critical = 0
+    urgent = 0
+    medium = 0
+    low = 0
+    verylow = 0
+    title = "Priority Types Pie Chart"
 
     #Workqueue Request Data
     for w in workqueue_queryset:
-        dataRows.append(w.date)
-        dataRows.append(w.count)
-        dataColumns.append(dataRows)
-        dataRows = []
-    workqueue_data["values"] = dataColumns
+        if w.priority == "Critical":
+            critical = w.count
+        elif w.priority == "Urgent":
+            urgent = w.count
+        elif w.priority =="Medium":
+            medium = w.count
+        elif w.priority =="Low":
+            low = w.count
+        elif w.priority =="Very Low":
+            verylow = w.count
+        
 
     zingdata = {
-        "type": "line", 
+        "type":"pie",
         "backgroundColor": "#454754",
-        "width": "34%",
-        "x": "66%",
+        "x": "16%",
+        "y": "25%",
+        "width": "33%",
+        "height": "25%",
         "title": {
-            "text":"Workqueue Updates Over Time",
+            "text":title,
             "paddingLeft": '20px',
             "backgroundColor": 'none',
             "fontColor": '#ffffff',
@@ -344,33 +357,114 @@ def zing_pie_requesttypes(request):
             "fontSize": '18px',
             "fontWeight": 'normal',
             "height": '40px',
-            "textAlign": 'left',
+            "textAlign": 'center',
             "y": '10px'
         },
-        "plot": {
-            "valueBox": {
-            "visible": "false"
+        "legend":{
+            "x":"75%",
+            "y":"25%",
+            "border-width":1,
+            "backgroundColor": 'none',
+            "border-color":"white",
+            "border-radius":"5px",
+            "header":{
+                "text":"Priority Types",
+                "font-family":"Arial",
+                "font-size":12,
+                "font-color":"#ffffff",
+                "font-weight":"normal"
             },
-            "animation": {
-                "delay": 1300,
-                "effect":   "ANIMATION_EXPAND_LEFT",
-                "method":   "ANIMATION_LINEAR",
-                "sequence": "ANIMATION_BY_PLOT",
-                "speed":    "1800"
+            "marker":{
+                "type":"circle"
             },
-            "lineColor": "#96feff",
-            "lineWidth": "2px",
-            "marker": {
-                "backgroundColor": "#a3bcb8",
-                "borderColor": "#88f5fa",
-                "borderWidth": "2px",
-                "shadow": "false"
+            "toggle-action":"remove",
+            "minimize":"true",
+            "icon":{
+                "line-color":"#ffffff"
             },
+            "max-items":8,
+            "overflow":"scroll"
         },
-        "plotarea": {
-            "margin": "75px 75px 5px 67px"
+        "plotarea":{
+            "margin-right":"30%",
+            "margin-top":"15%"
         },
-        "series": [workqueue_data]
+        "plot":{
+            "animation":{
+                "on-legend-toggle": "true",
+                "effect": 5,
+                "method": 1,
+                "sequence": 1,
+                "speed": 1
+            },
+            "value-box":{
+                "text":"%v",
+                "font-size":12,
+                "font-family":"Arial",
+                "font-weight":"normal",
+                "placement":"out",
+                "font-color":"#ffffff",
+            },
+            "tooltip":{
+                "text":"%t: %v (%npv%)",
+                "font-color":"black",
+                "font-family":"Arial",
+                "text-alpha":1,
+                "background-color":"white",
+                "alpha":0.7,
+                "border-width":1,
+                "border-color":"#cccccc",
+                "line-style":"dotted",
+                "border-radius":"10px",
+                "padding":"10%",
+                "placement":"node:center"
+            },
+            "border-width":1,
+            "border-color":"#cccccc",
+            "line-style":"dotted"
+        },
+        "series":[
+            {
+                "values":[critical],
+                "background-color":"#E53935",
+                "legend-item": {
+                    "font-color": "#ffffff"
+                },
+                "text":"Critical"
+            },
+            {
+                "values":[urgent],
+                "background-color":"#EF5350",
+                "legend-item": {
+                    "font-color": "#ffffff"
+                },
+                "text":"Urgent"
+            },
+            {
+                "values":[medium],
+                "background-color":"#FFA726",
+                "legend-item": {
+                    "font-color": "#ffffff"
+                },
+                "text":"Medium"
+            },
+            {
+                "values":[low],
+                "background-color":"#5FB83A",
+                "legend-item": {
+                    "font-color": "#ffffff"
+                },
+                "text":"Low"
+            },
+            {
+                "values":[verylow],
+                "background-color":"#29B6F6",
+                "legend-item": {
+                    "font-color": "#ffffff"
+                },
+                "text":"Very Low"
+            },
+        ]
     }
     return zingdata
 
@@ -409,7 +503,7 @@ def zing_guage_requestcount(request):
             "fontSize": "20px"
         },
         "backgroundColor": "#454754",
-        "x": "33%",
+        "x": "66%",
         "y": "25%",
         "width": "33%",
         "height": "25%",
@@ -423,7 +517,7 @@ def zing_guage_requestcount(request):
             "fontSize": "18px",
             "fontWeight": "normal",
             "height": "40px",
-            "textAlign": "left",
+            "textAlign": "center",
             "y": "10px"
         },
         "plot": {
@@ -787,12 +881,13 @@ def zing_dashboard(request):
     cal_workqueue       = zing_cal_wqupdates(request)
     cal_requests        = zing_cal_requests(request)
     guage_requestcount  = zing_guage_requestcount(request)
+    pie_prioritytypes   = zing_pie_requesttypes(request)
 
     zingdata =  {
                 "backgroundColor": "#454754",
                 "layout": "2x2",
                 "graphset":   [
-                                line_requests, line_workqueue, guage_requestcount, cal_requests, cal_workqueue
+                                line_requests, line_workqueue, pie_prioritytypes, guage_requestcount, cal_requests, cal_workqueue
                             ]
                 }
 
