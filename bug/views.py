@@ -451,7 +451,7 @@ def zing_guage_requestcount(request):
                 }
             ]
             },
-            "size": "100%"
+            "size": "40%"
         },
         "plotarea": {
             "marginTop": "80px"
@@ -492,7 +492,7 @@ def zing_guage_requestcount(request):
                 "rule": "%v >= 18"
                 }
             ],
-            "size": "20px"
+            "size": "50px"
             },
             "step": 2,
             "tick": {
