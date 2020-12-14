@@ -183,7 +183,7 @@ def zing_line_request(request):
         "x":0,
         "y":0,
         "width": "70%",
-        "height": "30%",
+        "height": "25%",
         "title": {
             "text":"Requests Over Time",
             "paddingLeft": '20px',
@@ -267,7 +267,7 @@ def zing_line_wqupdates(request):
         "x": "70%",
         "y": 0,
         "width": "30%",
-        "height": "30%",
+        "height": "25%",
         "title": {
             "text":"Workqueue Updates Over Time",
             "paddingLeft": '20px',
@@ -374,6 +374,152 @@ def zing_pie_requesttypes(request):
     }
     return zingdata
 
+################################################################################################################################################################
+################################################### Guage - Outsyanding Request Count ##########################################################################
+################################################################################################################################################################
+@login_required(login_url='/login/')
+def zing_guage_requestcount(request):
+
+    #Workqueue Dataset Query
+    workqueue_queryset = Bug.objects.raw("""    select count(*) count
+                                                from
+                                                    (select b.id, max(w.id) as max_s from bug_bug as b
+                                                    left join bug_bugworkqueuestatus as w on b.id=w.bug_wq_id
+                                                    group by b.id
+                                                    having max(bug_wq_id) is not null) as m_id
+                                                left join bug_bug as b on b.id = m_id.id
+                                                left join bug_bugworkqueuestatus as w on w.id = m_id.max_s
+                                                where 
+                                                    w.workqueue_status <> 'Duplicate' and
+                                                    w.workqueue_status Not Like '%%t Fix (%%' and
+                                                    w.workqueue_status Not Like '%%Fixe%%' and
+                                                    w.workqueue_status <> 'Closed' """)
+    dataRows = []
+    dataColumns = []
+    #workqueue_data = {}
+
+    #Workqueue Request Data
+    for w in workqueue_queryset:
+        dataRows.append(w.count)
+        dataColumns.append(dataRows)
+        dataRows = []
+    #workqueue_data["values"] = dataColumns
+    title = 'Count of Outstanding Requests'
+
+    zingdata = {
+        "type": "gauge",
+        "globals": {
+            "fontSize": "25px"
+        },
+        "backgroundColor": "#454754",
+        "x": "33%",
+        "y": "25%",
+        "width": "33%",
+        "height": "25%",
+        "title": {
+            "text": title,
+            "paddingLeft": '20px',
+            "backgroundColor": 'none',
+            "fontColor": '#ffffff',
+            "fontFamily": 'Arial',
+            "fontSize": '18px',
+            "fontWeight": 'normal',
+            "height": '40px',
+            "textAlign": 'left',
+            "y": '10px'
+        },
+        "plot": {
+            "valueBox": {
+            "text": "%v",
+            "fontSize": "25px",
+            "placement": "center",
+            "fontWeight": 'normal',
+            "rules": [
+                {
+                "text": "%v<br>Excellent",
+                "rule": "%v <= 6"
+                },
+                {
+                "text": "%v<br>Good",
+                "rule": "%v > 6 && %v < 14"
+                },
+                {
+                "text": "%v<br>Fair",
+                "rule": "%v >= 14 && %v < 18"
+                },
+                {
+                "text": "%v<br>Bad",
+                "rule": "%v >= 18"
+                }
+            ]
+            },
+            "size": "100%"
+        },
+        "plotarea": {
+            "marginTop": "80px"
+        },
+        "scaleR": {
+            "aperture": 180,
+            "center": {
+                "visible": "false"
+            },
+            "item": {
+            "offsetR": 0,
+            "rules": [
+                {
+                "offsetX": '15px',
+                "rule": '%i == 9'
+                }
+            ]
+            },
+            "labels": ["0", "4", "8", "12", "16", "20"],
+            "maxValue": 20,
+            "minValue": 0,
+            "ring": {
+            "rules": [
+                {
+                "backgroundColor": "#5FB83A",
+                "rule": "%v <= 6"
+                },
+                {
+                "backgroundColor": "#FFA726",
+                "rule": "%v > 6 && %v < 14"
+                },
+                {
+                "backgroundColor": "#EF5350",
+                "rule": "%v >= 14 && %v < 18"
+                },
+                {
+                "backgroundColor": "#E53935",
+                "rule": "%v >= 18"
+                }
+            ],
+            "size": "50px"
+            },
+            "step": 2,
+            "tick": {
+                "visible": "false"
+            }
+        },
+        "tooltip": {
+            "borderRadius": "5px"
+        },
+        "series": [
+            {
+            "values": dataColumns,
+            "backgroundColor": "#ffffff",
+            "indicator": [10, 10, 10, 10, 0.75],
+            "animation": {
+                "effect": "ANIMATION_EXPAND_VERTICAL",
+                "method": "ANIMATION_BACK_EASE_OUT",
+                "sequence": "null",
+                "speed": 900
+            }
+            }
+        ]
+    }
+    return zingdata
+
 
 ################################################################################################################################################################
 ################################################### Calendar - Workqueue #######################################################################################
@@ -409,9 +555,9 @@ def zing_cal_wqupdates(request):
         "type": "calendar",
         "backgroundColor": "#454754",
         "x": 0,
-        "y": "33%",
+        "y": "75%",
         "width": "100%",
-        "height": "33%",
+        "height": "25%",
         "title": {
             "text": title,
             "paddingLeft": '20px',
@@ -538,9 +684,9 @@ def zing_cal_requests(request):
         "type": "calendar",
         "backgroundColor": "#454754",
         "x": 0,
-        "y": "66%",
+        "y": "50%",
         "width": "100%",
-        "height": "34%",
+        "height": "25%",
         "title": {
             "text": title,
             "paddingLeft": '20px',
@@ -638,16 +784,17 @@ def zing_cal_requests(request):
 @login_required(login_url='/login/')
 def zing_dashboard(request):
 
-    line_requests   =   zing_line_request(request)
-    line_workqueue  =   zing_line_wqupdates(request) 
-    cal_workqueue   =   zing_cal_wqupdates(request)
-    cal_requests   =   zing_cal_requests(request)
+    line_requests       = zing_line_request(request)
+    line_workqueue      = zing_line_wqupdates(request) 
+    cal_workqueue       = zing_cal_wqupdates(request)
+    cal_requests        = zing_cal_requests(request)
+    guage_requestcount  = zing_guage_requestcount(request)
 
     zingdata =  {
                 "backgroundColor": "#454754",
                 "layout": "2x2",
                 "graphset":   [
-                                line_requests, line_workqueue, cal_workqueue, cal_requests
+                                line_requests, line_workqueue, guage_requestcount, cal_requests, cal_workqueue
                             ]
                 }
 
