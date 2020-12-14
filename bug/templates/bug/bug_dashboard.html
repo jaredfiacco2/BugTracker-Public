@@ -14,8 +14,19 @@
         display: none;
       }
     </style>
-    <meta name="viewport" content="width=1024">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+      <script>
+        $(window).resize(function() {
+            var mobileWidth =  (window.innerWidth > 0) ? 
+                                window.innerWidth : 
+                                screen.width;
+            var viewport = (mobileWidth > 360) ?
+                            'width=device-width, initial-scale=1.0' :
+                            'width=1200';
+            $("meta[name=viewport]").attr('content', viewport);
+        }).resize();      
+      </script>
 
       <body class="zc-body">
 
