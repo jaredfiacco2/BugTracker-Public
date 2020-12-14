@@ -331,17 +331,17 @@ def zing_pie_requestcatagory(request):
 
     #Workqueue Request Data
     for w in workqueue_queryset:
-        if w.priority == "Bug":
+        if w.categoty == "Bug":
             buggie = w.count
-        elif w.priority == "Feature Request":
+        elif w.categoty == "Feature Request":
             featreq = w.count
-        elif w.priority =="Customer Issue":
+        elif w.category =="Customer Issue":
             custiss = w.count
-        elif w.priority =="Internal Cleanup":
+        elif w.category =="Internal Cleanup":
             intcl = w.count
-        elif w.priority =="Process":
+        elif w.category =="Process":
             proc = w.count
-        elif w.priority =="Vulnerability":
+        elif w.category =="Vulnerability":
             vuln = w.count
         
 
