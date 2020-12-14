@@ -451,7 +451,7 @@ def zing_guage_requestcount(request):
                 }
             ]
             },
-            "size": "40%"
+            "size": "100%"
         },
         "plotarea": {
             "marginTop": "80px"
@@ -506,7 +506,7 @@ def zing_guage_requestcount(request):
             {
             "values": dataColumns,
             "backgroundColor": "#ffffff",
-            "indicator": [10, 10, 10, 10, 0.75],
+            "indicator": [10, 5, 10, 10, 0.75],
             "animation": {
                 "effect": "ANIMATION_EXPAND_VERTICAL",
                 "method": "ANIMATION_BACK_EASE_OUT",
