@@ -394,6 +394,7 @@ def zing_guage_requestcount(request):
                                                     w.workqueue_status Not Like '%%t Fix (%%' and
                                                     w.workqueue_status Not Like '%%Fixe%%' and
                                                     w.workqueue_status <> 'Closed' """)
+    dataColumns = []
 
 
     #Workqueue Request Data
