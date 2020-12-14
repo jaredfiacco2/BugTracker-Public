@@ -381,7 +381,7 @@ def zing_pie_requesttypes(request):
 def zing_guage_requestcount(request):
 
     #Workqueue Dataset Query
-    workqueue_queryset = Bug.objects.raw("""    select count(*) count
+    workqueue_queryset = Bug.objects.raw("""    1 as id, select count(*) count
                                                 from
                                                     (select b.id, max(w.id) as max_s from bug_bug as b
                                                     left join bug_bugworkqueuestatus as w on b.id=w.bug_wq_id
