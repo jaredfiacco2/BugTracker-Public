@@ -404,7 +404,7 @@ def zing_guage_requestcount(request):
         dataColumns.append(dataRows)
         dataRows = []
     #workqueue_data["values"] = dataColumns
-    title = 'Count of Outstanding Requests'
+    title = "Count of Outstanding Requests"
 
     zingdata = {
         "type": "gauge",
@@ -418,22 +418,22 @@ def zing_guage_requestcount(request):
         "height": "25%",
         "title": {
             "text": title,
-            "paddingLeft": '20px',
-            "backgroundColor": 'none',
-            "fontColor": '#ffffff',
-            "fontFamily": 'Arial',
-            "fontSize": '18px',
-            "fontWeight": 'normal',
-            "height": '40px',
-            "textAlign": 'left',
-            "y": '10px'
+            "paddingLeft": "20px",
+            "backgroundColor": "none",
+            "fontColor": "#ffffff",
+            "fontFamily": "Arial",
+            "fontSize": "18px",
+            "fontWeight": "normal",
+            "height": "40px",
+            "textAlign": "left",
+            "y": "10px"
         },
         "plot": {
             "valueBox": {
             "text": "%v",
             "fontSize": "25px",
             "placement": "center",
-            "fontWeight": 'normal',
+            "fontWeight": "normal",
             "rules": [
                 {
                 "text": "%v<br>Excellent",
@@ -467,8 +467,8 @@ def zing_guage_requestcount(request):
             "offsetR": 0,
             "rules": [
                 {
-                "offsetX": '15px',
-                "rule": '%i == 9'
+                "offsetX": "15px",
+                "rule": "%i == 9"
                 }
             ]
             },
