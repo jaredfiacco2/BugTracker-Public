@@ -346,7 +346,7 @@ def zing_pie_requestcatagory(request):
         
 
     zingdata = {
-        "type":"pie",
+        "type":"pie3d",
         "backgroundColor": "#454754",
         "x": "1%",
         "y": "25%",
@@ -516,9 +516,9 @@ def zing_guage_requestcount(request):
         },
         "backgroundColor": "#454754",
         "x": "34%",
-        "y": "25%",
+        "y": "30%",
         "width": "30%",
-        "height": "25%",
+        "height": "20%",
         "title": {
             "text": title,
             "paddingLeft": "20px",
@@ -606,7 +606,18 @@ def zing_guage_requestcount(request):
             }
         },
         "tooltip": {
-            "borderRadius": "5px"
+            "text":"Requests in WQ: %v",
+            "font-color":"black",
+            "font-family":"Arial",
+            "text-alpha":1,
+            "background-color":"white",
+            "alpha":0.7,
+            "border-width":1,
+            "border-color":"#cccccc",
+            "line-style":"dotted",
+            "border-radius":"10px",
+            "padding":"10%",
+            "placement":"node:center"
         },
         "series": [
             {
@@ -659,7 +670,7 @@ def zing_pie_requestpriority(request):
         
 
     zingdata = {
-        "type":"pie",
+        "type":"ring3d",
         "backgroundColor": "#454754",
         "x": "67%",
         "y": "25%",
@@ -977,7 +988,7 @@ def zing_cal_requests(request):
                 "speed": "1800"
             },
             "tooltip": {
-            "text": "%data-day:<br>%v statuses <br>updated.",
+            "text": "%data-day:<br>%v requests <br>updated.",
             "alpha": 0.8,
             "backgroundColor": "#454754",
             "borderColor": "#212121",
