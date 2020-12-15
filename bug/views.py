@@ -346,7 +346,7 @@ def zing_pie_requestcatagory(request):
         
 
     zingdata = {
-        "type":"pie3d",
+        "type":"pie",
         "backgroundColor": "#454754",
         "x": "1%",
         "y": "25%",
@@ -516,9 +516,9 @@ def zing_guage_requestcount(request):
         },
         "backgroundColor": "#454754",
         "x": "34%",
-        "y": "30%",
+        "y": "25%",
         "width": "30%",
-        "height": "20%",
+        "height": "25%",
         "title": {
             "text": title,
             "paddingLeft": "20px",
