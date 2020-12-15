@@ -688,6 +688,14 @@ def zing_pie_requestpriority(request):
             "textAlign": 'center',
             "y": '10px'
         },
+        "images":[
+            {
+                "src":"https://s3bucketfortestwebsite.s3.amazonaws.com/bug.png",
+                "width" : "4%",
+                "height" : "4%",
+                "offset-y" : -10
+            }
+        ],
         "legend":{
             "x":"75%",
             "y":"25%",
