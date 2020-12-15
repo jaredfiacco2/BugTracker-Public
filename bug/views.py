@@ -670,7 +670,7 @@ def zing_pie_requestpriority(request):
         
 
     zingdata = {
-        "type":"ring3d",
+        "type":"ring",
         "backgroundColor": "#454754",
         "x": "67%",
         "y": "25%",
