@@ -1077,7 +1077,7 @@ def zing_cal_requests(request):
 @login_required(login_url='/login/')
 def zing_dashboard(request):
 
-    pareto_requests       = zing_pareto_request(request)
+    pareto_requests     = zing_pareto_request(request)
     line_workqueue      = zing_line_wqupdates(request) 
     pie_categorytypes   = zing_pie_requestcatagory(request)
     guage_requestcount  = zing_guage_requestcount(request)
