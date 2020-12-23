@@ -379,6 +379,25 @@ def zing_hbar_wqupdates(request):
         "plotarea": {
             "margin": "75px 75px 5px 67px"
         },
+        "scaleX": {
+            "labels": {
+                "text": "Hour",
+                "fontColor": "#ffffff",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "fontWeight": "normal"
+            }
+
+        },
+        "scaleY": {
+            "label": {
+                "text": "Requests Per Hour",
+                "fontColor": "#ffffff",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "fontWeight": "normal"
+            },
+        },
         "series": [{
             "values": dataRows
         }]
