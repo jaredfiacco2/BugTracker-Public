@@ -152,7 +152,7 @@ def bug_dashboard(request):
 ############################################## Pareto Chart - Requests By User ##########################################################################
 ################################################################################################################################################################
 @login_required(login_url='/login/')
-def zing_line_request(request):
+def zing_pareto_request(request):
 
     #Request Dataset Query
     requests_queryset = Bug.objects.raw(""" 
@@ -1077,7 +1077,7 @@ def zing_cal_requests(request):
 @login_required(login_url='/login/')
 def zing_dashboard(request):
 
-    line_requests       = zing_line_request(request)
+    pareto_requests       = zing_pareto_request(request)
     line_workqueue      = zing_line_wqupdates(request) 
     pie_categorytypes   = zing_pie_requestcatagory(request)
     guage_requestcount  = zing_guage_requestcount(request)
@@ -1089,7 +1089,7 @@ def zing_dashboard(request):
                 "backgroundColor": "#454754",
                 "layout": "2x2",
                 "graphset":   [
-                                line_requests, line_workqueue, pie_categorytypes, guage_requestcount, pie_prioritytypes, cal_requests, cal_workqueue
+                                pareto_requests, line_workqueue, pie_categorytypes, guage_requestcount, pie_prioritytypes, cal_requests, cal_workqueue
                             ]
                 }
 
