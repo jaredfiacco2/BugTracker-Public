@@ -379,7 +379,9 @@ def zing_hbar_wqupdates(request):
         "plotarea": {
             "margin": "75px 75px 5px 67px"
         },
-        "series": dataRows
+        "series": [{
+            "values": dataRows
+        }]
     }
     return zingdata
 
