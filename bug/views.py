@@ -179,7 +179,7 @@ def zing_pareto_request(request):
         "x":0,
         "y":0,
         "width": "70%",
-        "height": "25%",
+        "height": "22%",
         "title": {
             "text":"Requests By User",
             "paddingLeft": '20px',
@@ -348,9 +348,9 @@ def zing_hbar_wqupdates(request):
         "x": "70%",
         "y": 0,
         "width": "30%",
-        "height": "25%",
+        "height": "22%",
         "title": {
-            "text":"Workqueue Updates - Hourly Distribution",
+            "text":"Workqueue Updates - Hourly Dist",
             "paddingLeft": '20px',
             "backgroundColor": 'none',
             "fontColor": '#ffffff',
@@ -358,7 +358,7 @@ def zing_hbar_wqupdates(request):
             "fontSize": '18px',
             "fontWeight": 'normal',
             "height": '40px',
-            "textAlign": 'left',
+            "textAlign": 'right',
             "y": '10px'
         },
         "plot": {
@@ -380,7 +380,7 @@ def zing_hbar_wqupdates(request):
             "margin": "75px 75px 5px 67px"
         },
         "scaleX": {
-            "labels": {
+            "label": {
                 "text": "Hour",
                 "fontColor": "#ffffff",
                 "fontFamily": "Arial",
