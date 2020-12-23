@@ -372,7 +372,7 @@ def zing_hbar_wqupdates(request):
                 "sequence": "ANIMATION_BY_PLOT",
                 "speed":    "1800"
             },
-            "barColor": "#96feff",
+            "barColor": "#b659b4",
             "barWidth": "70%",
 
         },
@@ -1001,7 +1001,7 @@ def zing_cal_wqupdates(request):
                             "borderColor": "#454754"
                         }
                     },
-                    "palette": ["#00ace6", "#0097A7"],
+                    "palette": ["#00ace6", "#b659b4"],
                     "rows": 2,
                     "scale": {
                         "width": "30%",
