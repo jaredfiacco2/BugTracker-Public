@@ -399,7 +399,8 @@ def zing_hbar_wqupdates(request):
             },
         },
         "series": [{
-            "values": dataRows
+            "values": dataRows,
+            "backgroundColor": "#0097A7",
         }]
     }
     return zingdata
