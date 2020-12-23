@@ -149,7 +149,7 @@ def bug_dashboard(request):
 ################################################################################################################################################################
 
 ################################################################################################################################################################
-############################################## Double Line Chart - Requests Over Time ##########################################################################
+############################################## Pareto Chart - Requests By User ##########################################################################
 ################################################################################################################################################################
 @login_required(login_url='/login/')
 def zing_line_request(request):
@@ -158,34 +158,30 @@ def zing_line_request(request):
     requests_queryset = Bug.objects.raw(""" 
                                             select 
                                                 1 as id, 
-                                                cast(cast(b.submission_dts as date) as text) as date, 
+                                                b.requestor as user, 
                                                 count(b.id) as count, 
                                                 '"' 
                                             from
                                                 bug_bug as b
-                                                group by cast(b.submission_dts as date)
-                                                order by cast(b.submission_dts as date) """)
-    dataRows = []
-    dataColumns = []
-    response_data = {}
+                                                group by b.requestor 
+                                                order by count(b.id) desc """)
+    dataUsers = []
+    dataCount = []
 
     #Make Request Data
     for r in requests_queryset:
-        dataRows.append(r.date)
-        dataRows.append(r.count)
-        dataColumns.append(dataRows)
-        dataRows = []
-    response_data["values"] = dataColumns
+        dataUsers.append(r.user)
+        dataCount.append(r.count)
 
     zingdata = {
-        "type": "line", 
+        "type": "pareto", 
         "backgroundColor": "#454754",
         "x":0,
         "y":0,
         "width": "70%",
         "height": "25%",
         "title": {
-            "text":"Requests Over Time",
+            "text":"Requests By User",
             "paddingLeft": '20px',
             "backgroundColor": 'none',
             "fontColor": '#ffffff',
@@ -234,7 +230,22 @@ def zing_line_request(request):
             "borderWidth": "2px",
             "shadow": "false"
         },
-        "series": [response_data],
+        "scaleX": {
+            "labels": dataUsers
+        },
+        "scaleY": {
+            "values": "0:400:80",
+            "guide": {
+                "lineStyle": "solid"
+            }
+        },
+        "series": [
+            {
+                "values": dataCount,
+                "backgroundColor": "#0097A7",
+                "barWidth": '90%'
+            }
+        ]
     }
     return zingdata
 
