@@ -149,7 +149,7 @@ def bug_dashboard(request):
 ################################################################################################################################################################
 
 ################################################################################################################################################################
-############################################## Pareto Chart - Requests By User ##########################################################################
+############################################## Pareto Chart - Requests By User #################################################################################
 ################################################################################################################################################################
 @login_required(login_url='/login/')
 def zing_pareto_request(request):
@@ -268,38 +268,89 @@ def zing_pareto_request(request):
     }
     return zingdata
 
-################################################################################################################################################################
-################################################### Line Chart - Workqueue Updates #############################################################################
-################################################################################################################################################################
+####################################################################################################################################################
+######################################################### Horiontal Bar Chart - Workqueue Updates Hour Distribution ################################
+####################################################################################################################################################
 @login_required(login_url='/login/')
-def zing_line_wqupdates(request):
+def zing_hbar_wqupdates(request):
 
     #Workqueue Dataset Query
-    workqueue_queryset = Bug.objects.raw(""" select 1 as id, cast(cast(w.workqueue_lastupdatedts as date) as text) as date, count(w.id) as count, '"' from
-                                                bug_bugworkqueuestatus as w
-                                                group by cast(w.workqueue_lastupdatedts as date)
-                                                order by cast(w.workqueue_lastupdatedts as date) """)
-    dataRows = []
-    dataColumns = []
-    workqueue_data = {}
+    workqueue_queryset = Bug.objects.raw(""" 
+                                            select 
+                                                1 as id
+                                                ,count(*) count
+                                                ,extract(hour from workqueue_lastupdatedts at time zone 'utc' at time zone 'est') as hour
+                                                ,'"'
+                                            from bug_bugworkqueuestatus
+
+                                            group by extract(hour from workqueue_lastupdatedts at time zone 'utc' at time zone 'est')
+                                            order by extract(hour from workqueue_lastupdatedts at time zone 'utc' at time zone 'est') 
+                                        """)
+    
+    twelveAm, oneAm, twoAm, threeAm, fourAm, fiveAm, sixAm, sevenAm, eightAm, nineAm, tenAm, elevenAm  = 0,0,0,0,0,0,0,0,0,0,0,0
+    twelvePm, onePm, twoPm, threePm, fourPm, fivePm, sixPm, sevenPm, eightPm, ninePm, tenPm, elevenPm = 0,0,0,0,0,0,0,0,0,0,0,0
 
     #Workqueue Request Data
     for w in workqueue_queryset:
-        dataRows.append(w.date)
-        dataRows.append(w.count)
-        dataColumns.append(dataRows)
-        dataRows = []
-    workqueue_data["values"] = dataColumns
+        if   w.hour == 0:
+            twelveAm = w.count
+        elif w.hour == 1:
+            oneAm = w.count
+        elif w.hour == 2:
+            twoAm = w.count
+        elif w.hour == 3:
+            threeAm = w.count
+        elif w.hour == 4:
+            fourAm = w.count
+        elif w.hour == 5:
+            fiveAm = w.count
+        elif w.hour == 6:
+            sixAm = w.count
+        elif w.hour == 7:
+            sevenAm = w.count
+        elif w.hour == 8:
+            eightAm = w.count
+        elif w.hour == 9:
+            nineAm = w.count
+        elif w.hour == 10:
+            tenAm = w.count
+        elif w.hour == 11:
+            elevenAm = w.count
+        elif w.hour == 12:
+            twelvePm = w.count
+        elif w.hour == 13:
+            onePm = w.count
+        elif w.hour == 14:
+            twoPm = w.count
+        elif w.hour == 15:
+            threePm = w.count
+        elif w.hour == 16:
+            fourPm = w.counto
+        elif w.hour == 17:
+            fivePm = w.count
+        elif w.hour == 18:
+            sixPm = w.count
+        elif w.hour == 19:
+            sevenPm = w.count
+        elif w.hour == 20:
+            eightPm = w.count
+        elif w.hour == 21:
+            ninePm = w.count
+        elif w.hour == 22:
+            tenPm = w.count
+        elif w.hour == 23:
+            elevenPm = w.count
+    dataRows = [twelveAm, oneAm, twoAm, threeAm, fourAm, fiveAm, sixAm, sevenAm, eightAm, nineAm, tenAm, elevenAm, twelvePm, onePm, twoPm, threePm, fourPm, fivePm, sixPm, sevenPm, eightPm, ninePm, tenPm, elevenPm]
 
     zingdata = {
-        "type": "line", 
+        "type": "hbar", 
         "backgroundColor": "#454754",
         "x": "70%",
         "y": 0,
         "width": "30%",
         "height": "25%",
         "title": {
-            "text":"Workqueue Updates Over Time",
+            "text":"Workqueue Updates - Hourly Distribution",
             "paddingLeft": '20px',
             "backgroundColor": 'none',
             "fontColor": '#ffffff',
@@ -312,7 +363,7 @@ def zing_line_wqupdates(request):
         },
         "plot": {
             "valueBox": {
-            "visible": "false"
+                "visible": "false"
             },
             "animation": {
                 "delay": 1300,
@@ -321,25 +372,19 @@ def zing_line_wqupdates(request):
                 "sequence": "ANIMATION_BY_PLOT",
                 "speed":    "1800"
             },
-            "lineColor": "#96feff",
-            "lineWidth": "2px",
-            "marker": {
-                "backgroundColor": "#a3bcb8",
-                "borderColor": "#88f5fa",
-                "borderWidth": "2px",
-                "shadow": "false"
-            },
+            "barColor": "#96feff",
+            "barWidth": "70%",
+
         },
         "plotarea": {
             "margin": "75px 75px 5px 67px"
         },
-        "series": [workqueue_data]
+        "series": dataRows
     }
     return zingdata
 
-
 ################################################################################################################################################################
-################################################### Pie Chart - Request Category ##################################################################################
+################################################### Pie Chart - Request Category ###############################################################################
 ################################################################################################################################################################
 @login_required(login_url='/login/')
 def zing_pie_requestcatagory(request):
@@ -1098,7 +1143,7 @@ def zing_cal_requests(request):
 def zing_dashboard(request):
 
     pareto_requests     = zing_pareto_request(request)
-    line_workqueue      = zing_line_wqupdates(request) 
+    bar_workqueue      = zing_hbar_wqupdates(request) 
     pie_categorytypes   = zing_pie_requestcatagory(request)
     guage_requestcount  = zing_guage_requestcount(request)
     pie_prioritytypes   = zing_pie_requestpriority(request)
@@ -1109,8 +1154,80 @@ def zing_dashboard(request):
                 "backgroundColor": "#454754",
                 "layout": "2x2",
                 "graphset":   [
-                                pareto_requests, line_workqueue, pie_categorytypes, guage_requestcount, pie_prioritytypes, cal_requests, cal_workqueue
+                                pareto_requests, bar_workqueue, pie_categorytypes, guage_requestcount, pie_prioritytypes, cal_requests, cal_workqueue
                             ]
                 }
 
     return JsonResponse(zingdata)
+
+
+
+
+################################################### Deprecated #################################################################################################
+################################################### Deprecated ###### Line Chart - Workqueue Updates ###########################################################
+################################################### Deprecated #################################################################################################
+@login_required(login_url='/login/')
+def zing_line_wqupdates(request):
+
+    #Workqueue Dataset Query
+    workqueue_queryset = Bug.objects.raw(""" select 1 as id, cast(cast(w.workqueue_lastupdatedts as date) as text) as date, count(w.id) as count, '"' from
+                                                bug_bugworkqueuestatus as w
+                                                group by cast(w.workqueue_lastupdatedts as date)
+                                                order by cast(w.workqueue_lastupdatedts as date) """)
+    dataRows = []
+    dataColumns = []
+    workqueue_data = {}
+
+    #Workqueue Request Data
+    for w in workqueue_queryset:
+        dataRows.append(w.date)
+        dataRows.append(w.count)
+        dataColumns.append(dataRows)
+        dataRows = []
+    workqueue_data["values"] = dataColumns
+
+    zingdata = {
+        "type": "line", 
+        "backgroundColor": "#454754",
+        "x": "70%",
+        "y": 0,
+        "width": "30%",
+        "height": "25%",
+        "title": {
+            "text":"Workqueue Updates Over Time",
+            "paddingLeft": '20px',
+            "backgroundColor": 'none',
+            "fontColor": '#ffffff',
+            "fontFamily": 'Arial',
+            "fontSize": '18px',
+            "fontWeight": 'normal',
+            "height": '40px',
+            "textAlign": 'left',
+            "y": '10px'
+        },
+        "plot": {
+            "valueBox": {
+            "visible": "false"
+            },
+            "animation": {
+                "delay": 1300,
+                "effect":   "ANIMATION_EXPAND_LEFT",
+                "method":   "ANIMATION_LINEAR",
+                "sequence": "ANIMATION_BY_PLOT",
+                "speed":    "1800"
+            },
+            "lineColor": "#96feff",
+            "lineWidth": "2px",
+            "marker": {
+                "backgroundColor": "#a3bcb8",
+                "borderColor": "#88f5fa",
+                "borderWidth": "2px",
+                "shadow": "false"
+            },
+        },
+        "plotarea": {
+            "margin": "75px 75px 5px 67px"
+        },
+        "series": [workqueue_data]
+    }
+    return zingdata
