@@ -234,7 +234,6 @@ def zing_line_request(request):
             "labels": dataUsers
         },
         "scaleY": {
-            "values": "0:400:80",
             "guide": {
                 "lineStyle": "solid"
             }
