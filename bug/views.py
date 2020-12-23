@@ -358,7 +358,7 @@ def zing_hbar_wqupdates(request):
             "fontSize": '18px',
             "fontWeight": 'normal',
             "height": '40px',
-            "textAlign": 'right',
+            "textAlign": 'center',
             "y": '10px'
         },
         "plot": {
