@@ -1001,7 +1001,7 @@ def zing_cal_wqupdates(request):
                             "borderColor": "#454754"
                         }
                     },
-                    "palette": ["#00ace6", "#b659b4"],
+                    "palette": ["#00ace6", "#0097A7"],
                     "rows": 2,
                     "scale": {
                         "width": "30%",
