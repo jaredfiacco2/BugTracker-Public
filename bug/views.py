@@ -236,7 +236,27 @@ def zing_pareto_request(request):
         "scaleY": {
             "guide": {
                 "lineStyle": "solid"
-            }
+            },
+            "label": {
+                "text": "Requests Per User",
+                "fontColor": "#ffffff",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "fontWeight": "normal"
+            },
+        },
+        "scaleY2": {
+            "guide": {
+                "lineStyle": "solid"
+            },
+            "label": {
+                "text": "Cumulative Percentage",
+                "fontColor": "#ffffff",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "fontWeight": "normal",
+                "offsetX": "5px"
+            },
         },
         "series": [
             {
