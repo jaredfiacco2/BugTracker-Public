@@ -52,7 +52,7 @@ def bug_create_view(request):
 ##Employee/Admin: View All Submissions where 
 @login_required(login_url='/login/')
 def bug_list_view(request):
-    filtered_queryset = Bug.objects.raw(""" select b.*, w.*, b.submission_dts at time zone 'ets' at time zone 'utc' as dts from
+    filtered_queryset = Bug.objects.raw(""" select b.*, w.*, b.submission_dts at time zone 'est' at time zone 'utc' as dts from
                                                 (select b.id, max(w.id) as max_s from bug_bug as b
                                                 left join bug_bugworkqueuestatus as w on b.id=w.bug_wq_id
                                                 group by b.id
