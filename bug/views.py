@@ -52,7 +52,7 @@ def bug_create_view(request):
 ##Employee/Admin: View All Submissions where 
 @login_required(login_url='/login/')
 def bug_list_view(request):
-    filtered_queryset = Bug.objects.raw(""" select b.*, w.* from
+    filtered_queryset = Bug.objects.raw(""" select b.*, w.*, b.submission_dts at time zone 'utc' at time zone 'est' as dts from
                                                 (select b.id, max(w.id) as max_s from bug_bug as b
                                                 left join bug_bugworkqueuestatus as w on b.id=w.bug_wq_id
                                                 group by b.id
@@ -65,7 +65,7 @@ def bug_list_view(request):
                                                 w.workqueue_status Not Like '%%Fixe%%' and
                                                 w.workqueue_status <> 'Closed' """)
     #queryset = Bug.objects.all()
-    queryset = Bug.objects.raw(""" select b.*, w.* from
+    queryset = Bug.objects.raw(""" select b.*, w.*, b.submission_dts at time zone 'utc' at time zone 'est' as dts from
                                                 (select b.id, max(w.id) as max_s from bug_bug as b
                                                 left join bug_bugworkqueuestatus as w on b.id=w.bug_wq_id
                                                 group by b.id
