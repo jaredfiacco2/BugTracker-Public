@@ -1176,8 +1176,8 @@ def zing_dashboard(request):
                 "backgroundColor": "#454754",
                 "layout": "2x2",
                 "graphset":   [
-                                pareto_requests, 
-                                bar_workqueue, 
+                                #pareto_requests, 
+                                #bar_workqueue, 
                                 pie_categorytypes,
                                 guage_requestcount,
                                 pie_prioritytypes,
