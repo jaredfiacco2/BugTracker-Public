@@ -11,6 +11,7 @@
             {% else %}
             <h4 class="mb-2 text-capitalize"><i class="fas fa-file-medical"></i> {{ bug.title|linebreaksbr }}</h4>
             {% endif %}
+            {% load tz %}
             {% timezone "America/New_York" %}
             <div class="comment date">{{ bug.submission_dts }}</div>
             {% endtimezone %}
@@ -48,6 +49,7 @@
                     <p class="mb-0 comment">{{ status.workqueue_comment|linebreaksbr }}</p>
                     <footer class="blockquote-footer">{{ status.workqueue_employee }}</footer>
                 </blockquote>
+                {% load tz %}
                 {% timezone "America/New_York" %}
                 <div class="date">{{ status.workqueue_lastupdatedts }}</div>
                 {% endtimezone %}
