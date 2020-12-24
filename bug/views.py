@@ -325,7 +325,7 @@ def zing_hbar_wqupdates(request):
         elif w.hour == 15:
             threePm = w.count
         elif w.hour == 16:
-            fourPm = w.counto
+            fourPm = w.count
         elif w.hour == 17:
             fivePm = w.count
         elif w.hour == 18:
