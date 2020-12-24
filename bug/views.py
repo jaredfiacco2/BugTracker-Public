@@ -283,8 +283,8 @@ def zing_hbar_wqupdates(request):
                                                 ,'"'
                                             from bug_bugworkqueuestatus
 
-                                            group by extract(hour from workqueue_lastupdatedts at time zone 'utc' at time zone 'est')
-                                            order by extract(hour from workqueue_lastupdatedts at time zone 'utc' at time zone 'est') 
+                                            group by extract(hour from workqueue_lastupdatedts at time zone 'est' at time zone 'utc')
+                                            order by extract(hour from workqueue_lastupdatedts at time zone 'est' at time zone 'utc') 
                                         """)
     
     twelveAm, oneAm, twoAm, threeAm, fourAm, fiveAm, sixAm, sevenAm, eightAm, nineAm, tenAm, elevenAm  = 0,0,0,0,0,0,0,0,0,0,0,0
@@ -912,12 +912,12 @@ def zing_cal_wqupdates(request):
                                             select 
                                                     1 as id, cast(cast(w.workqueue_lastupdatedts at time zone 'est' at time zone 'utc' as date) as text) as date, 
                                                     count(w.id) as count, 
-                                                    cast(to_char(cast(w.workqueue_lastupdatedts as date), 'YYYY') as text) as year, 
+                                                    cast(to_char(cast(w.workqueue_lastupdatedts at time zone 'est' at time zone 'utc' as date) , 'YYYY') as text) as year, 
                                                     '"' 
                                             from
                                                 bug_bugworkqueuestatus as w
-                                                group by cast(w.workqueue_lastupdatedts as date)
-                                                order by cast(w.workqueue_lastupdatedts as date) """)
+                                                group by cast(w.workqueue_lastupdatedts at time zone 'est' at time zone 'utc' as date) 
+                                                order by cast(w.workqueue_lastupdatedts at time zone 'est' at time zone 'utc' as date)  """)
     dataRows = []
     dataColumns = []
     ##workqueue_data = {}
@@ -1041,12 +1041,12 @@ def zing_cal_requests(request):
                                                 1 as id, 
                                                 cast(cast(b.submission_dts at time zone 'est' at time zone 'utc' as date) as text) as date, 
                                                 count(b.id) as count, 
-                                                cast(to_char(cast(b.submission_dts as date), 'YYYY') as text) as year,
+                                                cast(to_char(cast(b.submission_dts at time zone 'est' at time zone 'utc' as date) , 'YYYY') as text) as year,
                                                 '"' 
                                             from
                                                 bug_bug as b
-                                                group by cast(b.submission_dts as date)
-                                                order by cast(b.submission_dts as date) """)
+                                                group by cast(b.submission_dts at time zone 'est' at time zone 'utc' as date) 
+                                                order by cast(b.submission_dts at time zone 'est' at time zone 'utc' as date)  """)
     dataRows = []
     dataColumns = []
     ##workqueue_data = {}
@@ -1176,13 +1176,13 @@ def zing_dashboard(request):
                 "backgroundColor": "#454754",
                 "layout": "2x2",
                 "graphset":   [
-                                #pareto_requests, 
-                                #bar_workqueue, 
+                                pareto_requests, 
+                                bar_workqueue, 
                                 pie_categorytypes,
                                 guage_requestcount,
                                 pie_prioritytypes,
-                                #cal_requests,
-                                #cal_workqueue
+                                cal_requests,
+                                cal_workqueue
                             ]
                 }
 
