@@ -52,7 +52,7 @@ def bug_create_view(request):
 ##Employee/Admin: View All Submissions where 
 @login_required(login_url='/login/')
 def bug_list_view(request):
-    filtered_queryset = Bug.objects.raw(""" select b.*, w.*, b.submission_dts at time zone 'utc' at time zone 'est' as dts from
+    filtered_queryset = Bug.objects.raw(""" select b.*, w.*, b.submission_dts at time zone 'ets' at time zone 'utc' as dts from
                                                 (select b.id, max(w.id) as max_s from bug_bug as b
                                                 left join bug_bugworkqueuestatus as w on b.id=w.bug_wq_id
                                                 group by b.id
@@ -279,7 +279,7 @@ def zing_hbar_wqupdates(request):
                                             select 
                                                 1 as id
                                                 ,count(*) count
-                                                ,extract(hour from workqueue_lastupdatedts at time zone 'utc' at time zone 'est') as hour
+                                                ,extract(hour from workqueue_lastupdatedts at time zone 'est' at time zone 'utc') as hour
                                                 ,'"'
                                             from bug_bugworkqueuestatus
 
@@ -910,7 +910,7 @@ def zing_cal_wqupdates(request):
     #Workqueue Dataset Query
     workqueue_queryset = Bug.objects.raw(""" 
                                             select 
-                                                    1 as id, cast(cast(w.workqueue_lastupdatedts as date) as text) as date, 
+                                                    1 as id, cast(cast(w.workqueue_lastupdatedts at time zone 'est' at time zone 'utc' as date) as text) as date, 
                                                     count(w.id) as count, 
                                                     cast(to_char(cast(w.workqueue_lastupdatedts as date), 'YYYY') as text) as year, 
                                                     '"' 
@@ -1039,7 +1039,7 @@ def zing_cal_requests(request):
     workqueue_queryset = Bug.objects.raw(""" 
                                             select 
                                                 1 as id, 
-                                                cast(cast(b.submission_dts as date) as text) as date, 
+                                                cast(cast(b.submission_dts at time zone 'est' at time zone 'utc' as date) as text) as date, 
                                                 count(b.id) as count, 
                                                 cast(to_char(cast(b.submission_dts as date), 'YYYY') as text) as year,
                                                 '"' 
@@ -1192,7 +1192,7 @@ def zing_dashboard(request):
 def zing_line_wqupdates(request):
 
     #Workqueue Dataset Query
-    workqueue_queryset = Bug.objects.raw(""" select 1 as id, cast(cast(w.workqueue_lastupdatedts as date) as text) as date, count(w.id) as count, '"' from
+    workqueue_queryset = Bug.objects.raw(""" select 1 as id, cast(cast(w.workqueue_lastupdatedts at time zone 'est' at time zone 'utc' as date) as text) as date, count(w.id) as count, '"' from
                                                 bug_bugworkqueuestatus as w
                                                 group by cast(w.workqueue_lastupdatedts as date)
                                                 order by cast(w.workqueue_lastupdatedts as date) """)
