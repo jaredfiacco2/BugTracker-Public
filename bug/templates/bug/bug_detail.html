@@ -11,7 +11,9 @@
             {% else %}
             <h4 class="mb-2 text-capitalize"><i class="fas fa-file-medical"></i> {{ bug.title|linebreaksbr }}</h4>
             {% endif %}
+            {% timezone "America/New_York" %}
             <div class="comment date">{{ bug.submission_dts }}</div>
+            {% endtimezone %}
         </div>
         <div class="d-flex w-100 justify-content-between">
             <p class="mb-0 p-4">{{ bug.description|linebreaksbr }}</p>
@@ -46,7 +48,9 @@
                     <p class="mb-0 comment">{{ status.workqueue_comment|linebreaksbr }}</p>
                     <footer class="blockquote-footer">{{ status.workqueue_employee }}</footer>
                 </blockquote>
+                {% timezone "America/New_York" %}
                 <div class="date">{{ status.workqueue_lastupdatedts }}</div>
+                {% endtimezone %}
             </div>
         </div>
     {% empty %}
