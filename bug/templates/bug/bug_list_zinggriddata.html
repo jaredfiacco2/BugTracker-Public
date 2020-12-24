@@ -1,0 +1,256 @@
+{% extends 'layout.html' %}
+{% block content %}
+<head>
+    <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+<style>
+    html,
+ 
+    zing-grid[loading] {
+      height: 367px;
+    }
+  </style>
+</head>
+<table>
+   <tr>
+      <td>
+        <a class="btn btn-primary" id="filteredSubmissions" href="javascript:showonlyonev2('filtered-wq', 'filteredSubmissions', 'allSubmissions');" >Workqueue - Actions Required</a>
+      </td>
+      <td>
+        <a class="btn btn-info" id="allSubmissions" href="javascript:showonlyonev2('all-wq', 'allSubmissions', 'filteredSubmissions');" >All Submissions</a>
+      </td>
+   </tr>
+</table>
+
+
+    <div class="tab-pane" id="filtered-wq" role="tabpanel" aria-labelledby="Workqueue - Action Needed">
+            <div class="container">
+                <h2> Active Workqueue - Action Required</h2>
+                <div class="table-resposive">
+                    <table class="table-resposive table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>Submission ID</th>
+                                <th>Title</th>
+                                <th>Workqueue Status</th>
+                                <th>Priority</th>
+                                <th>Category</th>
+                                <th>Requestor</th>
+                                <th>Submission Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for bug in filtered_bug_list %}
+                            <tr>
+                                <td><a href="{% url 'bug-wqdetail' bug.id %}">{{bug.id}}</a></td>
+                                <td>{{bug.title}}</td>
+                                <td>{{bug.workqueue_status}}</td>
+                                <td>{{bug.priority}}</td>
+                                <td>{{bug.category}}</td>
+                                <td>{{bug.requestor}}</td>
+                                <td>{{bug.dts}}</td>
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+
+
+    <div class="tab-pane"  role="tabpanel" id="all-wq"  style="display:none" aria-labelledby="Workqueue - All Submissions">
+            <div class="container">
+                <h2>All Submissions</h2>
+                <div class="table-resposive">
+                    <table class="table-resposive table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>Submission ID</th>
+                                <th>Title</th>
+                                <th>Priority</th>
+                                <th>Category</th>
+                                <th>Requestor</th>
+                                <th>Submission Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for bug in bug_list %}
+                            <tr>
+                                <td><a href="{% url 'bug-wqdetail' bug.id %}">{{bug.id}}</a></td>
+                                <td>{{bug.title}}</td>
+                                <td>{{bug.priority}}</td>
+                                <td>{{bug.category}}</td>
+                                <td>{{bug.requestor}}</td>
+                                <td>{{bug.dts}}</td>
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+
+    <div>
+    </div>
+          <!--ZingGrid Workqueue Filtered-->
+          <div id="filtered-wq"  >
+            <div class="zg-body">
+                <zing-grid pager page-size="10" search>
+                  <zg-caption>
+                    Active Workqueue - Action Required
+                    <span class="button" id="reloadBtn">Reload Demo</span>
+                  </zg-caption>
+                  <zg-data>
+                    <!-- define the main source for the API -->
+                    <zg-param name="src" value="https://www.bugtrackertools.com/api/buglistfiltered/?format=json"></zg-param>
+              
+                    <!-- define the path in the JSON to get the array of results. 
+                          In this case it is body.results -->
+                    <zg-param name="recordPath" value="results"></zg-param>
+              
+                    <!-- if loadByPage is set to true it will go to the 
+                        server for each new page of data -->
+                    <zg-param name="loadByPage" value="true"></zg-param>
+              
+                    <!-- define the "page" query parameter -->
+                    <zg-param name="pageKey" value="page"></zg-param>
+              
+                    <!-- Need to tell ZG how many records were returned so it knows
+                          how to divide up the page-size -->
+                    <zg-param name="countPath" value="count"></zg-param>
+              
+                    <!-- define the path in the result JSON to find next/prev urls -->
+                    <zg-param name="nextPath" value="next"></zg-param>
+                    <zg-param name="prevPath" value="previous"></zg-param>
+              
+                    <!-- Need to tell ZG how mto search the API -->
+                    <zg-param name="searchKey" value="search"></zg-param>
+                  </zg-data>
+                  <zg-colgroup>
+                    <zg-column index="url"></zg-column>
+                    <zg-column index="title"></zg-column>
+                    <zg-column index="description"></zg-column>
+                    <zg-column index="priority"></zg-column>
+                    <zg-column index="category"></zg-column>
+                    <zg-column index="submission_dts"></zg-column>
+                    <zg-column index="requestor"></zg-column>
+                    <zg-column index="requestor_email"></zg-column>
+                    <zg-column index="workqueue_status"></zg-column>
+                    <zg-column index="workqueue_comment"></zg-column>
+                    <zg-column index="submission_id"></zg-column>
+                    <zg-column index="submission_hyperlink"></zg-column>
+                  </zg-colgroup>
+                </zing-grid>
+              </div>
+          </div>
+          <!--ZingGrid Workqueue All-->
+          <div id="all-wq"  style="display:none" >
+              <div class="zg-body">
+                  <zing-grid pager page-size="10" search>
+                    <zg-caption>
+                      All Submissions
+                      <span class="button" id="reloadBtn">Reload Demo</span>
+                    </zg-caption>
+                    <zg-data>
+                      <!-- define the main source for the API -->
+                      <zg-param name="src" value="https://www.bugtrackertools.com/api/buglistall/?format=json"></zg-param>
+                
+                      <!-- define the path in the JSON to get the array of results. 
+                            In this case it is body.results -->
+                      <zg-param name="recordPath" value="results"></zg-param>
+                
+                      <!-- if loadByPage is set to true it will go to the 
+                          server for each new page of data -->
+                      <zg-param name="loadByPage" value="true"></zg-param>
+                
+                      <!-- define the "page" query parameter -->
+                      <zg-param name="pageKey" value="page"></zg-param>
+                
+                      <!-- Need to tell ZG how many records were returned so it knows
+                            how to divide up the page-size -->
+                      <zg-param name="countPath" value="count"></zg-param>
+                
+                      <!-- define the path in the result JSON to find next/prev urls -->
+                      <zg-param name="nextPath" value="next"></zg-param>
+                      <zg-param name="prevPath" value="previous"></zg-param>
+                
+                      <!-- Need to tell ZG how mto search the API -->
+                      <zg-param name="searchKey" value="search"></zg-param>
+                    </zg-data>
+                    <zg-colgroup>
+                      <zg-column index="url"></zg-column>
+                      <zg-column index="title"></zg-column>
+                      <zg-column index="description"></zg-column>
+                      <zg-column index="priority"></zg-column>
+                      <zg-column index="category"></zg-column>
+                      <zg-column index="submission_dts"></zg-column>
+                      <zg-column index="requestor"></zg-column>
+                      <zg-column index="requestor_email"></zg-column>
+                      <zg-column index="workqueue_status"></zg-column>
+                      <zg-column index="workqueue_comment"></zg-column>
+                      <zg-column index="submission_id"></zg-column>
+                      <zg-column index="submission_hyperlink"></zg-column>
+                    </zg-colgroup>
+                  </zing-grid>
+                </div>
+          </div>
+          
+<div>
+</div>
+
+    <script>
+      // window:load event for Javascript to run after HTML
+      // because this Javascript is injected into the document head
+      window.addEventListener('load', () => {
+        // Javascript code to execute after DOM content
+        const zgRef = document.querySelector('zing-grid');
+        zgRef.executeOnLoad(() => {
+          // Add event listener to button
+          reloadBtn.addEventListener('click', () => {
+            zgRef.refresh();
+          });
+        });
+      });
+    </script>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+
+{% load static %}
+<script>
+$(document).ready(function() {
+  $("#formButton").click(function() {
+    $("#form1").toggle();
+  });
+});
+</script>
+    <script>
+        function showonlyonev2(thechosenone, buttonid, buttonid2) {
+              var newboxes = document.getElementsByTagName("div");
+              for(var x=0; x<newboxes.length; x++) {
+                    name = newboxes[x].getAttribute("class");
+                    if (name == 'tab-pane') {
+                          if (newboxes[x].id == thechosenone) {
+                                if (newboxes[x].style.display == 'block') {
+                                      newboxes[x].style.display = 'none';
+                                }
+                                else {
+                                      newboxes[x].style.display = 'block';
+                                }
+                          }else {
+                                newboxes[x].style.display = 'none';
+                          }
+                    }
+              }
+            document.getElementById(buttonid).className = "btn btn-primary";
+            document.getElementById(buttonid2).className = "btn btn-info";
+        }
+    </script>
+
+{% endblock %}
+
+{# Good resource for creating tabs: http://www.randomsnippets.com/2008/02/12/how-to-hide-and-show-your-div/ #}
+{# I could probably clean this up a bit by iterating through the types of content I want to see (filtered/all) and by cleaning up the variable names #}
+{# Known Issue: Once you press the button twice the main table disappears. #}
