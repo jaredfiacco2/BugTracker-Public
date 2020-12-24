@@ -65,7 +65,7 @@ def bug_list_view(request):
                                                 w.workqueue_status Not Like '%%Fixe%%' and
                                                 w.workqueue_status <> 'Closed' """)
     #queryset = Bug.objects.all()
-    queryset = Bug.objects.raw(""" select b.*, w.*, b.submission_dts at time zone 'utc' at time zone 'est' as dts from
+    queryset = Bug.objects.raw(""" select b.*, w.*, b.submission_dts at time zone 'est' at time zone 'utc' as dts from
                                                 (select b.id, max(w.id) as max_s from bug_bug as b
                                                 left join bug_bugworkqueuestatus as w on b.id=w.bug_wq_id
                                                 group by b.id
@@ -1176,7 +1176,8 @@ def zing_dashboard(request):
                 "backgroundColor": "#454754",
                 "layout": "2x2",
                 "graphset":   [
-                                pareto_requests, bar_workqueue, pie_categorytypes, guage_requestcount, pie_prioritytypes, cal_requests, cal_workqueue
+                                pareto_requests, #bar_workqueue, 
+                                pie_categorytypes, guage_requestcount, pie_prioritytypes, cal_requests, cal_workqueue
                             ]
                 }
 
