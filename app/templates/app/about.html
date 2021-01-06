@@ -14,7 +14,7 @@
                         <div class="col-lg-6">
                             <div class="home_right_img">
                                 <h3>About the Creator</h3>
-                                <h1 class="text-uppercase">{{ contact.FirstName }} {{ contact.LastName }} </h1>
+                                <h1 id="logo" class="text-uppercase">{{ contact.FirstName }} {{ contact.LastName }} </h1>
                                 <h5 class="text">{{ contact.Current_Title }} at {{ contact.Current_Employeer }}</h5>
                                 <div class="tab-pane" align="right">
                                     <i onclick="rotate1(event)" id="linkedin" class="fab fa-linkedin fa-3x hover-blue" data-toggle="tooltip" data-placement="top" title="Click Me!"></i> 
@@ -205,4 +205,44 @@
     .fa-chevron-circle-left:hover {
     color: dodgerblue;}
   </style>
+
+  <script>
+    var elm = document.getElementById("logo");
+    var check = "Jared Fiacco";
+    var check_index = 0;
+    var name = "xxxxxxxxxxx";
+    
+    var array_search = ["A","a","B","b","c","D","d","E","e","F","f","G","g","H","h","I","i","J",
+              "j","K","k","L","l","M","m","N","n","O","o","P","p","Q","q","R","r","S","s","T","t",
+              "U","u","V","v","W","w","X","x","Y","y","Z","z"," "];
+    
+    function theLoop() {
+      setTimeout(function () {
+        
+        for (i = 0; i < 13; i++) {
+          if(name[i] == check[i]){
+            // it is correct
+          }else{
+            // it is false
+            var randnr = Math.floor(Math.random() * array_search.length);
+            console.log(array_search[randnr]);
+            name = setCharAt(name,i,array_search[randnr])
+          }
+          elm.innerHTML = name;
+        }
+        if( name === check) {          // If i > 0, keep going
+          console.log('done')     // Call the loop again, and pass it the current value of i
+        }else{
+          theLoop(); 
+        }
+      }, 100);
+    };
+    
+    theLoop();
+    
+    function setCharAt(str,index,chr) {
+        if(index > str.length-1) return str;
+        return str.substr(0,index) + chr + str.substr(index+1);
+    }
+  </script>
 {% endblock %}
