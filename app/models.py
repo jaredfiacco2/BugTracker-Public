@@ -33,7 +33,7 @@ class ContactInfo(models.Model):
     Link_Website_Name           =models.CharField(max_length=255, null=True, blank=True)
     Link_Website_Comment        =models.CharField(max_length=1000, null=True, blank=True)
     Link_Website_Embed          =models.CharField(max_length=4000, null=True, blank=True)
-    Resume                      =models.FileField(max_length=255, null=True, blank=True)
+    Resume                      =models.FileField(max_length=255, upload_to='media/', null=True, blank=True)
     Picture                     =models.ImageField(max_length=255, upload_to='images/', null=True, blank=True)
     PictureLink                 =models.URLField(max_length=500, null=True, blank=True)
     Embedded_Code               =models.CharField(max_length=8000, null=True, blank=True)

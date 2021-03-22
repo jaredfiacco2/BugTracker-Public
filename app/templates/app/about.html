@@ -24,7 +24,7 @@
                                 </div>
                                 <img class="img-fluid" src="{{ contact.PictureLink }}" >
                                 <div class="row align-items-center justify-content-between">
-                                    <a class="btn btn-info" href="{{ contact.Resume.url }}" download>Download Resume</a>
+                                    <a class="btn btn-info" href="{{ get_media_prefix }}{{ contact.Resume.url }}" download>Download Resume</a>
                                     <div class="tab-pane appear" id="linkedin_btn">
                                         <a class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Click Me!" href="{{contact.Link_Linkedin}}">Go To Linkedin</a>
                                     </div>
