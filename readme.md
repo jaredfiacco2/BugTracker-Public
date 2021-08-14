@@ -57,7 +57,6 @@ I wanted a place to track my personal projects, jot down bugs I found while user
 
 ### Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 * [Bootstrap](https://getbootstrap.com)
 * [Python](https://jquery.com)
 * [Font Awesome](https://fontawesome.com)
