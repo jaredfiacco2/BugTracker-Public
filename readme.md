@@ -92,26 +92,25 @@ Features:
     - Login with Facebook or Google Account
     - Create BugTracker Account with Facebook or Google Account
     - Log In with Bugtrackertools.com Native Account
-<br />
-[features-oauth]
+    - [features-oauth]
         
 2. [API](https://www.bugtrackertools.com/api/)
-        * GET Bugs, Profiles, Workqueues
-        * POST Bugs, Profiles, Workqueues
+    - GET Bugs, Profiles, Workqueues
+    - POST Bugs, Profiles, Workqueues
         [features-api]
     Clickup (Project Management Tool) API Integration 
-        * Create Task When Clickup
-        *[features-clickup]
+    - Create Task When Clickup
+    - [features-clickup]
 
 3. [Dashboard](https://www.bugtrackertools.com/bug/dashboard)
-        - Darkmode Dashboard using ZingChart
-        - Animated Loading for Enhanced UI
-        - Queries the Server for Real-Time Analytics Delivery
-        [features-dashboard]
+    - Darkmode Dashboard using ZingChart
+    - Animated Loading for Enhanced UI
+    - Queries the Server for Real-Time Analytics Delivery
+    - [features-dashboard]
     
 4. [Workqueue](https://www.bugtrackertools.com/bug/)
-        - Toggle Between All Request & Incomplete Requests
-        [features-workqueue]
+    - Toggle Between All Request & Incomplete Requests
+    - [features-workqueue]
 
 
 
