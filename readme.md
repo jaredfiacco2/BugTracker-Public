@@ -87,30 +87,30 @@ This section should list any major frameworks that you built your project using.
 <!-- FEATURES -->
 ## Features
 
-Features:
 1.  [Oauth](https://www.bugtrackertools.com/login/)
     - Login with Facebook or Google Account
     - Create BugTracker Account with Facebook or Google Account
     - Log In with Bugtrackertools.com Native Account
-    - [features-oauth]
-        
+<img src="images/BugTrackerTools_Oauth.gif" alt="Oauth"/>
+
 2. [API](https://www.bugtrackertools.com/api/)
     - GET Bugs, Profiles, Workqueues
     - POST Bugs, Profiles, Workqueues
-        [features-api]
-    Clickup (Project Management Tool) API Integration 
-    - Create Task When Clickup
-    - [features-clickup]
+<img src="images/BugTrackerTools_API.gif" alt="API"/>
 
-3. [Dashboard](https://www.bugtrackertools.com/bug/dashboard)
+3. Clickup (Project Management Tool) API Integration 
+    - Create Task When Clickup
+<img src="images/BugTrackerTools_V05.gif" alt="Clickup"/>
+
+4. [Dashboard](https://www.bugtrackertools.com/bug/dashboard)
     - Darkmode Dashboard using ZingChart
     - Animated Loading for Enhanced UI
     - Queries the Server for Real-Time Analytics Delivery
-    - [features-dashboard]
+<img src="images/BugTrackerTools_Dashboard_V01.gif" alt="Dashboard"/>
     
-4. [Workqueue](https://www.bugtrackertools.com/bug/)
+5. [Workqueue](https://www.bugtrackertools.com/bug/)
     - Toggle Between All Request & Incomplete Requests
-    - [features-workqueue]
+<img src="images/BugTrackerTools_Workqueue.gif" alt="Workqueue"/>
 
 
 
