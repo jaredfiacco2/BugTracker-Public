@@ -66,20 +66,20 @@ This section should list any major frameworks that you built your project using.
 
 ### Prerequisites
 
-Installing all Required Packages
+1. Installing all Required Packages
 * npm
   ```sh
   pip install -r requirements.txt
   ```
 
-Clickup API Key
+2. Clickup API Key
     Clickup.com --> Profile --> Settings --> Scroll to "My Apps" --> API Token
 
-Facebook Oauth Key (Website Must Be Live In Production And Have a Domain To Implement, Cannot Be LocalHost)
+3. Facebook Oauth Key (Website Must Be Live In Production And Have a Domain To Implement, Cannot Be LocalHost)
     developers.facebook.com --> Make New App
     https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow/
 
-Google Oauth Key (Website Must Be Live In Production And Have a Domain To Implement, Cannot Be LocalHost)
+4. Google Oauth Key (Website Must Be Live In Production And Have a Domain To Implement, Cannot Be LocalHost)
     https://developers.google.com/identity/protocols/oauth2 
 
 
@@ -87,24 +87,27 @@ Google Oauth Key (Website Must Be Live In Production And Have a Domain To Implem
 ## Features
 
 Features:
-   * [Oauth](https://www.bugtrackertools.com/login/)
+1.  [Oauth](https://www.bugtrackertools.com/login/)
         - Login with Facebook or Google Account
         - Create BugTracker Account with Facebook or Google Account
         - Log In with Bugtrackertools.com Native Account
         [features-oauth]
-    * [API](https://www.bugtrackertools.com/api/)
+        
+2. [API](https://www.bugtrackertools.com/api/)
         - GET Bugs, Profiles, Workqueues
         - POST Bugs, Profiles, Workqueues
         [features-api]
     Clickup (Project Management Tool) API Integration 
         - Create Task When Clickup
         [features-clickup]
-    * [Dashboard](https://www.bugtrackertools.com/bug/dashboard)
+
+3. [Dashboard](https://www.bugtrackertools.com/bug/dashboard)
         - Darkmode Dashboard using ZingChart
         - Animated Loading for Enhanced UI
         - Queries the Server for Real-Time Analytics Delivery
         [features-dashboard]
-    * [Workqueue](https://www.bugtrackertools.com/bug/)
+    
+4. [Workqueue](https://www.bugtrackertools.com/bug/)
         - Toggle Between All Request & Incomplete Requests
         [features-workqueue]
 
