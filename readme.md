@@ -53,7 +53,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-I wanted a place to track my personal projects, jot down bugs I found while user testing, and follow through with features I thought up on the fly while I was away from my desk. This bug tracker tool allowed me to follow through with personal projects and keep cool features in  a queue without forgeting about them. Very helpful if coding alone or with a small team. Integrating it with Clickup allowed me to  
+I wanted a place to track my personal projects, jot down bugs I found while user testing, and follow through with features I thought up on the fly while I was away from my desk. This bug tracker tool allowed me to follow through with personal projects and keep cool features in  a queue without forgeting about them. Very helpful if coding alone or with a small team. Integrating it with Clickup allowed me to project manage and stay agile.
 
 ### Built With
 
