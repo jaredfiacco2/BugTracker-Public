@@ -35,7 +35,7 @@ SECURE_HSTS_SECONDS             = 1000000
 SECURE_FRAME_DENY               = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'f5d642eb-8fe9-4501-8686-84010bf18d27'
+SECRET_KEY = 'SECRET-KEY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -130,10 +130,10 @@ LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'login'
 
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
-SOCIAL_AUTH_FACEBOOK_KEY = "2848158112081114"        # App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = "b189ef69be3ee3af31b7e9fcc05a388b"  # App Secret
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "234848882828-v16f4qm6ba6hc3npp92pkmcpb97v840p.apps.googleusercontent.com"        # App ID
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "GZTSuStTnPrvx2AVnjNtZSsd"  # App Secret
+SOCIAL_AUTH_FACEBOOK_KEY = "SOCIAL_AUTH_FACEBOOK_KEY"        # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = "SOCIAL_AUTH_FACEBOOK_SECRET"  # App Secret
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "SOCIAL_AUTH_GOOGLE_OAUTH2_KEY.apps.googleusercontent.com"        # App ID
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET"  # App Secret
 
 
 SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [                 # add this
@@ -143,7 +143,7 @@ SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [                 # add this
     ('link', 'profile_url'),
 ]
 
-CLICKUP_API_TOKEN = "pk_10761609_CAP37AOETXJ3MVBXMQCI25CKW6LU5CO9"
+CLICKUP_API_TOKEN = "pk_CLICKUP_API_TOKEN" #Also in bug/views.py
 
 WSGI_APPLICATION = 'BugTracker.wsgi.application'
 # Database
@@ -151,10 +151,10 @@ WSGI_APPLICATION = 'BugTracker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd706et6iv23tde',
-        'USER': 'iuikkoieykiqcf',
-        'PASSWORD':'e8ae488681f5aa724ac6e3771e91dd1e0c783f60264b2bfc91c1653f5ea6b992',
-        'HOST':'ec2-52-21-0-111.compute-1.amazonaws.com',
+        'NAME': 'NAME',
+        'USER': 'USER',
+        'PASSWORD':'PASSWORD',
+        'HOST':'HOST',
         'PORT':'5432',
     }
 }

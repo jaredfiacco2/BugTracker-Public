@@ -23,7 +23,9 @@ def bug_create_view(request):
         newbug.save()
 
         #Add Clickup Task
-        clickup = ClickUp("pk_10761609_CAP37AOETXJ3MVBXMQCI25CKW6LU5CO9")
+        ##########################################################################
+        clickup = ClickUp("pk_CLICKUP_API_TOKEN") #PLACE CLICKUP TOKEN HERE 
+        ##########################################################################
         name = str(newbug.title)
         content = str(newbug.description) + '\n' + '\n' + 'Priority: ' + str(newbug.priority) + '\n' + 'Category: ' + str(newbug.category) + '\n' + 'Requestor Name: ' + str(newbug.requestor) + '\n' + 'Requestor Email:  ' + str(newbug.requestor_email)
         status = 'New Request'
