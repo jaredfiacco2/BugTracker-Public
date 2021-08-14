@@ -116,10 +116,10 @@ This section should list any major frameworks that you built your project using.
 ## Demo
 
 See the Demo [HERE](https://www.bugtrackertools.com/).
-- Login using your Facebook or Google Account.
-- Or Login as a Test User:
-    -- Login: teststaff
-    -- Password: staffmember123
+- Login using your Facebook or Google Account using Oauth
+- Login as a Test User:
+    - Username: teststaff
+    - Password: staffmember123
 
 
 
