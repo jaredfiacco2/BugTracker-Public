@@ -89,10 +89,14 @@ This section should list any major frameworks that you built your project using.
 
 Features:
 1.  [Oauth](https://www.bugtrackertools.com/login/)
-        * Login with Facebook or Google Account
-        * Create BugTracker Account with Facebook or Google Account
-        * Log In with Bugtrackertools.com Native Account
-        *[features-oauth]
+<br />
+* Login with Facebook or Google Account
+<br />
+* Create BugTracker Account with Facebook or Google Account
+<br />
+* Log In with Bugtrackertools.com Native Account
+<br />
+[features-oauth]
         
 2. [API](https://www.bugtrackertools.com/api/)
         * GET Bugs, Profiles, Workqueues
