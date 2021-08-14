@@ -73,14 +73,16 @@ This section should list any major frameworks that you built your project using.
   ```
 
 2. Clickup API Key
-    Clickup.com --> Profile --> Settings --> Scroll to "My Apps" --> API Token
+    ```
+    Clickup.com --> Profile --> Settings --> Scroll to "My - Apps" --> API Token
+    ```
 
 3. Facebook Oauth Key (Website Must Be Live In Production And Have a Domain To Implement, Cannot Be LocalHost)
-    developers.facebook.com --> Make New App
-    https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow/
+    - developers.facebook.com --> Make New App
+    - https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow/
 
 4. Google Oauth Key (Website Must Be Live In Production And Have a Domain To Implement, Cannot Be LocalHost)
-    https://developers.google.com/identity/protocols/oauth2 
+    - https://developers.google.com/identity/protocols/oauth2 
 
 
 <!-- FEATURES -->
