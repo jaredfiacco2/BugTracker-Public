@@ -7,8 +7,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/jaredfiacco2/BugTracker-Public">
+    <img src="images/bug.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Bug Tracker Website</h3>
@@ -44,9 +44,7 @@
     <li><a href="#prerequisites">Prerequisites</a></li>
     <li><a href="#features">Features</a></li>
     <li><a href="#demo">Demo</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
 
@@ -89,24 +87,24 @@ Google Oauth Key (Website Must Be Live In Production And Have a Domain To Implem
 ## Features
 
 Features:
-    [Oauth](https://www.bugtrackertools.com/login/)
+   * [Oauth](https://www.bugtrackertools.com/login/)
         - Login with Facebook or Google Account
         - Create BugTracker Account with Facebook or Google Account
         - Log In with Bugtrackertools.com Native Account
         [features-oauth]
-    [API](https://www.bugtrackertools.com/api/)
+    * [API](https://www.bugtrackertools.com/api/)
         - GET Bugs, Profiles, Workqueues
         - POST Bugs, Profiles, Workqueues
         [features-api]
     Clickup (Project Management Tool) API Integration 
         - Create Task When Clickup
         [features-clickup]
-    [Dashboard](https://www.bugtrackertools.com/bug/dashboard)
+    * [Dashboard](https://www.bugtrackertools.com/bug/dashboard)
         - Darkmode Dashboard using ZingChart
         - Animated Loading for Enhanced UI
         - Queries the Server for Real-Time Analytics Delivery
         [features-dashboard]
-    [Workqueue](https://www.bugtrackertools.com/bug/)
+    * [Workqueue](https://www.bugtrackertools.com/bug/)
         - Toggle Between All Request & Incomplete Requests
         [features-workqueue]
 
