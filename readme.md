@@ -72,9 +72,7 @@ This section should list any major frameworks that you built your project using.
   ```
 
 2. Clickup API Key
-    ```
-    Clickup.com --> Profile --> Settings --> Scroll to "My - Apps" --> API Token
-    ```
+    - Clickup.com --> Profile --> Settings --> Scroll to "My - Apps" --> API Token
 
 3. Facebook Oauth Key (Website Must Be Live In Production And Have a Domain To Implement, Cannot Be LocalHost)
     - developers.facebook.com --> Make New App
@@ -98,14 +96,14 @@ This section should list any major frameworks that you built your project using.
     - POST Bugs, Profiles, Workqueues
 <img src="images/BugTrackerTools_API.gif" alt="API"/>
 
-3. Clickup (Project Management Tool) API Integration 
-    - Create Task When Clickup
+3. Clickup API Integration (Project Management Tool)
+    - Creating a Task in BugTrackerTools, also Creates a Task in Clickup
 <img src="images/BugTrackerTools_V05.gif" alt="Clickup"/>
 
 4. [Dashboard](https://www.bugtrackertools.com/bug/dashboard)
-    - Darkmode Dashboard using ZingChart
-    - Animated Loading for Enhanced UI
-    - Queries the Server for Real-Time Analytics Delivery
+    - Darkmode Password Protected Dashboard using ZingChart
+    - Animated Graph Loading for Enhanced UI
+    - Queries the Server upon Refresh for Real-Time Analytics Delivery
 <img src="images/BugTrackerTools_Dashboard_V01.gif" alt="Dashboard"/>
     
 5. [Workqueue](https://www.bugtrackertools.com/bug/)
