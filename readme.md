@@ -67,7 +67,6 @@ This section should list any major frameworks that you built your project using.
 ### Prerequisites
 
 1. Installing all Required Packages
-* npm
   ```sh
   pip install -r requirements.txt
   ```
@@ -90,18 +89,18 @@ This section should list any major frameworks that you built your project using.
 
 Features:
 1.  [Oauth](https://www.bugtrackertools.com/login/)
-        - Login with Facebook or Google Account
-        - Create BugTracker Account with Facebook or Google Account
-        - Log In with Bugtrackertools.com Native Account
-        [features-oauth]
+        * Login with Facebook or Google Account
+        * Create BugTracker Account with Facebook or Google Account
+        * Log In with Bugtrackertools.com Native Account
+        *[features-oauth]
         
 2. [API](https://www.bugtrackertools.com/api/)
-        - GET Bugs, Profiles, Workqueues
-        - POST Bugs, Profiles, Workqueues
+        * GET Bugs, Profiles, Workqueues
+        * POST Bugs, Profiles, Workqueues
         [features-api]
     Clickup (Project Management Tool) API Integration 
-        - Create Task When Clickup
-        [features-clickup]
+        * Create Task When Clickup
+        *[features-clickup]
 
 3. [Dashboard](https://www.bugtrackertools.com/bug/dashboard)
         - Darkmode Dashboard using ZingChart
