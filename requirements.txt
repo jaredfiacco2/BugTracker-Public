@@ -4,7 +4,7 @@ pscp==0.0.3
 psycopg2-binary
 dj-database-url
 pytz==2019.3
-sqlparse==0.3.0
+sqlparse==0.4.4
 gunicorn
 social-auth-app-django==3.1.0
 pyclickup
